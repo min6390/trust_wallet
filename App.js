@@ -1,9 +1,12 @@
 import React, {} from 'react';
-import {View} from 'react-native';
+import Route from './src/route/Route';
+import TrustView from './src/components/common/TrustView';
 
 function App() {
     return (
-        <View style={{flex: 1, backgroundColor: 'pink'}}></View>
+        <TrustView style={{flex:1}}>
+            <Route/>
+        </TrustView>
     );
 }
 
