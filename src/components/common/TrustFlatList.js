@@ -11,7 +11,10 @@ TrustFlatList.propTypes = {
         PropTypes.array,
         PropTypes.object,
     ]),
-    data: PropTypes.object,
+    data: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object,
+    ]),
     renderItem: PropTypes.func,
     keyExtractor: PropTypes.func,
 

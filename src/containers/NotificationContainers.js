@@ -257,7 +257,6 @@ function NotificationContainer(props) {
                         </TrustView>
                         <TrustFlatList
                             showsHorizontalScrollIndicator={false}
-
                             horizontal={true}
                             data={handleItems(item.contents)}
                             keyExtractor={item => item.id}

@@ -3,8 +3,9 @@ import {
     StyleSheet,
     TextInput,
 } from 'react-native';
-import AppStyles from "../common/AppStyles";
+//import AppStyles from "../common/AppStyles";
 import PropTypes from 'prop-types'
+import Dimens from '../../common/Dimens';
 
 const TrustTextInput = forwardRef((props, ref) => {
     const {style} = props;
@@ -39,7 +40,7 @@ const TrustTextInput = forwardRef((props, ref) => {
 const styles = StyleSheet.create({
     container: {
         // backgroundColor: Colors.greyscale7,
-        paddingHorizontal: AppStyles.scale(19),
+        paddingHorizontal: Dimens.scale(19),
         justifyContent: 'center',
     },
 });

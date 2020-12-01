@@ -61,9 +61,7 @@ function Information(props) {
             <TrustFlatList
                 data={data}
                 horizontal={true}
-                keyExtractor={(item) => {
-                    item.id;
-                }}
+                keyExtractor={item=> item.id}
                 renderItem={renderItem}
             />
         </TrustView>

@@ -18,21 +18,21 @@ const TopTabDexNavigator = createMaterialTopTabNavigator();
 
 function TopTabDex() {
     return (
-        <TopTabHomeNavigator.Navigator
+        <TopTabDexNavigator.Navigator
             tabBarOptions={{
                 activeTintColor: 'white',
                 labelStyle: {fontSize: 12},
                 style: {backgroundColor: Colors.secondBackground},
             }}
         >
-            <TopTabHomeNavigator.Screen
+            <TopTabDexNavigator.Screen
                 name="Convert"
                 component={ConvertContainer}/>
-            <TopTabHomeNavigator.Screen
+            <TopTabDexNavigator.Screen
                 name="Exchanges"
                 component={ExchangesContainer}
             />
-        </TopTabHomeNavigator.Navigator>
+        </TopTabDexNavigator.Navigator>
     );
 }
 

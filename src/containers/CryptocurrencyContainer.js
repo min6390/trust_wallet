@@ -59,9 +59,7 @@ function CryptocurrencyContainer(props) {
             <TrustText text={'Đặt cược'}/>
             <TrustFlatList
                 data={data}
-                keyExtractor={(item) => {
-                    item.id;
-                }}
+                keyExtractor={item => item.id}
                 renderItem={renderItem}
             />
         </>
