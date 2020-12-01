@@ -1,4 +1,4 @@
-import React,{} from 'react'
+import React, {useState} from 'react';
 import TrustView from '../../common/TrustView';
 import Dimens from '../../../common/Dimens';
 import StockMarket from './StockMarket';
@@ -10,59 +10,73 @@ import ButtonPurchase from './ButtonPurchase';
 import {styles} from './styles';
 
 function LeftContain() {
+    const [purchase, setPurchase] = useState(true);
+    const onPressBuy = () => {
+        if (purchase !== true) {
+            setPurchase(!purchase);
+        }
+    };
+    const onPressSell = () => {
+        if (purchase == true) {
+            setPurchase(!purchase);
+        }
+    };
     const purchaseItem = () => {
+        {console.log(purchase)}
         return (
             <TrustView flexDirection={'row'}
                        style={{marginVertical: Dimens.scale(5)}}
             >
                 <ButtonPurchase
-                    style={[styles.btnBuy, {backgroundColor: '#dcdcdc'}]}
+                    onPress={onPressBuy}
+                    style={[styles.btnBuy, purchase ? {backgroundColor: 'green'} : {backgroundColor: '#dcdcdc'}]}
                     text={'Mua'}
                 />
                 <ButtonPurchase
-                    style={styles.btnSell}
+                    onPress={onPressSell}
+                    style={[styles.btnSell, purchase ? {backgroundColor: '#dcdcdc'} : {backgroundColor: 'red'}]}
                     text={'Bán'}
                 />
             </TrustView>
         );
     };
- return(
-     <TrustView
-         style={{width: Dimens.widthScreen / 2}}
-     >
-         <StockMarket/>
-         {purchaseItem()}
-         <TrustTextInput
-             style={styles.inputText}
-         />
-         <TrustText
-             text={'~0.0043533 $'}/>
-         <TrustTextInput
-             style={styles.inputText}
-         />
-         <PercentList
-             style={{
-                 marginVertical: Dimens.scale(10),
-                 marginHorizontal: Dimens.scale(5),
-                 height: Dimens.scale(20),
-                 width: Dimens.scale(36),
-             }}
-         />
-         <TrustText
-             text={'Số dư' + ' 0 BNB'}
-         />
-         <TrustText
-             text={'Toàn bộ' + ' 0 BNB'}
-         />
-         <TrustTouchableOpacity
-             style={styles.btnFinish}
-         >
-             <TrustText
-                 text={'Mua'}
-             />
-         </TrustTouchableOpacity>
-     </TrustView>
- );
-}
+    return (
+        <TrustView
+            style={{width: Dimens.widthScreen / 2}}
+        >
+            <StockMarket/>
+            {purchaseItem()}
+            <TrustTextInput
+                style={styles.inputText}
+            />
+            <TrustText
+                text={'~0.0043533 $'}/>
+            <TrustTextInput
+                style={styles.inputText}
+            />
+            <PercentList
+                style={{
+                    marginVertical: Dimens.scale(10),
+                    marginHorizontal: Dimens.scale(5),
+                    height: Dimens.scale(20),
+                    width: Dimens.scale(36),
+                }}
+            />
+            <TrustText
+                text={'Số dư' + ' 0 BNB'}
+            />
+            <TrustText
+                text={'Toàn bộ' + ' 0 BNB'}
+            />
+            <TrustTouchableOpacity
+                style={[styles.btnFinish, purchase ? {backgroundColor:'green' } : {backgroundColor: 'red'}]}
+            >
+                <TrustText
+                    text={purchase?'Mua':'Bán'}
+                />
+            </TrustTouchableOpacity>
+        </TrustView>
+    );
+};
 
-export default LeftContain
+export default LeftContain;
