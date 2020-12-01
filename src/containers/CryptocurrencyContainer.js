@@ -49,7 +49,11 @@ function CryptocurrencyContainer(props) {
                 <TrustText
                     text={item.content}
                 />
-                <TrustView style={{borderWidth:Dimens.scale(1/4),flex:1,marginVertical:Dimens.scale(8)}}/>
+                <TrustView
+                    style={{borderWidth:Dimens.scale(1/4),
+                        flex:1,
+                        marginVertical:Dimens.scale(8)}}
+                />
             </TrustTouchableOpacity>
 
         );

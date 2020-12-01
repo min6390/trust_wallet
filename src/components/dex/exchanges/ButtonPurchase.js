@@ -1,9 +1,7 @@
 import React, {} from 'react';
-import {StyleSheet} from 'react-native';
 import TrustTouchableOpacity from '../../common/TrustTouchableOpacity';
-import Dimens from '../../../common/Dimens';
 import TrustText from '../../common/TrustText';
-import TrustView from '../../common/TrustView';
+import {styles} from './styles';
 
 function ButtonPurchase(props) {
     const {style, text, onPress} = props;
@@ -18,14 +16,4 @@ function ButtonPurchase(props) {
     );
 }
 
-const styles = StyleSheet.create({
-    btnPurchase: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'pink',
-        height: Dimens.scale(30),
-        flex: 1,
-
-    },
-});
 export default ButtonPurchase;

@@ -1,12 +1,11 @@
 import React, {} from 'react';
-import {StyleSheet} from 'react-native';
 import TrustView from '../common/TrustView';
 import TrustImage from '../common/TrustImage';
 import Images from '../../common/Images';
 import TrustText from '../common/TrustText';
 import Dimens from '../../common/Dimens';
-import FontSizes from '../../common/FontSizes';
 import TrustTouchableOpacity from '../common/TrustTouchableOpacity';
+import {styles} from './styles';
 
 function NewsItem(props) {
     const {navigation, item} = props;
@@ -33,14 +32,5 @@ function NewsItem(props) {
     );
 }
 
-const styles = StyleSheet.create({
-    txtName: {
-        marginBottom: Dimens.scale(5),
-        fontSize: FontSizes.size30,
 
-    },
-    txtTitle: {
-        width: Dimens.scale(200),
-    },
-});
 export default NewsItem;

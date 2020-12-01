@@ -1,14 +1,13 @@
 import React, {} from 'react';
-import {StyleSheet} from 'react-native';
 import TrustView from '../common/TrustView';
 import TrustText from '../common/TrustText';
 import Colors from '../../common/Colors';
-import FontSizes from '../../common/FontSizes';
 import Images from '../../common/Images';
 import TrustFlatList from '../common/TrustFlatList';
 import TrustImage from '../common/TrustImage';
-import Dimens from '../../common/Dimens';
 import TrustTouchableOpacity from '../common/TrustTouchableOpacity';
+import {styles} from './styles';
+import Dimens from '../../common/Dimens';
 
 const data = [
     {
@@ -68,34 +67,4 @@ function Information(props) {
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        marginHorizontal: Dimens.scale(20),
-        marginVertical: Dimens.scale(5),
-    },
-    txtMoney: {
-        marginTop: Dimens.scale(30),
-        color: 'white',
-        fontSize: FontSizes.size45,
-        fontWeight: 'bold',
-    },
-    txtCoin: {
-        marginVertical: Dimens.scale(10),
-        color: '#dcdc',
-        fontSize: FontSizes.size30,
-
-    },
-    imType: {
-        backgroundColor: '#87cefa',
-        width: Dimens.scale(32),
-        height: Dimens.scale(32),
-        borderRadius: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    txtType: {
-        color: 'white',
-    },
-});
 export default Information;

@@ -7,7 +7,7 @@ import TrustText from '../../common/TrustText';
 import PercentList from '../convert/PercentList';
 import TrustTouchableOpacity from '../../common/TrustTouchableOpacity';
 import ButtonPurchase from './ButtonPurchase';
-import {StyleSheet} from 'react-native';
+import {styles} from './styles';
 
 function LeftContain() {
     const purchaseItem = () => {
@@ -64,27 +64,5 @@ function LeftContain() {
      </TrustView>
  );
 }
-const styles = StyleSheet.create({
-    btnBuy: {
-        borderTopStartRadius: Dimens.scale(8),
-        borderBottomStartRadius: Dimens.scale(8),
-    },
-    btnSell: {
-        borderTopEndRadius: Dimens.scale(8),
-        borderBottomEndRadius: Dimens.scale(8),
-    },
-    inputText: {
-        borderRadius: Dimens.scale(5),
-        borderWidth: 1,
-    },
-    btnFinish: {
-        height: Dimens.scale(40),
-        width: Dimens.widthScreen / 2,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'pink',
-        borderRadius: Dimens.scale(10),
-        marginVertical: Dimens.scale(10),
-    },
-});
+
 export default LeftContain
