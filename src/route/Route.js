@@ -1,43 +1,70 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {Text, View} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeContainer from '../containers/HomeContainer';
 import NotificationContainer from '../containers/NotificationContainers';
 import DexContainer from '../containers/DexContainer';
 import SettingContainer from '../containers/SettingContainer';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import CryptocurrencyContainer from '../containers/CryptocurrencyContainer';
 import CollectionContainer from '../containers/CollectionContainer';
 import Colors from '../common/Colors';
+import ConvertContainer from '../containers/ConvertContainer';
+import ExchangesContainer from '../containers/ExchangesContainer';
 
-const Tab = createMaterialTopTabNavigator();
+
+const TopTabDexNavigator = createMaterialTopTabNavigator();
+
+function TopTabDex() {
+    return (
+        <TopTabHomeNavigator.Navigator
+            tabBarOptions={{
+                activeTintColor: 'white',
+                labelStyle: {fontSize: 12},
+                style: {backgroundColor: Colors.secondBackground},
+            }}
+        >
+            <TopTabHomeNavigator.Screen
+                name="Convert"
+                component={ConvertContainer}/>
+            <TopTabHomeNavigator.Screen
+                name="Exchanges"
+                component={ExchangesContainer}
+            />
+        </TopTabHomeNavigator.Navigator>
+    );
+}
+
+const TopTabHomeNavigator = createMaterialTopTabNavigator();
 
 function TopTabHome() {
     return (
-        <Tab.Navigator
+        <TopTabHomeNavigator.Navigator
             tabBarOptions={{
                 activeTintColor: 'white',
-                labelStyle: { fontSize: 12 },
-                style: { backgroundColor: Colors.secondBackground },
+                labelStyle: {fontSize: 12},
+                style: {backgroundColor: Colors.secondBackground},
             }}
         >
-            <Tab.Screen
+            <TopTabHomeNavigator.Screen
                 name="Home"
                 component={HomeContainer}
             />
-            <Tab.Screen
+            <TopTabHomeNavigator.Screen
                 name="Crypt"
-                component={CryptocurrencyContainer} />
-            <Tab.Screen
+                component={CryptocurrencyContainer}/>
+            <TopTabHomeNavigator.Screen
                 name="Collection"
                 component={CollectionContainer}
             />
-        </Tab.Navigator>
+        </TopTabHomeNavigator.Navigator>
     );
 }
+
 const BottomTab = createBottomTabNavigator();
- function Route() {
+
+function Route() {
     return (
         <NavigationContainer>
             <BottomTab.Navigator>
@@ -51,7 +78,7 @@ const BottomTab = createBottomTabNavigator();
                 />
                 <BottomTab.Screen
                     name="DEX"
-                    component={DexContainer}
+                    component={TopTabDex}
                 />
                 <BottomTab.Screen
                     name="Settings"
@@ -61,4 +88,5 @@ const BottomTab = createBottomTabNavigator();
         </NavigationContainer>
     );
 }
-export default Route
+
+export default Route;
