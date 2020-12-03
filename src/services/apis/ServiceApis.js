@@ -1,14 +1,10 @@
 import TrustService from '../TrustService';
 import PropTypes from 'prop-types';
 
+
 const getService = (onSuccess, onError) => {
     TrustService.GET({
-        url: '/apiCoinWallet',
-        body: {
-            'apiPasser': {
-                'keyPasser': 'get_coin_list',
-            },
-        },
+        url: '/getCoinList',
         onSuccess,
         onError,
     });

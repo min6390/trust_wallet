@@ -10,6 +10,7 @@ function ButtonPurchase(props) {
             style={[styles.btnPurchase, style]}
             onPress={onPress}>
             <TrustText
+                style={{color:'white'}}
                 text={text}
             />
         </TrustTouchableOpacity>

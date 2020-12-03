@@ -1,10 +1,7 @@
 import React from 'react';
-import {
-    StyleSheet,
-    FlatList,
-} from 'react-native';
 import PropTypes from 'prop-types';
-import FastImage from 'react-native-fast-image';
+import {HEADER_MODE} from '../../common/Constants';
+import HomeHeader from '../header/HomeHeader';
 
 TrustHeader.propTypes = {
     style: PropTypes.oneOfType([
@@ -17,22 +14,37 @@ TrustHeader.propTypes = {
 
 };
 
-
+TrustHeader.defaultProps = {
+    headerMode: HEADER_MODE.HOME
+}
 
 function TrustHeader(props) {
     const {
+        headerMode,
+        title,
         style,
-        headerMode
+        navigation,
+        process,
+        rightIcon,
+        leftIcon
     } = props;
-    return <FastImage
-        {...props}
-        style={[styles.flatList, style]}
-        keyboardShouldPersistTaps={'always'}
-    />;
-};
+    switch (headerMode) {
+        case HEADER_MODE.HOME:
+            return <HomeHeader
+                leftIcon={leftIcon}
+                rightIcon={rightIcon}
+                process={process}
+                navigation={navigation}
+                style={style}
+            />;
+        case HEADER_MODE.DETAIL:
+            return <>
 
-const styles = StyleSheet.create({
-    flatList: {},
-});
+            </>;
+        default:
+            return<></>
+    }
+}
+
 
 export default TrustHeader;

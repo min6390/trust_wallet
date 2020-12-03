@@ -22,19 +22,18 @@ function LeftContain() {
         }
     };
     const purchaseItem = () => {
-        {console.log(purchase)}
         return (
             <TrustView flexDirection={'row'}
                        style={{marginVertical: Dimens.scale(5)}}
             >
                 <ButtonPurchase
                     onPress={onPressBuy}
-                    style={[styles.btnBuy, purchase ? {backgroundColor: 'green'} : {backgroundColor: '#dcdcdc'}]}
+                    style={[styles.btnBuy, purchase ? {backgroundColor: '#5f9ea0'} : {backgroundColor: '#dcdcdc'}]}
                     text={'Mua'}
                 />
                 <ButtonPurchase
                     onPress={onPressSell}
-                    style={[styles.btnSell, purchase ? {backgroundColor: '#dcdcdc'} : {backgroundColor: 'red'}]}
+                    style={[styles.btnSell, purchase ? {backgroundColor: '#dcdcdc'} : {backgroundColor: '#d2691e'}]}
                     text={'Bán'}
                 />
             </TrustView>
@@ -69,9 +68,10 @@ function LeftContain() {
                 text={'Toàn bộ' + ' 0 BNB'}
             />
             <TrustTouchableOpacity
-                style={[styles.btnFinish, purchase ? {backgroundColor:'green' } : {backgroundColor: 'red'}]}
+                style={[styles.btnFinish, purchase ? {backgroundColor:'#5f9ea0' } : {backgroundColor: '#d2691e'}]}
             >
                 <TrustText
+                   style={{color:'white'}}
                     text={purchase?'Mua':'Bán'}
                 />
             </TrustTouchableOpacity>

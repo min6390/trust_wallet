@@ -2,7 +2,6 @@ import React, {} from 'react';
 import {
     StyleSheet,
 } from 'react-native';
-import HomeContainer from './HomeContainer';
 import Images from '../common/Images';
 import TrustFlatList from '../components/common/TrustFlatList';
 import TrustView from '../components/common/TrustView';
@@ -11,6 +10,8 @@ import NewsItem from '../components/notification/NewsItem';
 import FontSizes from '../common/FontSizes';
 import Dimens from '../common/Dimens';
 import TrustTouchableOpacity from '../components/common/TrustTouchableOpacity';
+import TrustContainer from '../components/common/TrustContainer';
+import {HEADER_MODE} from '../common/Constants';
 
 const data = [
     {
@@ -202,7 +203,6 @@ const data = [
 
 function NotificationContainer(props) {
     const {navigation} = props;
-
     const handleItems = (items) => {
         const foodItems = [];
         let index = 0;
@@ -234,38 +234,44 @@ function NotificationContainer(props) {
 
 
     return (
-        <>
-            <TrustFlatList
-                data={data}
-                keyExtractor={item => item.id}
-                renderItem={({item}) =>
-                    <>
-                        <TrustView
-                            flexDirection={'row'}
-                            style={styles.container}
-                        >
-                            <TrustText
-                                style={styles.txtTitle}
-                                text={item.title}
-                            />
-                            <TrustTouchableOpacity>
-                                <TrustText
-                                    style={styles.txtShowAll}
-                                    text={' Show all '}
-                                />
-                            </TrustTouchableOpacity>
-                        </TrustView>
+        <TrustContainer
+            headerMode={HEADER_MODE.DETAIL}
+            renderContentView = {()=>{
+                return(
                         <TrustFlatList
-                            showsHorizontalScrollIndicator={false}
-                            horizontal={true}
-                            data={handleItems(item.contents)}
+                            data={data}
                             keyExtractor={item => item.id}
-                            renderItem={renderItem}
+                            renderItem={({item}) =>
+                                <>
+                                    <TrustView
+                                        flexDirection={'row'}
+                                        style={styles.container}
+                                    >
+                                        <TrustText
+                                            style={styles.txtTitle}
+                                            text={item.title}
+                                        />
+                                        <TrustTouchableOpacity>
+                                            <TrustText
+                                                style={styles.txtShowAll}
+                                                text={' Show all '}
+                                            />
+                                        </TrustTouchableOpacity>
+                                    </TrustView>
+                                    <TrustFlatList
+                                        showsHorizontalScrollIndicator={false}
+                                        horizontal={true}
+                                        data={handleItems(item.contents)}
+                                        keyExtractor={item => item.id}
+                                        renderItem={renderItem}
+                                    />
+                                </>
+                            }
                         />
-                    </>
-                }
-            />
-        </>
+                )
+            }}
+        />
+
     );
 }
 

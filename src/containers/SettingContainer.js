@@ -1,14 +1,26 @@
-import React,{} from 'react';
+import React, {} from 'react';
 import {
     StyleSheet,
 } from 'react-native';
-import HomeContainer from './HomeContainer';
+import TrustView from '../components/common/TrustView';
+import TrustContainer from '../components/common/TrustContainer';
+import {HEADER_MODE} from '../common/Constants';
 
 
 function SettingContainer() {
-    return(
-        <>
-        </>
-    )
+
+    return (
+      <TrustContainer
+          headerMode={HEADER_MODE.HOME}
+          renderContentView={()=>{
+              return(
+                  <TrustView>
+
+                  </TrustView>
+              )
+          }}
+      />
+    );
 }
-export default SettingContainer
+
+export default SettingContainer;

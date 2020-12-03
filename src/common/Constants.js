@@ -16,8 +16,13 @@ const REDUX_CONSTANTS = {
 
 const HEADER_MODE = {
   HOME: 'HOME',
-  BACK: 'BACK'
+  DETAIL: 'DETAIL'
 }
+
+export const APP_ACTIONS = {
+  SHOW_APP_LOADING: 'SHOW_APP_LOADING'
+}
+
 
 export {
   LOCAL_DB_KEYS,

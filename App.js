@@ -1,12 +1,13 @@
 import React, {} from 'react';
-import Route from './src/route/Route';
-import TrustView from './src/components/common/TrustView';
+import {Provider, } from 'react-redux';
+import store from './src/redux/store/store';
+import AppContainer from './AppContainers';
 
 function App() {
     return (
-        <TrustView style={{flex:1}}>
-            <Route/>
-        </TrustView>
+        <Provider store={store}>
+            <AppContainer/>
+        </Provider>
     );
 }
 
