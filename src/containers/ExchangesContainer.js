@@ -11,8 +11,13 @@ function ExchangesContainer(props) {
     const {navigation} = props;
     return (
         <TrustContainer
-            headerMode={HEADER_MODE.DETAIL}
+            process={1}
             navigation={navigation}
+            firstScreen={'ConvertContainer'}
+            secondScreen={'ExchangesContainer'}
+            firstName={'Convert'}
+            secondName={'Exchanges'}
+            headerMode={HEADER_MODE.HOME}
             renderContentView={() => {
                 return (
                     <>

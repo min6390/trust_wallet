@@ -13,6 +13,10 @@ import im_window from   '../assets/images/window-of-four-rounded-squares.png'
 import im_setting from   '../assets/images/settings.png'
 import im_change from   '../assets/images/exchange.png'
 import im_control from   '../assets/images/controls.png'
+import im_paste from  '../assets/images/paste.png'
+import im_left_arrow from '../assets/images/left-arrow.png'
+import im_chart from '../assets/images/statistics.png'
+import im_find from '../assets/images/searching-magnifying-glass.png'
 const Images = {
     im_arrow_down,
     im_arrow_up,
@@ -29,5 +33,9 @@ const Images = {
     im_window,
     im_change,
     im_control,
+    im_paste,
+    im_left_arrow,
+    im_chart,
+    im_find
 };
 export default Images;

@@ -1,35 +1,35 @@
 import React, {} from 'react';
-import {
-    StyleSheet,
-} from 'react-native';
 import TrustTouchableOpacity from './TrustTouchableOpacity';
 import TrustView from './TrustView';
 import TrustText from './TrustText';
 import Dimens from '../../common/Dimens';
 import Colors from '../../common/Colors';
-import FontSizes from '../../common/FontSizes';
+import {styles} from './styles';
 
 
 const TopTabNavigator = (props) => {
-    const {navigation,process} = props;
+    const {navigation,process,firstScreen,
+        secondScreen,thirdScreen,duaScreen,
+        firstName,secondName} = props;
     const onPressHome = () => {
-        navigation?.navigate('Home');
+        navigation?.navigate(firstScreen);
     };
     const onPressCrypt = () => {
-        navigation?.navigate('Cryt');
+        navigation?.navigate(secondScreen);
     };
     const onPressCollection = () => {
-        navigation?.navigate('Collection');
+        navigation?.navigate(thirdScreen);
     };
     return (
-        <TrustView flexDirection={'row'} style={styles.container}>
+      <TrustView flexDirection={'row'} style={[styles.container,
+          duaScreen?{ width: Dimens.scale(280)}:{  width: Dimens.scale(190),}]}>
             <TrustTouchableOpacity
                 style={[styles.txtType,
                     process === 0 ? {backgroundColor: Colors.secondBackground} : {backgroundColor: Colors.thirdBackground}]}
                 onPress={onPressHome}>
                 <TrustText
                     style={styles.text}
-                    text={'HOME'}
+                    text={firstName}
                 />
             </TrustTouchableOpacity>
             <TrustTouchableOpacity
@@ -39,9 +39,9 @@ const TopTabNavigator = (props) => {
             >
                 <TrustText
                     style={styles.text}
-                    text={'CRYPT'}/>
+                    text={secondName}/>
             </TrustTouchableOpacity>
-            <TrustTouchableOpacity
+            {duaScreen?<TrustTouchableOpacity
                 style={[styles.txtType,
                     process ===2 ? {backgroundColor:  Colors.secondBackground} : {backgroundColor: Colors.thirdBackground}]}
                 onPress={onPressCollection}
@@ -49,34 +49,11 @@ const TopTabNavigator = (props) => {
                 <TrustText
                     style={styles.text}
                     text={'COLLECTION'}/>
-            </TrustTouchableOpacity>
+            </TrustTouchableOpacity>:<TrustView/>}
         </TrustView>
     );
 };
 
 
-const styles = StyleSheet.create({
-    container: {
-        borderWidth:Dimens.scale(1/2),
-        borderRadius: Dimens.scale(5),
-        width: Dimens.scale(280),
-        backgroundColor: Colors.thirdBackground,
-        justifyContent: 'center',
-        height:Dimens.scale(24)
-    },
-    txtType: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 5,
-        backgroundColor: '#8a2be2',
-        width: Dimens.scale(90),
-        margin:Dimens.scale(1),
-        marginVertical:Dimens.scale(3),
 
-    },
-    text:{
-        fontSize:FontSizes.size22,
-        color:'white'
-    }
-});
 export default TopTabNavigator;

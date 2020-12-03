@@ -6,7 +6,7 @@ import NotificationContainer from '../../containers/NotificationContainers';
 import SettingContainer from '../../containers/SettingContainer';
 import HomeStackNavigator from './HomeStackNavigator';
 import React from 'react';
-import TopTabDex from './TopTabDex';
+import DexStackNavigator from './DexStackNavigator';
 
 const BottomTabNavigator = createBottomTabNavigator();
 
@@ -37,7 +37,7 @@ function TabNavigator() {
             />
             <BottomTabNavigator.Screen
                 name="DEX"
-                component={TopTabDex}
+                component={DexStackNavigator}
                 options={{
                     tabBarIcon: ({color}) => <TrustImage
                         tintColor={color}

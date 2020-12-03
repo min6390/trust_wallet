@@ -235,7 +235,8 @@ function NotificationContainer(props) {
 
     return (
         <TrustContainer
-            headerMode={HEADER_MODE.DETAIL}
+            navigation={navigation}
+            headerMode={HEADER_MODE.SEARCH}
             renderContentView = {()=>{
                 return(
                         <TrustFlatList

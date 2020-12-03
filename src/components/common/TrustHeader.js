@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {HEADER_MODE} from '../../common/Constants';
 import HomeHeader from '../header/HomeHeader';
+import TrustView from './TrustView';
+import DetailHeader from '../header/DetailHeader';
+import SearchHeader from '../header/SearchHeader';
 
 TrustHeader.propTypes = {
     style: PropTypes.oneOfType([
@@ -11,12 +14,13 @@ TrustHeader.propTypes = {
     data: PropTypes.object,
     renderItem: PropTypes.func,
     keyExtractor: PropTypes.func,
+    title: PropTypes.string,
 
 };
 
 TrustHeader.defaultProps = {
-    headerMode: HEADER_MODE.HOME
-}
+    headerMode: HEADER_MODE.HOME,
+};
 
 function TrustHeader(props) {
     const {
@@ -26,7 +30,13 @@ function TrustHeader(props) {
         navigation,
         process,
         rightIcon,
-        leftIcon
+        leftIcon,
+        firstScreen,
+        secondScreen,
+        thirdScreen,
+        duaScreen,
+        firstName,
+        secondName,
     } = props;
     switch (headerMode) {
         case HEADER_MODE.HOME:
@@ -36,15 +46,27 @@ function TrustHeader(props) {
                 process={process}
                 navigation={navigation}
                 style={style}
+                firstScreen={firstScreen}
+                secondScreen={secondScreen}
+                thirdScreen={thirdScreen}
+                duaScreen={duaScreen}
+                firstName={firstName}
+                secondName={secondName}
             />;
         case HEADER_MODE.DETAIL:
-            return <>
-
-            </>;
+            return <DetailHeader
+                title={title}
+                navigation={navigation}
+            />;
+        case HEADER_MODE.SEARCH:
+            return <SearchHeader
+                navigation={navigation}
+            />;
         default:
-            return<></>
+            return <TrustView/>;
     }
 }
 
 
 export default TrustHeader;
+

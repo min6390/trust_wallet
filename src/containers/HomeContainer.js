@@ -8,6 +8,11 @@ function HomeContainer(props) {
 
     return (
         <TrustContainer
+            firstScreen={'Home'}
+            secondScreen={'Cryt'}
+            firstName={'Home'}
+            secondName={'Crypt'}
+            duaScreen={true}
             leftIcon={true}
             rightIcon={true}
             process={0}

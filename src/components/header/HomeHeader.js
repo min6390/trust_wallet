@@ -9,7 +9,11 @@ import Colors from '../../common/Colors';
 import TrustTouchableOpacity from '../common/TrustTouchableOpacity';
 
 const HomeHeader = (props) => {
-    const {navigation, process, rightIcon, leftIcon} = props;
+    const {
+        navigation, process, rightIcon, leftIcon,
+        firstScreen, secondScreen, thirdScreen, duaScreen,
+        firstName,secondName
+    } = props;
 
     const onPress = () => {
         navigation?.navigate('MoreContainer');
@@ -28,6 +32,12 @@ const HomeHeader = (props) => {
                 />
             </TrustTouchableOpacity> : <TrustView/>}
             <TopTabNavigator
+                firstName={firstName}
+                secondName={secondName}
+                firstScreen={firstScreen}
+                secondScreen={secondScreen}
+                thirdScreen={thirdScreen}
+                duaScreen={duaScreen}
                 process={process}
                 navigation={navigation}
             />
@@ -41,7 +51,8 @@ const HomeHeader = (props) => {
                 />
             </TrustTouchableOpacity> : <TrustView/>}
         </TrustView>
-    );
+    )
+        ;
 };
 const styles = StyleSheet.create({
     container: {

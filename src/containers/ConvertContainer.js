@@ -10,10 +10,16 @@ import TrustContainer from '../components/common/TrustContainer';
 import {HEADER_MODE} from '../common/Constants';
 
 function ConvertContainer(props) {
-    const {navigation} = props;
+    const {navigation,} = props;
     return (
         <TrustContainer
-            headerMode={HEADER_MODE.DETAIL}
+            process={0}
+            navigation={navigation}
+            firstScreen={'ConvertContainer'}
+            secondScreen={'ExchangesContainer'}
+            firstName={'Convert'}
+            secondName={'Exchanges'}
+            headerMode={HEADER_MODE.HOME}
             renderContentView={() => {
                 return (
                     <TrustView style={{alignItems: 'center'}}>

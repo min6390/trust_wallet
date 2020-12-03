@@ -12,6 +12,7 @@ import ToggleSwitch from 'toggle-switch-react-native';
 import Colors from '../common/Colors';
 import TrustTouchableOpacity from '../components/common/TrustTouchableOpacity';
 import ServiceApis from '../services/apis/ServiceApis';
+import TrustLine from '../components/common/TrustLine';
 
 
 function MoreContainer(props) {
@@ -35,7 +36,7 @@ function MoreContainer(props) {
                 <TrustView flexDirection={'row'}
                            style={styles.container}>
                     <TrustTouchableOpacity style={{flex:1}}
-                    onPress={()=>{navigation.navigate('DetailContainer'),item}}
+                    onPress={()=>{navigation.navigate('DetailContainer',item)}}
                     >
                         <TrustView flexDirection={'row'}
                                    style={styles.content}>
@@ -57,9 +58,7 @@ function MoreContainer(props) {
                         onToggle={() => handleToggle(index)}
                     />
                 </TrustView>
-                <TrustView
-                    style={styles.borderCustom}
-                />
+               <TrustLine/>
             </>
         );
     };
@@ -85,11 +84,6 @@ const styles = StyleSheet.create({
         height: Dimens.scale(50),
         width: Dimens.scale(50),
     },
-    borderCustom: {
-        borderWidth: Dimens.scale(1 / 2),
-        marginVertical: Dimens.scale(5),
-        borderColor: '#dcdcdc',
 
-    },
 });
 export default MoreContainer;
