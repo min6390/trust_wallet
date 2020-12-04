@@ -5,11 +5,11 @@ import AppLoading from './src/components/common/AppLoading';
 import { useSelector} from 'react-redux';
 
 function AppContainer() {
-    const {loading} = useSelector(state => state.app);
+    // const {loading} = useSelector(state => state.app);
     return (
             <TrustView style={{flex: 1}}>
                 <Route/>
-                {loading &&  <AppLoading/>}
+             {/*//   {loading &&  <AppLoading/>}*/}
             </TrustView>
     );
 }

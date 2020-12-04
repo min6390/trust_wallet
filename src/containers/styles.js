@@ -13,4 +13,16 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: Colors.secondBackground,
     },
+    container: {
+        alignItems: 'center',
+        margin: Dimens.scale(5),
+        justifyContent: 'space-between',
+    },
+    content: {
+        alignItems: 'center',
+    },
+    image: {
+        height: Dimens.scale(50),
+        width: Dimens.scale(50),
+    },
 });

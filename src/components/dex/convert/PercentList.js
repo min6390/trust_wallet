@@ -25,6 +25,16 @@ const data = [
     },
 ];
 function PercentList (props){
+    const dataItem=[
+        {
+            id:1,
+            name : 100
+        },
+        {
+            id:2,
+            name : 300
+        }
+    ]
     const {style}=props
     return (
         <TrustFlatList

@@ -1,7 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {
-    StyleSheet,
-} from 'react-native';
 import Images from '../common/Images';
 import TrustFlatList from '../components/common/TrustFlatList';
 import TrustImage from '../components/common/TrustImage';
@@ -13,11 +10,17 @@ import Colors from '../common/Colors';
 import TrustTouchableOpacity from '../components/common/TrustTouchableOpacity';
 import ServiceApis from '../services/apis/ServiceApis';
 import TrustLine from '../components/common/TrustLine';
+import {useDispatch} from 'react-redux';
+import {styles} from './styles';
 
 
 function MoreContainer(props) {
     const {navigation}=props;
     const [data, setData] = useState([]);
+
+    const dispatch = useDispatch()
+    const addItemToCart = item => dispatch({ type: "ADD_TO_CART", payload: item })
+
     useEffect(() => {
         ServiceApis.getService(res => {
             setData(res.data);
@@ -29,6 +32,9 @@ function MoreContainer(props) {
     const handleToggle = (index) => {
         data[index].toggle = !data[index].toggle;
         setData(Object.assign([], data));
+        if (data[index].toggle == true){
+            addItemToCart(data[index])
+        }
     };
     const renderItem = ({item, index}) => {
         return (
@@ -71,19 +77,4 @@ function MoreContainer(props) {
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        margin: Dimens.scale(5),
-        justifyContent: 'space-between',
-    },
-    content: {
-        alignItems: 'center',
-    },
-    image: {
-        height: Dimens.scale(50),
-        width: Dimens.scale(50),
-    },
-
-});
 export default MoreContainer;

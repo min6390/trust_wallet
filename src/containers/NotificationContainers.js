@@ -263,7 +263,7 @@ function NotificationContainer(props) {
                                         showsHorizontalScrollIndicator={false}
                                         horizontal={true}
                                         data={handleItems(item.contents)}
-                                        keyExtractor={item => item.id}
+                                        keyExtractor={item => item.id.toString()}
                                         renderItem={renderItem}
                                     />
                                 </>

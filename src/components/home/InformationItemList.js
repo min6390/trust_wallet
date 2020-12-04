@@ -20,7 +20,7 @@ function InformationItemList(props) {
                     />
                 </TrustTouchableOpacity>
                 <TrustText
-                    style={[styles.txtType,{color:{color}}]}
+                    style={[styles.txtType,{color:color}]}
                     text={item.name}
                 />
             </TrustView>
@@ -28,6 +28,7 @@ function InformationItemList(props) {
     };
     return (
         <TrustFlatList
+
             color={color}
             style={style}
             data={data}

@@ -8,7 +8,8 @@ import {styles} from './styles';
 
 
 
-function Information() {
+function Information(props) {
+    const {color}=props;
     const data = [
         {
             id: 1,
@@ -38,6 +39,7 @@ function Information() {
                 text={'Ví Multi-Coin 1'}
             />
             <InformationItemList
+                color={color}
                data={data}
             />
         </TrustView>

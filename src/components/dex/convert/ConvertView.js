@@ -7,14 +7,28 @@ import Images from '../../../common/Images';
 import Colors from '../../../common/Colors';
 import ConvertItem from './ConvertItem';
 import {styles} from './styles';
+import TrustText from '../../common/TrustText';
 
 function ConvertView() {
+
     return (
         <TrustView style={styles.container}>
-            <ConvertItem
-                text={'Bạn trả'}
-            />
+                <ConvertItem
+                    text={'Bạn trả'}
+                />
             <TrustView style={{borderWidth: Dimens.scale(1 / 3)}}/>
+
+            <TrustView style={styles.txtSwap}>
+                <TrustText
+                    text={'a'}
+                />
+            </TrustView>
+            <TrustView style={styles.txtSwap1}>
+                <TrustText
+
+                    text={'a'}
+                />
+            </TrustView>
             <TrustTouchableOpacity
                 activeOpacity={10}
                 style={styles.btnSwap}>

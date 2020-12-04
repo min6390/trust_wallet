@@ -63,6 +63,11 @@ function CryptocurrencyContainer(props) {
     };
     return (
         <TrustContainer
+            firstScreen={'Home'}
+            secondScreen={'Cryt'}
+            firstName={'Home'}
+            secondName={'Crypt'}
+            duaScreen={true}
             process={1}
             headerMode={HEADER_MODE.HOME}
             navigation={navigation}

@@ -17,6 +17,8 @@ import im_paste from  '../assets/images/paste.png'
 import im_left_arrow from '../assets/images/left-arrow.png'
 import im_chart from '../assets/images/statistics.png'
 import im_find from '../assets/images/searching-magnifying-glass.png'
+import im_right_arrow from '../assets/images/right_arrow.png'
+
 const Images = {
     im_arrow_down,
     im_arrow_up,
@@ -36,6 +38,7 @@ const Images = {
     im_paste,
     im_left_arrow,
     im_chart,
-    im_find
+    im_find,
+    im_right_arrow
 };
 export default Images;
