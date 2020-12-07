@@ -8,6 +8,23 @@ import PropTypes from 'prop-types'
 import Dimens from '../../common/Dimens';
 
 const TrustTextInput = forwardRef((props, ref) => {
+    TrustTextInput.propTypes = {
+        ref: PropTypes.object,
+        style: PropTypes.oneOfType([
+            PropTypes.array,
+            PropTypes.object
+        ]),
+        placeholder: PropTypes.string,
+        keyboardType: PropTypes.string,
+        onChangeText: PropTypes.func,
+        onSubmitEditing: PropTypes.func,
+        autoFocus: PropTypes.bool,
+        value: PropTypes.string,
+        maxLength: PropTypes.number
+    };
+    TrustTextInput.defaultProps = {
+        style: undefined,
+    };
     const {style} = props;
     const inputRef = useRef();
     const [text, setText] = useState('');
@@ -45,22 +62,6 @@ const styles = StyleSheet.create({
     },
 });
 
-TrustTextInput.propTypes = {
-    ref: PropTypes.object,
-    style: PropTypes.oneOfType([
-        PropTypes.array,
-        PropTypes.object
-    ]),
-    placeholder: PropTypes.string,
-    keyboardType: PropTypes.string,
-    onChangeText: PropTypes.func,
-    onSubmitEditing: PropTypes.func,
-    autoFocus: PropTypes.bool,
-    value: PropTypes.string,
-    maxLength: PropTypes.number
-};
-TrustTextInput.defaultProps = {
-    style: undefined,
-};
+
 
 export default TrustTextInput;

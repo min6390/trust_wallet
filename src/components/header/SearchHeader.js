@@ -5,17 +5,19 @@ import Images from '../../common/Images';
 import {styles} from './styles';
 import TrustTouchableOpacity from '../common/TrustTouchableOpacity';
 import TrustTextInput from '../common/TrustTextInput';
+import {useTheme} from '@react-navigation/native';
 
 const SearchHeader = (props) => {
-    const {navigation,} = props;
+    const {colors}=useTheme();
+    const {navigation,nameScreen} = props;
     const onPress = () => {
-        navigation?.goBack();
+        navigation?.navigate(nameScreen);
     };
     const onFocus = () => {
 
     };
     return (
-        <TrustView flexDirection={'row'} style={styles.container}>
+        <TrustView flexDirection={'row'} style={[styles.container,{backgroundColor:colors.primary}]}>
             <TrustTouchableOpacity style={styles.image}
                                    onPress={onPress}>
                 <TrustImage
@@ -26,15 +28,15 @@ const SearchHeader = (props) => {
             </TrustTouchableOpacity>
             <TrustView
                 flexDirection={'row'}
-                style={styles.content}>
+                style={[styles.content,{backgroundColor:colors.searchHeader}]}>
                 <TrustImage
-                    tintColor={'#dcdcdc'}
+                    tintColor={colors.inactiveTintColor}
                     style={styles.imageFind}
                     localSource={Images.im_find}/>
                 <TrustTextInput
                     onFocus={() => onFocus}
                     placeholder={'Find something or address dApp'}
-                    style={styles.searchInput}/>
+                    style={[styles.searchInput,{color:colors.textColor}]}/>
             </TrustView>
         </TrustView>
 

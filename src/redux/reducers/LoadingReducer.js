@@ -14,5 +14,5 @@ function showAppLoading(state, payload) {
 const handles = {};
 handles[APP_ACTIONS.SHOW_APP_LOADING] = showAppLoading;
 
-const AppReducer = createReducer(initialState, handles);
-export default AppReducer;
+const LoadingReducer = createReducer(initialState, handles);
+export default LoadingReducer;

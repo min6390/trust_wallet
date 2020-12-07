@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-import Colors from '../../common/Colors';
 import Dimens from '../../common/Dimens';
 import FontSizes from '../../common/FontSizes';
 import React from 'react';
@@ -8,7 +7,6 @@ export const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         justifyContent: 'space-between',
-        backgroundColor: Colors.secondBackground,
         padding: Dimens.scale(5),
         height: Dimens.scale(64),
     },
@@ -29,8 +27,9 @@ export const styles = StyleSheet.create({
         top: Dimens.scale(5),
     },
     searchInput:{
+        marginHorizontal:Dimens.scale(10),
         right:Dimens.scale(15),
-        width:Dimens.widthScreen - Dimens.scale(80),
+        width:Dimens.widthScreen - Dimens.scale(90),
     },
     imageFind:{
         marginHorizontal:Dimens.scale(8),

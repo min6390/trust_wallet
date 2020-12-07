@@ -6,6 +6,7 @@ import MoreContainer from '../../containers/MoreContainer';
 import React from 'react';
 import DetailContainer from '../../containers/DetailContainer';
 
+
 const HomeStack = createStackNavigator();
 
 function HomeStackNavigator() {
@@ -16,23 +17,23 @@ function HomeStackNavigator() {
             }}
         >
             <HomeStack.Screen
-                name="Home"
+                name={'Home'}
                 component={HomeContainer}
             />
             <HomeStack.Screen
-                name="Cryt"
+                name={'Cryt'}
                 component={CryptocurrencyContainer}
             />
             <HomeStack.Screen
-                name="Collection"
+                name={'Collection'}
                 component={CollectionContainer}
             />
             <HomeStack.Screen
-                name="MoreContainer"
+                name={'More'}
                 component={MoreContainer}
             />
             <HomeStack.Screen
-                name="DetailContainer"
+                name={'Detail'}
                 component={DetailContainer}
             />
 

@@ -30,29 +30,16 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    txtSwap:{
-        height: Dimens.scale(40), width: Dimens.scale(40),
-        borderRadius: Dimens.scale(30),
-        borderWidth: Dimens.scale(1),
+    txtSwap: {
+        height: Dimens.scale(40), width: Dimens.scale(100),
         borderColor: '#dcdcdc',
-        position: 'absolute',
-        backgroundColor: 'pink',
         justifyContent: 'center',
         alignItems: 'center',
-        left: Dimens.scale(250),
-        top: Dimens.scale(25),
+        marginVertical: Dimens.scale(30),
     },
-    txtSwap1:{
-        height: Dimens.scale(40), width: Dimens.scale(40),
-        borderRadius: Dimens.scale(30),
-        borderWidth: Dimens.scale(1),
-        borderColor: '#dcdcdc',
-        position: 'absolute',
-        backgroundColor: 'red',
-        left: Dimens.scale(250),
-        top: Dimens.scale(135),
-        justifyContent: 'center',
-        alignItems: 'center',
+    image: {
+        height: Dimens.scale(40),
+        width: Dimens.scale(40),
+        borderRadius:20
     },
-
-})
+});

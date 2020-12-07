@@ -37,10 +37,13 @@ function TrustHeader(props) {
         duaScreen,
         firstName,
         secondName,
+        routeData,
+        nameScreen,
     } = props;
     switch (headerMode) {
         case HEADER_MODE.HOME:
             return <HomeHeader
+                routeData={routeData}
                 leftIcon={leftIcon}
                 rightIcon={rightIcon}
                 process={process}
@@ -60,6 +63,7 @@ function TrustHeader(props) {
             />;
         case HEADER_MODE.SEARCH:
             return <SearchHeader
+                nameScreen={nameScreen}
                 navigation={navigation}
             />;
         default:

@@ -13,11 +13,11 @@ function DexStackNavigator() {
             }}
         >
             <DexStack.Screen
-                name='ConvertContainer'
+                name={'Convert'}
                 component={ConvertContainer}
             />
             <DexStack.Screen
-                name="ExchangesContainer"
+                name={'Exchanges'}
                 component={ExchangesContainer}
             />
 

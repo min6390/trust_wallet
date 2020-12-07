@@ -1,13 +1,11 @@
 import {StyleSheet} from 'react-native';
 import Dimens from '../../common/Dimens';
-import Colors from '../../common/Colors';
 import FontSizes from '../../common/FontSizes';
 
 export const styles = StyleSheet.create({
     container: {
         borderWidth:Dimens.scale(1/2),
         borderRadius: Dimens.scale(5),
-        backgroundColor: Colors.thirdBackground,
         justifyContent: 'center',
         height:Dimens.scale(24)
     },

@@ -5,23 +5,23 @@ import TrustImage from '../common/TrustImage';
 import Images from '../../common/Images';
 import {StyleSheet} from 'react-native';
 import Dimens from '../../common/Dimens';
-import Colors from '../../common/Colors';
 import TrustTouchableOpacity from '../common/TrustTouchableOpacity';
+import {useTheme} from '@react-navigation/native';
 
 const HomeHeader = (props) => {
+    const {colors}=useTheme();
     const {
         navigation, process, rightIcon, leftIcon,
         firstScreen, secondScreen, thirdScreen, duaScreen,
-        firstName,secondName
+        firstName,secondName,routeData
     } = props;
-
     const onPress = () => {
-        navigation?.navigate('MoreContainer');
+        navigation?.navigate('More',{routeData});
     };
     return (
         <TrustView
             flexDirection={'row'}
-            style={styles.container}
+            style={[styles.container,{backgroundColor:colors.primary}]}
             navigation={navigation}>
             {leftIcon ? <TrustTouchableOpacity
             >
@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         justifyContent: 'space-between',
-        backgroundColor: Colors.secondBackground,
         padding: Dimens.scale(5),
         height: Dimens.scale(64),
     },

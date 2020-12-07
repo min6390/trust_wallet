@@ -1,10 +1,12 @@
-import {combineReducers} from 'redux'
-import AppReducer from "./AppReducer";
-import CartItems from './CartItem';
+import {combineReducers} from 'redux';
+import LoadingReducer from './LoadingReducer';
+import {ThemeReducer} from './ThemeReducer';
+import CryptReducer from './CryptReducer';
 
 const RootReducer = combineReducers({
-    app: AppReducer,
-   // cartItem:CartItems,
+    loading: LoadingReducer,
+    myDarMode: ThemeReducer,
+    crypt: CryptReducer,
 });
 
 export default RootReducer;

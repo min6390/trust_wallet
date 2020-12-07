@@ -6,12 +6,13 @@ const NAVIGATION_CONSTANTS = {
     LOGIN: 'LOGIN',
     BOTTOM_TAB: 'BOTTOM_TAB',
     HOME: 'HOME',
+    CRYPT:'CRYPT',
     DETAIL: 'DETAIL',
     CONVERT: 'CONVERT',
 
 };
 
-const REDUX_CONSTANTS = {
+ const REDUX_CONSTANTS = {
     SET_TOKEN: 'SET_TOKEN',
 };
 
@@ -19,6 +20,9 @@ const HEADER_MODE = {
     HOME: 'HOME',
     DETAIL: 'DETAIL',
     SEARCH: 'SEARCH',
+    COLLECTION:'COLLECTION',
+    MORE:'MORE',
+    EXCHANGES:'EXCHANGES',
 };
 
 export const APP_ACTIONS = {

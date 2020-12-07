@@ -11,7 +11,9 @@ import FontSizes from '../common/FontSizes';
 import Dimens from '../common/Dimens';
 import TrustTouchableOpacity from '../components/common/TrustTouchableOpacity';
 import TrustContainer from '../components/common/TrustContainer';
-import {HEADER_MODE} from '../common/Constants';
+import {HEADER_MODE,} from '../common/Constants';
+import {useTheme} from '@react-navigation/native';
+import Colors from '../common/Colors';
 
 const data = [
     {
@@ -202,6 +204,7 @@ const data = [
 ];
 
 function NotificationContainer(props) {
+    const {colors}=useTheme();
     const {navigation} = props;
     const handleItems = (items) => {
         const foodItems = [];
@@ -235,6 +238,7 @@ function NotificationContainer(props) {
 
     return (
         <TrustContainer
+            nameScreen={'Home'}
             navigation={navigation}
             headerMode={HEADER_MODE.SEARCH}
             renderContentView = {()=>{
@@ -249,12 +253,12 @@ function NotificationContainer(props) {
                                         style={styles.container}
                                     >
                                         <TrustText
-                                            style={styles.txtTitle}
+                                            style={[styles.txtTitle,{color:colors.textColor}]}
                                             text={item.title}
                                         />
                                         <TrustTouchableOpacity>
                                             <TrustText
-                                                style={styles.txtShowAll}
+                                                style={[styles.txtShowAll,{color:Colors.secondBackground}]}
                                                 text={' Show all '}
                                             />
                                         </TrustTouchableOpacity>
@@ -263,7 +267,7 @@ function NotificationContainer(props) {
                                         showsHorizontalScrollIndicator={false}
                                         horizontal={true}
                                         data={handleItems(item.contents)}
-                                        keyExtractor={item => item.id.toString()}
+                                        keyExtractor={item => item.id}
                                         renderItem={renderItem}
                                     />
                                 </>

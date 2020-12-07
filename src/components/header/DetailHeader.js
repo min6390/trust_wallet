@@ -5,15 +5,17 @@ import Images from '../../common/Images';
 import TrustText from '../common/TrustText';
 import {styles} from './styles';
 import TrustTouchableOpacity from '../common/TrustTouchableOpacity';
+import {useTheme} from '@react-navigation/native';
 
 const DetailHeader = (props) => {
+    const {colors} = useTheme();
     const {navigation, title, } = props;
     const onPress = () => {
         navigation?.goBack();
     };
     return (
         <TrustView
-            style={styles.container}
+            style={[styles.container,{backgroundColor:colors.primary}]}
             flexDirection={'row'}
         >
             <TrustView flexDirection={'row'} style={{alignItems: 'center'}}>

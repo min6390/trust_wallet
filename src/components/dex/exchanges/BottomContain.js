@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {StyleSheet} from 'react-native';
 import TrustView from '../../common/TrustView';
 import TrustText from '../../common/TrustText';
 import Dimens from '../../../common/Dimens';
+import {useTheme} from '@react-navigation/native';
 
 function BottomContain() {
+    const {colors}=useTheme()
     const [showInformation, setShowInformation] = useState(true);
     return (
         <>
@@ -15,6 +16,7 @@ function BottomContain() {
                        }}
             >
                 <TrustText
+                    style={{color:colors.textColor}}
                     text={'Các đơn hàng được mở'}
                 />
                 <TrustText
@@ -26,7 +28,9 @@ function BottomContain() {
                 <TrustView
                     style={{justifyContent: 'center', alignItems: 'center', flex: 1}}
                 >
-                    <TrustText text={'Các đơn hàng đang được mở sẽ xuất hiện ở đây'}/>
+                    <TrustText
+                        style={{color:colors.content}}
+                        text={'Các đơn hàng đang được mở sẽ xuất hiện ở đây'}/>
                 </TrustView> : <></>}
         </>
     );

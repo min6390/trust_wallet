@@ -6,9 +6,11 @@ import TrustImage from '../common/TrustImage';
 import Dimens from '../../common/Dimens';
 import TrustText from '../common/TrustText';
 import TrustFlatList from '../common/TrustFlatList';
+import {useTheme} from '@react-navigation/native';
 
 function InformationItemList(props) {
-    const {data,style,color}=props;
+    const {colors}= useTheme();
+    const {data,style}=props;
     const renderItem = ({item}) => {
         return (
             <TrustView style={styles.container}>
@@ -20,7 +22,7 @@ function InformationItemList(props) {
                     />
                 </TrustTouchableOpacity>
                 <TrustText
-                    style={[styles.txtType,{color:color}]}
+                    style={[styles.txtType,{color:colors.textColor}]}
                     text={item.name}
                 />
             </TrustView>
@@ -28,8 +30,6 @@ function InformationItemList(props) {
     };
     return (
         <TrustFlatList
-
-            color={color}
             style={style}
             data={data}
             horizontal={true}

@@ -3,11 +3,12 @@ import TrustTouchableOpacity from './TrustTouchableOpacity';
 import TrustView from './TrustView';
 import TrustText from './TrustText';
 import Dimens from '../../common/Dimens';
-import Colors from '../../common/Colors';
 import {styles} from './styles';
+import {useTheme} from '@react-navigation/native';
 
 
 const TopTabNavigator = (props) => {
+    const {colors} = useTheme();
     const {navigation,process,firstScreen,
         secondScreen,thirdScreen,duaScreen,
         firstName,secondName} = props;
@@ -22,10 +23,10 @@ const TopTabNavigator = (props) => {
     };
     return (
       <TrustView flexDirection={'row'} style={[styles.container,
-          duaScreen?{ width: Dimens.scale(280)}:{  width: Dimens.scale(190),}]}>
+          duaScreen?{ width: Dimens.scale(280),backgroundColor:colors.backgroundTop}:{ backgroundColor:colors.backgroundTop, width: Dimens.scale(190),}]}>
             <TrustTouchableOpacity
                 style={[styles.txtType,
-                    process === 0 ? {backgroundColor: Colors.secondBackground} : {backgroundColor: Colors.thirdBackground}]}
+                    process === 0 ? {backgroundColor: colors.primary} : {backgroundColor:colors.backgroundTop}]}
                 onPress={onPressHome}>
                 <TrustText
                     style={styles.text}
@@ -34,7 +35,7 @@ const TopTabNavigator = (props) => {
             </TrustTouchableOpacity>
             <TrustTouchableOpacity
                 style={[styles.txtType,
-                    process === 1 ? {backgroundColor: Colors.secondBackground} : {backgroundColor: Colors.thirdBackground}]}
+                    process === 1 ?{backgroundColor: colors.primary} : {backgroundColor:colors.backgroundTop}]}
                 onPress={onPressCrypt}
             >
                 <TrustText
@@ -43,12 +44,12 @@ const TopTabNavigator = (props) => {
             </TrustTouchableOpacity>
             {duaScreen?<TrustTouchableOpacity
                 style={[styles.txtType,
-                    process ===2 ? {backgroundColor:  Colors.secondBackground} : {backgroundColor: Colors.thirdBackground}]}
+                    process ===2 ? {backgroundColor: colors.primary} : {backgroundColor:colors.backgroundTop}]}
                 onPress={onPressCollection}
             >
                 <TrustText
                     style={styles.text}
-                    text={'COLLECTION'}/>
+                    text={'Bộ sưu tập'}/>
             </TrustTouchableOpacity>:<TrustView/>}
         </TrustView>
     );

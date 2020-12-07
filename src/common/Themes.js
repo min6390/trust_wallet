@@ -1,0 +1,48 @@
+import {DefaultTheme, DarkTheme} from '@react-navigation/native';
+
+export const darkTheme = {
+    ...DarkTheme,
+    colors: {
+        ...DarkTheme.colors,
+        background:'#28293D',
+        primary: '#343651',
+        textColor: 'white',
+        notification: 'rgb(255, 69, 58)',
+        activeTintColor: 'white',
+        inactiveTintColor: '#555770',
+        line:'#055aaf',
+        content:'#8C8FBF',
+        percentText:'#3376BC',
+        percentBackground:'#1B2330',
+        textConvert:'#8C8FBF',
+        border:'#28293D',
+        lineBackground:'#555770',
+        bottom:'#343651',
+        searchHeader:'#343651',
+        deal:'#343651',
+        backgroundTop:'#28293D',
+    },
+};
+export const defaultTheme={
+    ...DefaultTheme,
+    colors: {
+        ...DefaultTheme.colors,
+        bottom:'#F7F7FA',
+        background:'#F7F7FA',
+        primary: '#3375BB',
+        textColor: 'black',
+        notification: 'rgb(255, 69, 58)',
+        activeTintColor: '#055aaf',
+        inactiveTintColor: '#555770',
+        line:'#dcdcdc',
+        content:'#BAB6B6',
+        percentText:'#3376BC',
+        percentBackground:'#D4D7FA',
+        textConvert:'#555770',
+        border:'#dcdcdc',
+        lineBackground:'#555770',
+        searchHeader:'#F7F7FA',
+        deal:'white',
+        backgroundTop:'#055aaf',
+    },
+};

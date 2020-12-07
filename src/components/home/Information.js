@@ -1,15 +1,14 @@
 import React, {} from 'react';
 import TrustView from '../common/TrustView';
 import TrustText from '../common/TrustText';
-import Colors from '../../common/Colors';
 import Images from '../../common/Images';
 import InformationItemList from './InformationItemList';
 import {styles} from './styles';
+import {useTheme} from '@react-navigation/native';
 
 
-
-function Information(props) {
-    const {color}=props;
+function Information() {
+    const {colors} = useTheme();
     const data = [
         {
             id: 1,
@@ -29,7 +28,7 @@ function Information(props) {
     ];
 
     return (
-        <TrustView style={{backgroundColor: Colors.secondBackground, alignItems: 'center'}}>
+        <TrustView style={{backgroundColor:colors.primary,alignItems: 'center'}}>
             <TrustText
                 style={styles.txtMoney}
                 text={'Money' + ' $'}
@@ -39,8 +38,7 @@ function Information(props) {
                 text={'Ví Multi-Coin 1'}
             />
             <InformationItemList
-                color={color}
-               data={data}
+                data={data}
             />
         </TrustView>
     );

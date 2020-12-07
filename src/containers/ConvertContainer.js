@@ -8,6 +8,7 @@ import PercentList from '../components/dex/convert/PercentList';
 import {styles} from './styles';
 import TrustContainer from '../components/common/TrustContainer';
 import {HEADER_MODE} from '../common/Constants';
+import {useTheme} from '@react-navigation/native';
 
 function ConvertContainer(props) {
     const {navigation,} = props;
@@ -15,10 +16,10 @@ function ConvertContainer(props) {
         <TrustContainer
             process={0}
             navigation={navigation}
-            firstScreen={'ConvertContainer'}
-            secondScreen={'ExchangesContainer'}
-            firstName={'Convert'}
-            secondName={'Exchanges'}
+            firstScreen={'Convert'}
+            secondScreen={'Exchanges'}
+            firstName={'Chuyển đổi'}
+            secondName={'Sàn giao dịch'}
             headerMode={HEADER_MODE.HOME}
             renderContentView={() => {
                 return (

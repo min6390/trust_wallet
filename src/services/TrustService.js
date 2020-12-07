@@ -1,7 +1,7 @@
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Environment from '../common/Environment';
-import {showAppLoading} from '../redux/actions/Actions';
+import {showAppLoading} from '../redux/actions/LoadingAction';
 import store from '../redux/store/store';
 
 

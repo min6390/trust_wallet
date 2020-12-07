@@ -1,11 +1,10 @@
 import TrustTouchableOpacity from '../../common/TrustTouchableOpacity';
 import TrustText from '../../common/TrustText';
-import Colors from '../../../common/Colors';
 import React from 'react';
 import TrustFlatList from '../../common/TrustFlatList';
 import Dimens from '../../../common/Dimens';
-import TrustView from '../../common/TrustView';
 import {StyleSheet} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 const data = [
     {
         id: 1,
@@ -25,17 +24,8 @@ const data = [
     },
 ];
 function PercentList (props){
-    const dataItem=[
-        {
-            id:1,
-            name : 100
-        },
-        {
-            id:2,
-            name : 300
-        }
-    ]
-    const {style}=props
+    const {colors}=useTheme()
+    const {style}=props;
     return (
         <TrustFlatList
             style={{width: Dimens.scale(320)}}
@@ -43,19 +33,18 @@ function PercentList (props){
             horizontal={true}
             keyExtractor={item => item.id}
             renderItem={({item})=>
-                <TrustTouchableOpacity style={[styles.btnPercent,style]}>
+                <TrustTouchableOpacity style={[styles.btnPercent,style,{backgroundColor:colors.percentBackground}]}>
                     <TrustText
-                        style={{color: Colors.secondBackground}}
+                        style={{color: colors.percentText}}
                         text={item.percent + '%'}
                     />
                 </TrustTouchableOpacity>
             }/>
 
     );
-};
+}
 const styles = StyleSheet.create({
     btnPercent: {
-        backgroundColor: '#b0c4de',
         justifyContent: 'center',
         borderRadius: Dimens.scale(5),
         alignItems: 'center',

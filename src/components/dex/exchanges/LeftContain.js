@@ -8,8 +8,10 @@ import PercentList from '../convert/PercentList';
 import TrustTouchableOpacity from '../../common/TrustTouchableOpacity';
 import ButtonPurchase from './ButtonPurchase';
 import {styles} from './styles';
+import {useTheme} from '@react-navigation/native';
 
 function LeftContain() {
+    const {colors}=useTheme();
     const [purchase, setPurchase] = useState(true);
     const onPressBuy = () => {
         if (purchase !== true) {
@@ -17,7 +19,7 @@ function LeftContain() {
         }
     };
     const onPressSell = () => {
-        if (purchase == true) {
+        if (purchase === true) {
             setPurchase(!purchase);
         }
     };
@@ -46,12 +48,13 @@ function LeftContain() {
             <StockMarket/>
             {purchaseItem()}
             <TrustTextInput
-                style={styles.inputText}
+                style={[styles.inputText,{color:colors.textColor,borderColor:colors.inactiveTintColor}]}
             />
             <TrustText
+                style={{color:colors.textColor}}
                 text={'~0.0043533 $'}/>
             <TrustTextInput
-                style={styles.inputText}
+                style={[styles.inputText,{color:colors.textColor,borderColor:colors.inactiveTintColor}]}
             />
             <PercentList
                 style={{
@@ -62,9 +65,11 @@ function LeftContain() {
                 }}
             />
             <TrustText
+                style={{color:colors.textColor}}
                 text={'Số dư' + ' 0 BNB'}
             />
             <TrustText
+                style={{color:colors.textColor}}
                 text={'Toàn bộ' + ' 0 BNB'}
             />
             <TrustTouchableOpacity
@@ -77,6 +82,6 @@ function LeftContain() {
             </TrustTouchableOpacity>
         </TrustView>
     );
-};
+}
 
 export default LeftContain;

@@ -7,16 +7,26 @@ import SettingContainer from '../../containers/SettingContainer';
 import HomeStackNavigator from './HomeStackNavigator';
 import React from 'react';
 import DexStackNavigator from './DexStackNavigator';
+import {useTheme} from '@react-navigation/native';
 
 const BottomTabNavigator = createBottomTabNavigator();
 
 function TabNavigator() {
+    const {colors}=useTheme();
     return (
-        <BottomTabNavigator.Navigator>
+        <BottomTabNavigator.Navigator
+            tabBarOptions={{
+                activeTintColor: colors.activeTintColor,
+                inactiveTintColor: colors.inactiveTintColor,
+                style: {
+                    backgroundColor: colors.bottom,
+                },
+        }}>
             <BottomTabNavigator.Screen
-                name="Home"
+                name={'Home'}
                 component={HomeStackNavigator}
                 options={{
+
                     tabBarIcon: ({color}) => <TrustImage
                         tintColor={color}
                         style={styles.image}

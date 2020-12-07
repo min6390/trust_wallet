@@ -25,6 +25,11 @@ TrustContainer.propTypes = {
     duaScreen :PropTypes.bool,
     firstName:PropTypes.string,
     secondName:PropTypes.string,
+    routeData: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object,
+    ]),
+    nameScreen:PropTypes.string,
 };
 
 TrustContainer.defaultProps = {
@@ -48,6 +53,8 @@ function TrustContainer(props) {
         duaScreen,
         firstName,
         secondName,
+        routeData,
+        nameScreen,
     } = props;
 
     return <TrustView
@@ -56,6 +63,8 @@ function TrustContainer(props) {
         }, style]}
     >
         {hasHeader && <TrustHeader
+            nameScreen={nameScreen}
+            routeData={routeData}
             firstName={firstName}
             secondName={secondName}
             firstScreen={firstScreen}
