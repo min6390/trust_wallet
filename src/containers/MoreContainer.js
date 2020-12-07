@@ -14,7 +14,6 @@ import TrustContainer from '../components/common/TrustContainer';
 import {HEADER_MODE, } from '../common/Constants';
 import {useTheme} from '@react-navigation/native';
 import {setCryptData} from '../redux/actions/CryptAction';
-import {useDispatch} from 'react-redux';
 import store from '../redux/store/store';
 
 
@@ -52,12 +51,12 @@ function MoreContainer(props) {
                             />
                             <TrustText
                                 style={{marginHorizontal: Dimens.scale(10), color: colors.textColor}}
-                                text={item.coin}
+                                text={item.name}
                             />
                         </TrustView>
                     </TrustTouchableOpacity>
                     <ToggleSwitch
-                        isOn={item.toggle}
+                        isOn={data[index].toggle}
                         onColor={Colors.secondBackground}
                         offColor="#dcdcdc"
                         size="small"

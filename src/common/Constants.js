@@ -23,6 +23,7 @@ const HEADER_MODE = {
     COLLECTION:'COLLECTION',
     MORE:'MORE',
     EXCHANGES:'EXCHANGES',
+    TEST:'TEST'
 };
 
 export const APP_ACTIONS = {

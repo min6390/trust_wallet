@@ -10,21 +10,21 @@ import Images from '../common/Images';
 import Dimens from '../common/Dimens';
 import TrustLine from '../components/common/TrustLine';
 import {styles} from './styles';
-import ServiceApis from '../services/apis/ServiceApis';
 import {useTheme} from '@react-navigation/native';
+import {io} from 'socket.io-client';
 
 function HomeContainer(props) {
     const {colors} = useTheme();
     const {navigation} = props;
-    const [dataItem, setDataItem] = useState([]);
+    const [dataSocket, setDataSocket] = useState([]);
     const {cryptData} = useSelector(state => state.crypt);
 
-
     useEffect(() => {
-        ServiceApis.getService(res => {
-            setDataItem(res.data);
-        }, err => {
-            alert('fail', err);
+        const socket = io('https://server-coin-wallet.herokuapp.com',
+            {transports: ['websocket', 'polling', 'flashsocket']},
+        );
+        socket.on('SOCKET_COIN_CHANGE', res => {
+            setDataSocket(res);
         });
     }, []);
 
@@ -33,17 +33,23 @@ function HomeContainer(props) {
         return (
             <>
                 <TrustView flexDirection={'row'}
-                           style={[styles.container,]}>
+                           style={[styles.container]}>
                     <TrustView flexDirection={'row'}
                                style={[styles.content]}>
                         <TrustImage
                             style={styles.image}
                             localSource={Images.im_xrp}
                         />
-                        <TrustText
-                            style={{marginHorizontal: Dimens.scale(10), color: colors.textColor}}
-                            text={item.coin}
-                        />
+                        <TrustView style={{marginHorizontal: Dimens.scale(10)}}>
+                            <TrustText
+                                style={{color: colors.textColor}}
+                                text={item.name}
+                            />
+                            <TrustText
+                                style={{color: '#8C8FBF'}}
+                                text={item.price}
+                            />
+                        </TrustView>
                     </TrustView>
                 </TrustView>
                 <TrustLine/>
@@ -53,7 +59,7 @@ function HomeContainer(props) {
     return (
         <TrustContainer
             style={{backgroundColor: colors.background}}
-            routeData={dataItem}
+            routeData={dataSocket}
             firstScreen={'Home'}
             secondScreen={'Cryt'}
             thirdScreen={'Collection'}
@@ -66,11 +72,16 @@ function HomeContainer(props) {
             navigation={navigation}
             renderContentView={() =>
                 <>
-                    <Information/>
                     <TrustFlatList
                         data={cryptData}
                         keyExtractor={item => item.id}
                         renderItem={renderItem}
+                        ListHeaderComponent={() => {
+                            return(
+                                <Information/>
+                                )
+                        }
+                        }
                     />
                 </>
             }

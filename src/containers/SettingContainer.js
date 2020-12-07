@@ -5,22 +5,22 @@ import Colors from '../common/Colors';
 import TrustText from '../components/common/TrustText';
 import TrustView from '../components/common/TrustView';
 import Dimens from '../common/Dimens';
-import {io} from 'socket.io-client';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 function SettingContainer() {
     const dispatch = useDispatch();
+    const [theme, setTheme] = useState(false);
     const currentTheme = useSelector(state => {
         return state.myDarMode;
     });
-    const [data, setData] = useState();
-    // useEffect(() => {
-    //     const socket = io('https://server-coin-wallet.herokuapp.com',
-    //         {transports: ['websocket', 'polling', 'flashsocket']},
-    //     );
-    //     socket.on('SOCKET_COIN_CHANGE', res => {
-    //         console.log('res', res);
-    //     });
-    // }, []);
+
+    const onToggle =  () => {
+        setTheme(!currentTheme);
+         dispatch({type: 'change_theme', payload: !currentTheme});
+        // AsyncStorage.setItem('user', JSON.stringify(theme));
+    };
+    console.log(theme);
     return (
 
         <TrustView flexDirection={'row'}
@@ -37,7 +37,7 @@ function SettingContainer() {
                 onColor={Colors.secondBackground}
                 offColor="#dcdcdc"
                 size="small"
-                onToggle={() => dispatch({type: 'change_theme', payload: !currentTheme})}
+                onToggle={onToggle}
             />
         </TrustView>
     );

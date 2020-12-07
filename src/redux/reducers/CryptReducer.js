@@ -6,7 +6,7 @@ const initialState = {
 
 function setCryptData(state, payload) {
     const newState = updateObject(state, {
-        cartData: payload.data,
+        cryptData: payload.data,
     });
     return newState;
 }
