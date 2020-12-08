@@ -12,23 +12,31 @@ import TrustLine from '../components/common/TrustLine';
 import {styles} from './styles';
 import {useTheme} from '@react-navigation/native';
 import {io} from 'socket.io-client';
+import ServiceApis from '../services/apis/ServiceApis';
 
 function HomeContainer(props) {
     const {colors} = useTheme();
-    const {navigation} = props;
+    const {navigation,} = props;
     const [dataSocket, setDataSocket] = useState([]);
+    const [data,setData]= useState([])
     const {cryptData} = useSelector(state => state.crypt);
 
+
     useEffect(() => {
+        ServiceApis.getService((res)=>{
+            setData(res.data)
+        },err =>{
+            alert(err)
+        })
+
         const socket = io('https://server-coin-wallet.herokuapp.com',
             {transports: ['websocket', 'polling', 'flashsocket']},
         );
+
         socket.on('SOCKET_COIN_CHANGE', res => {
             setDataSocket(res);
         });
     }, []);
-
-
     const renderItem = ({item}) => {
         return (
             <>
@@ -73,7 +81,7 @@ function HomeContainer(props) {
             renderContentView={() =>
                 <>
                     <TrustFlatList
-                        data={cryptData}
+                        data={data}
                         keyExtractor={item => item.id}
                         renderItem={renderItem}
                         ListHeaderComponent={() => {
