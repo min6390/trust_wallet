@@ -6,7 +6,6 @@ import TrustView from '../components/common/TrustView';
 import TrustText from '../components/common/TrustText';
 import Dimens from '../common/Dimens';
 import ToggleSwitch from 'toggle-switch-react-native';
-import Colors from '../common/Colors';
 import TrustTouchableOpacity from '../components/common/TrustTouchableOpacity';
 import TrustLine from '../components/common/TrustLine';
 import {styles} from './styles';
@@ -57,7 +56,7 @@ function MoreContainer(props) {
                     </TrustTouchableOpacity>
                     <ToggleSwitch
                         isOn={data[index].toggle}
-                        onColor={Colors.secondBackground}
+                        onColor={'#07ad87'}
                         offColor="#dcdcdc"
                         size="small"
                         onToggle={() => handleToggle(index)}

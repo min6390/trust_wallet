@@ -1,6 +1,5 @@
 import {StyleSheet} from 'react-native';
 import Dimens from '../common/Dimens';
-import Colors from '../common/Colors';
 
 export const styles = StyleSheet.create({
     btnFinish: {
@@ -10,7 +9,7 @@ export const styles = StyleSheet.create({
         marginVertical: Dimens.scale(30),
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Colors.secondBackground,
+        backgroundColor:'#078266',
     },
     container: {
         alignItems: 'center',

@@ -18,10 +18,25 @@ function Route() {
     let currentTheme = useSelector(state => {
         return state.myDarMode;
     });
+    const [dark, setDark] = useState('');
+    useEffect(()=>{
+        getData()
+    },);
+    const getData = async () => {
+        try {
+            const value = await AsyncStorage.getItem('@storage_Key');
+            if (value !== null) {
+                setDark(value);
+                console.log(dark)
+            }
+        } catch (e) {
+            // error reading value
+        }
+    };
 
     return (
         <AppearanceProvider>
-            <NavigationContainer theme={currentTheme ? darkTheme : defaultTheme}>
+            <NavigationContainer theme={ dark ==='false'? darkTheme : defaultTheme}>
                 <RouteNavigator.Navigator
                     screenOptions={{
                         headerShown: false,

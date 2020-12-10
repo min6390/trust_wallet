@@ -5,7 +5,7 @@ import Dimens from '../../../common/Dimens';
 import {useTheme} from '@react-navigation/native';
 
 function BottomContain() {
-    const {colors}=useTheme()
+    const {colors}=useTheme();
     const [showInformation, setShowInformation] = useState(true);
     return (
         <>
@@ -20,7 +20,7 @@ function BottomContain() {
                     text={'Các đơn hàng được mở'}
                 />
                 <TrustText
-                    style={{color: 'blue'}}
+                    style={{color: '#078266'}}
                     text={'Xem tất cả'}
                 />
             </TrustView>

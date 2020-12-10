@@ -15,12 +15,19 @@ function SettingContainer() {
         return state.myDarMode;
     });
 
-    const onToggle =  () => {
+    const onToggle = () => {
         setTheme(!currentTheme);
-         dispatch({type: 'change_theme', payload: !currentTheme});
-        // AsyncStorage.setItem('user', JSON.stringify(theme));
+        dispatch({type: 'change_theme', payload: !currentTheme});
+        storeData(JSON.stringify(theme));
     };
-    console.log(theme);
+    const storeData = async (value) => {
+        try {
+            await AsyncStorage.setItem('@storage_Key', value);
+            console.log(value);
+        } catch (e) {
+            console.log(e);
+        }
+    };
     return (
 
         <TrustView flexDirection={'row'}

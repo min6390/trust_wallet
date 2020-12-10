@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
 import FontSizes from '../../common/FontSizes';
 import Dimens from '../../common/Dimens';
-import Colors from '../../common/Colors';
 export const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
@@ -21,7 +20,7 @@ export const styles = StyleSheet.create({
 
     },
     imType: {
-        backgroundColor: Colors.thirdBackground,
+        backgroundColor:'#078266',
         width: Dimens.scale(40),
         height: Dimens.scale(40),
         borderRadius: 30,
@@ -31,4 +30,4 @@ export const styles = StyleSheet.create({
     txtType: {
         color: 'white',
     },
-})
+});
