@@ -1,4 +1,4 @@
-import React, {} from 'react';
+import React, {useState} from 'react';
 import {
     StyleSheet,
 } from 'react-native';
@@ -11,9 +11,11 @@ import FontSizes from '../common/FontSizes';
 import Dimens from '../common/Dimens';
 import TrustTouchableOpacity from '../components/common/TrustTouchableOpacity';
 import TrustContainer from '../components/common/TrustContainer';
-import {HEADER_MODE,} from '../common/Constants';
+import {HEADER_MODE} from '../common/Constants';
 import {useTheme} from '@react-navigation/native';
 import Colors from '../common/Colors';
+import Search from '../components/notification/Search';
+import WebView from 'react-native-webview';
 
 const data = [
     {
@@ -204,7 +206,8 @@ const data = [
 ];
 
 function NotificationContainer(props) {
-    const {colors}=useTheme();
+    const {colors, } = useTheme();
+    const [message, setMessage] = useState('');
     const {navigation} = props;
     const handleItems = (items) => {
         const foodItems = [];
@@ -221,61 +224,69 @@ function NotificationContainer(props) {
         return foodItems;
     };
 
+    const callbackFunction = (childData) => {
+        setMessage(childData);
+    };
     const renderItem = ({item}) => {
         return (
-            <TrustView>
-                <NewsItem item={item[0]}
-                          navigation={navigation}
-                />
-                {item[1] && <NewsItem
-                    item={item[1]}
-                    navigation={navigation}
-                />}
-            </TrustView>
+          <TrustView>
+              <NewsItem item={item[0]}
+                        navigation={navigation}
+              />
+              {item[1] && <NewsItem
+                item={item[1]}
+                navigation={navigation}
+              />}
+          </TrustView>
         );
     };
 
-
     return (
-        <TrustContainer
-            nameScreen={'Home'}
-            navigation={navigation}
-            headerMode={HEADER_MODE.SEARCH}
-            renderContentView = {()=>{
-                return(
-                        <TrustFlatList
-                            data={data}
+      <TrustContainer
+        nameScreen={'Home'}
+        hasHeader={false}
+        headerMode={HEADER_MODE.SEARCH}
+        renderContentView={() => {
+            return (
+              message ? <>
+                  <Search parentCallBack={callbackFunction}/>
+                  <WebView source={{uri: 'https://' + message.toString().trim()}}/>
+              </> : <>
+                  <Search parentCallBack={callbackFunction}/>
+                  <TrustFlatList
+                    data={data}
+                    keyExtractor={item => item.id}
+                    renderItem={({item}) =>
+                      <>
+                          <TrustView
+                            flexDirection={'row'}
+                            style={styles.container}
+                          >
+                              <TrustText
+                                style={[styles.txtTitle, {color: colors.textColor}]}
+                                text={item.title}
+                              />
+                              <TrustTouchableOpacity>
+                                  <TrustText
+                                    style={[styles.txtShowAll, {color: Colors.secondBackground}]}
+                                    text={' Show all '}
+                                  />
+                              </TrustTouchableOpacity>
+                          </TrustView>
+                          <TrustFlatList
+                            showsHorizontalScrollIndicator={false}
+                            horizontal={true}
+                            data={handleItems(item.contents)}
                             keyExtractor={item => item.id}
-                            renderItem={({item}) =>
-                                <>
-                                    <TrustView
-                                        flexDirection={'row'}
-                                        style={styles.container}
-                                    >
-                                        <TrustText
-                                            style={[styles.txtTitle,{color:colors.textColor}]}
-                                            text={item.title}
-                                        />
-                                        <TrustTouchableOpacity>
-                                            <TrustText
-                                                style={[styles.txtShowAll,{color:Colors.secondBackground}]}
-                                                text={' Show all '}
-                                            />
-                                        </TrustTouchableOpacity>
-                                    </TrustView>
-                                    <TrustFlatList
-                                        showsHorizontalScrollIndicator={false}
-                                        horizontal={true}
-                                        data={handleItems(item.contents)}
-                                        keyExtractor={item => item.id}
-                                        renderItem={renderItem}
-                                    />
-                                </>
-                            }
-                        />
-                )
-            }}
-        />
+                            renderItem={renderItem}
+                          />
+                      </>
+                    }
+                  />
+              </>
+            );
+        }}
+      />
 
     );
 }

@@ -5,6 +5,7 @@ import React from 'react';
 
 export const styles = StyleSheet.create({
     container: {
+        flexDirection:'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: Dimens.scale(5),

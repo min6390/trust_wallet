@@ -15,7 +15,6 @@ import {useTheme} from '@react-navigation/native';
 function DetailContainer(props) {
     const {colors} =useTheme();
     const {navigation,route} = props;
-
     const item = route.params;
     const data = [
         {
@@ -35,39 +34,39 @@ function DetailContainer(props) {
         },
     ];
     return (
-        <TrustContainer
-            nameScreen={'Home'}
-            navigation={navigation}
-            headerMode={HEADER_MODE.DETAIL}
-            title={item.coin}
-            renderContentView={() => {
-                return (
-                    <>
-                        <TrustView flexDirection={'row'}
-                                   style={{justifyContent: 'space-between', margin: Dimens.scale(5)}}>
-                            <TrustText
-                                style={{color: colors.textColor}}
-                                text={'COIN'}/>
-                            <TrustText
-                                style={{color: colors.textColor}}
-                                text={'Exchange rate'}/>
-                        </TrustView>
-                        <TrustView style={{alignItems: 'center'}}>
-                            <TrustImage
-                                style={styles.imageCoin}
-                                localSource={Images.im_ele}/>
-                            <TrustText
-                                style={[styles.txtCoin,{color: colors.textColor}]}
-                                text={' 0 BTC '}/>
-                            <InformationItemList
-                                style={styles.itemList}
-                                data={data}/>
-                        </TrustView>
-                        <TrustLine/>
-                    </>
-                );
-            }}
-        />
+      <TrustContainer
+        nameScreen={'Home'}
+        navigation={navigation}
+        headerMode={HEADER_MODE.DETAIL}
+        title={item.name}
+        renderContentView={() => {
+            return (
+              <>
+                  <TrustView flexDirection={'row'}
+                             style={{justifyContent: 'space-between', margin: Dimens.scale(5)}}>
+                      <TrustText
+                        style={{color: colors.textColor}}
+                        text={'COIN'}/>
+                      <TrustText
+                        style={{color: colors.textColor}}
+                        text={item.price}/>
+                  </TrustView>
+                  <TrustView style={{alignItems: 'center'}}>
+                      <TrustImage
+                        style={styles.imageCoin}
+                        localSource={Images.im_ele}/>
+                      <TrustText
+                        style={[styles.txtCoin,{color: colors.textColor}]}
+                        text={' 0 BTC '}/>
+                      <InformationItemList
+                        style={styles.itemList}
+                        data={data}/>
+                  </TrustView>
+                  <TrustLine/>
+              </>
+            );
+        }}
+      />
     );
 }
 

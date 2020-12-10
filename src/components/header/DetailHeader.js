@@ -11,40 +11,40 @@ const DetailHeader = (props) => {
     const {colors} = useTheme();
     const {navigation, title, } = props;
     const onPress = () => {
-        navigation?.goBack();
+        navigation?.navigate('Home');
     };
     return (
-        <TrustView
-            style={[styles.container,{backgroundColor:colors.primary}]}
-            flexDirection={'row'}
-        >
-            <TrustView flexDirection={'row'} style={{alignItems: 'center'}}>
-                <TrustTouchableOpacity style={styles.image}
-                                       onPress={onPress}>
+      <TrustView
+        style={[styles.container,{backgroundColor:colors.primary}]}
+        flexDirection={'row'}
+      >
+          <TrustView flexDirection={'row'} style={{alignItems: 'center'}}>
+              <TrustTouchableOpacity style={styles.image}
+                                     onPress={onPress}>
 
-                    <TrustImage
-                        style={{flex: 1}}
-                        tintColor={'white'}
-                        localSource={Images.im_left_arrow}
-                    />
-                </TrustTouchableOpacity>
-                <TrustText
-                    style={styles.txtHeader}
-                    text={title}
-                />
-            </TrustView>
-            <TrustView flexDirection={'row'} style={{alignItems: 'center'}}>
-                <TrustText
-                    style={styles.txtBuy}
-                    text={'MUA'}
-                />
-                <TrustImage
-                    style={styles.image}
+                  <TrustImage
+                    style={{flex: 1}}
                     tintColor={'white'}
-                    localSource={Images.im_chart}
-                />
-            </TrustView>
-        </TrustView>
+                    localSource={Images.im_left_arrow}
+                  />
+              </TrustTouchableOpacity>
+              <TrustText
+                style={styles.txtHeader}
+                text={title}
+              />
+          </TrustView>
+          <TrustView flexDirection={'row'} style={{alignItems: 'center'}}>
+              <TrustText
+                style={styles.txtBuy}
+                text={'MUA'}
+              />
+              <TrustImage
+                style={styles.image}
+                tintColor={'white'}
+                localSource={Images.im_chart}
+              />
+          </TrustView>
+      </TrustView>
     );
 };
 

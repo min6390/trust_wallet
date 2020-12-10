@@ -18,7 +18,10 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     content: {
+        marginVertical: Dimens.verticalScale(5),
         alignItems: 'center',
+        flexDirection:'row',
+        paddingHorizontal:Dimens.scale(5)
     },
     image: {
         height: Dimens.scale(50),
