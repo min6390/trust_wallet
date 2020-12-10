@@ -15,6 +15,7 @@ import {io} from 'socket.io-client';
 import TrustTouchableOpacity from '../components/common/TrustTouchableOpacity';
 import store from '../redux/store/store';
 import {showAppLoading} from '../redux/actions/LoadingAction';
+import ServiceApis from '../services/apis/ServiceApis';
 
 function HomeContainer(props) {
   const {colors} = useTheme();
@@ -33,10 +34,11 @@ function HomeContainer(props) {
     const socket = io('https://server-coin-wallet.herokuapp.com',
       {transports: ['websocket', 'polling', 'flashsocket']},
     );
-    store.dispatch(showAppLoading(true));
+   // store.dispatch(showAppLoading(true));
     socket.on('SOCKET_COIN_CHANGE', res => {
       setDataSocket(res);
-      store.dispatch(showAppLoading(false));
+      console.log(res)
+   //   store.dispatch(showAppLoading(false));
     });
   }, []);
   const renderItem = ({item}) => {
@@ -67,7 +69,7 @@ function HomeContainer(props) {
   };
   return (
     <TrustContainer
-      style={{backgroundColor: colors.background}}
+      style={{backgroundColor: colors.primary}}
       routeData={dataSocket}
       firstScreen={'Home'}
       secondScreen={'Cryt'}
@@ -82,7 +84,8 @@ function HomeContainer(props) {
       renderContentView={() =>
         <>
           <TrustFlatList
-            data={cryptData}
+              style={{backgroundColor: colors.background}}
+            data={dataSocket}
             keyExtractor={item => item.id}
             renderItem={renderItem}
             ListHeaderComponent={() => {

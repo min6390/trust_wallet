@@ -16,14 +16,13 @@ function SettingContainer() {
     });
 
     const onToggle = () => {
-        setTheme(!currentTheme);
+       setTheme(!theme);
         dispatch({type: 'change_theme', payload: !currentTheme});
         storeData(JSON.stringify(theme));
     };
     const storeData = async (value) => {
         try {
             await AsyncStorage.setItem('@storage_Key', value);
-            console.log(value);
         } catch (e) {
             console.log(e);
         }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import TrustView from '../common/TrustView';
 import TopTabNavigator from '../common/TopTabNavigator';
 import TrustImage from '../common/TrustImage';
@@ -9,8 +9,9 @@ import TrustTouchableOpacity from '../common/TrustTouchableOpacity';
 import {useTheme} from '@react-navigation/native';
 import TopTabNavigatorTest from '../common/TabNavigatorTest';
 
-const HomeHeader = (props) => {
+const HomeHeaderTest = (props) => {
     const {colors}=useTheme();
+    const [message, setMessage] = useState('home');
     const {
         navigation, process, rightIcon, leftIcon,
         firstScreen, secondScreen, thirdScreen, duaScreen,
@@ -18,6 +19,10 @@ const HomeHeader = (props) => {
     } = props;
     const onPress = () => {
         navigation?.navigate('More',{routeData});
+    };
+    props.parentCallBack(message)
+    const callbackFunction = (childData) => {
+        setMessage(childData);
     };
     return (
         <TrustView
@@ -32,7 +37,8 @@ const HomeHeader = (props) => {
                     localSource={Images.im_noti}
                 />
             </TrustTouchableOpacity> : <TrustView/>}
-            <TopTabNavigator
+            <TopTabNavigatorTest
+                parentCallBack={callbackFunction}
                 firstName={firstName}
                 secondName={secondName}
                 firstScreen={firstScreen}
@@ -68,4 +74,4 @@ const styles = StyleSheet.create({
 
     },
 });
-export default HomeHeader;
+export default HomeHeaderTest;
