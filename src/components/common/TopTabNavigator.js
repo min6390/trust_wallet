@@ -10,7 +10,7 @@ import {useTheme} from '@react-navigation/native';
 const TopTabNavigator = (props) => {
     const {colors} = useTheme();
     const {navigation,process,firstScreen,
-        secondScreen,thirdScreen,duaScreen,} = props;
+        secondScreen,duaScreen,firstName,secondName} = props;
     const onPressHome = () => {
         navigation?.navigate(firstScreen);
     };
@@ -18,7 +18,7 @@ const TopTabNavigator = (props) => {
         navigation?.navigate(secondScreen);
     };
     const onPressCollection = () => {
-        navigation?.navigate(thirdScreen);
+        navigation?.navigate('Collection');
     };
     return (
       <TrustView flexDirection={'row'} style={[styles.container,
@@ -29,7 +29,7 @@ const TopTabNavigator = (props) => {
                 onPress={onPressHome}>
                 <TrustText
                     style={styles.text}
-                    text={'Home'}
+                    text={firstName}
                 />
             </TrustTouchableOpacity>
             <TrustTouchableOpacity
@@ -39,7 +39,7 @@ const TopTabNavigator = (props) => {
             >
                 <TrustText
                     style={styles.text}
-                    text={'Crypto'}/>
+                    text={secondName}/>
             </TrustTouchableOpacity>
             {duaScreen?<TrustTouchableOpacity
                 style={[styles.txtType,
@@ -48,7 +48,7 @@ const TopTabNavigator = (props) => {
             >
                 <TrustText
                     style={styles.text}
-                    text={'Collection'}/>
+                    text={'Bộ sưu tập'}/>
             </TrustTouchableOpacity>:<TrustView/>}
         </TrustView>
     );

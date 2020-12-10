@@ -34,7 +34,7 @@ const SearchHeader = (props) => {
                     style={styles.imageFind}
                     localSource={Images.im_find}/>
                 <TrustTextInput
-                    onFocus={() => onFocus}
+                    onFocus={ onFocus}
                     placeholder={'Find something or address dApp'}
                     style={[styles.searchInput,{color:colors.textColor}]}/>
             </TrustView>

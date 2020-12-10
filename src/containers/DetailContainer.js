@@ -15,7 +15,6 @@ import {useTheme} from '@react-navigation/native';
 function DetailContainer(props) {
     const {colors} =useTheme();
     const {navigation,route} = props;
-
     const item = route.params;
     const data = [
         {
@@ -39,7 +38,7 @@ function DetailContainer(props) {
             nameScreen={'Home'}
             navigation={navigation}
             headerMode={HEADER_MODE.DETAIL}
-            title={item.coin}
+            title={item.name}
             renderContentView={() => {
                 return (
                     <>
@@ -50,7 +49,7 @@ function DetailContainer(props) {
                                 text={'COIN'}/>
                             <TrustText
                                 style={{color: colors.textColor}}
-                                text={'Exchange rate'}/>
+                                text={item.price}/>
                         </TrustView>
                         <TrustView style={{alignItems: 'center'}}>
                             <TrustImage

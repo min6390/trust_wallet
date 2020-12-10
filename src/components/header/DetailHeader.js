@@ -11,7 +11,7 @@ const DetailHeader = (props) => {
     const {colors} = useTheme();
     const {navigation, title, } = props;
     const onPress = () => {
-        navigation?.goBack();
+        navigation?.navigate('Home');
     };
     return (
         <TrustView

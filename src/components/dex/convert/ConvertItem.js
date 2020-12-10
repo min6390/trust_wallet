@@ -10,6 +10,7 @@ import TrustTouchableOpacity from '../../common/TrustTouchableOpacity';
 import {useTheme} from '@react-navigation/native';
 
 function ConvertItem(props) {
+    const {colors} = useTheme()
     const {text} = props;
     return (
         <TrustView flexDirection={'row'} style={{justifyContent: 'space-between', alignItems: 'center'}}>

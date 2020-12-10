@@ -13,53 +13,55 @@ import {styles} from './styles';
 import {useTheme} from '@react-navigation/native';
 import {io} from 'socket.io-client';
 import ServiceApis from '../services/apis/ServiceApis';
+import TrustTouchableOpacity from '../components/common/TrustTouchableOpacity';
+import store from '../redux/store/store';
+import {showAppLoading} from '../redux/actions/LoadingAction';
 
 function HomeContainer(props) {
     const {colors} = useTheme();
-    const {navigation,} = props;
+    const {navigation} = props;
     const [dataSocket, setDataSocket] = useState([]);
-    const [data,setData]= useState([])
+    const [data, setData] = useState([]);
     const {cryptData} = useSelector(state => state.crypt);
 
 
     useEffect(() => {
-        ServiceApis.getService((res)=>{
-            setData(res.data)
-        },err =>{
-            alert(err)
-        })
-
+        // ServiceApis.getService((res)=>{
+        //     setData(res.data)
+        // },err =>{
+        //     alert(err)
+        // })
         const socket = io('https://server-coin-wallet.herokuapp.com',
             {transports: ['websocket', 'polling', 'flashsocket']},
         );
-
+        store.dispatch(showAppLoading(true));
         socket.on('SOCKET_COIN_CHANGE', res => {
             setDataSocket(res);
+            store.dispatch(showAppLoading(false));
         });
     }, []);
     const renderItem = ({item}) => {
         return (
             <>
-                <TrustView flexDirection={'row'}
-                           style={[styles.container]}>
-                    <TrustView flexDirection={'row'}
-                               style={[styles.content]}>
-                        <TrustImage
-                            style={styles.image}
-                            localSource={Images.im_xrp}
+                <TrustTouchableOpacity
+                    style={[styles.content]}
+                    onPress={() => navigation?.navigate('Detail', item)}
+                >
+                    <TrustImage
+                        style={styles.image}
+                        localSource={Images.im_xrp}
+                    />
+                    <TrustView style={{marginHorizontal: Dimens.scale(10)}}>
+                        <TrustText
+                            style={{color: colors.textColor}}
+                            text={item.name}
                         />
-                        <TrustView style={{marginHorizontal: Dimens.scale(10)}}>
-                            <TrustText
-                                style={{color: colors.textColor}}
-                                text={item.name}
-                            />
-                            <TrustText
-                                style={{color: '#8C8FBF'}}
-                                text={item.price}
-                            />
-                        </TrustView>
+                        <TrustText
+                            style={{color: '#8C8FBF'}}
+                            text={item.price}
+                        />
                     </TrustView>
-                </TrustView>
+                </TrustTouchableOpacity>
                 <TrustLine/>
             </>
         );
@@ -81,13 +83,13 @@ function HomeContainer(props) {
             renderContentView={() =>
                 <>
                     <TrustFlatList
-                        data={data}
+                        data={cryptData}
                         keyExtractor={item => item.id}
                         renderItem={renderItem}
                         ListHeaderComponent={() => {
-                            return(
+                            return (
                                 <Information/>
-                                )
+                            );
                         }
                         }
                     />

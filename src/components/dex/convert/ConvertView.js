@@ -67,7 +67,6 @@ function ConvertView() {
                     tintColor={colors.textConvert}/>
             </TrustTouchableOpacity>
             <ConvertItem
-                keyboardType={'number-pad'}
                 text={'Bạn nhận'}
             />
         </TrustView>
