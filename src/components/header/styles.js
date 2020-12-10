@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 import Dimens from '../../common/Dimens';
 import FontSizes from '../../common/FontSizes';
 import React from 'react';
+import TrustView from '../common/TrustView';
 
 export const styles = StyleSheet.create({
     container: {
