@@ -19,7 +19,7 @@ import {
 // import CameraKitCameraScreen
 import {CameraKitCameraScreen} from 'react-native-camera-kit';
 
-const Collection = () => {
+const QRCode = () => {
     const [qrvalue, setQrvalue] = useState('');
     const [opneScanner, setOpneScanner] = useState(false);
 
@@ -119,7 +119,7 @@ const Collection = () => {
     );
 };
 
-export default Collection;
+export default QRCode;
 
 const styles = StyleSheet.create({
     container: {
