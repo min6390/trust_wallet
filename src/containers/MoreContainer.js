@@ -68,7 +68,7 @@ function MoreContainer(props) {
     };
     return (
         <TrustContainer
-            nameScreen={'Home'}
+            nameScreen={'Main'}
             navigation={navigation}
             headerMode={HEADER_MODE.SEARCH}
             renderContentView={() => {

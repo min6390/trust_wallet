@@ -1,26 +1,24 @@
 import React, {useState} from 'react';
 import TrustView from '../common/TrustView';
-import TopTabNavigator from '../common/TopTabNavigator';
 import TrustImage from '../common/TrustImage';
 import Images from '../../common/Images';
 import {StyleSheet} from 'react-native';
 import Dimens from '../../common/Dimens';
 import TrustTouchableOpacity from '../common/TrustTouchableOpacity';
 import {useTheme} from '@react-navigation/native';
-import TopTabNavigatorTest from '../common/TabNavigatorTest';
+import TopTabNavigator from '../common/TopTabNavigator';
 
-const HomeHeaderTest = (props) => {
+const HeaderTest = (props) => {
     const {colors}=useTheme();
-    const [message, setMessage] = useState('home');
+    const [message, setMessage] = useState('Home');
     const {
-        navigation, process, rightIcon, leftIcon,
-        firstScreen, secondScreen, thirdScreen, duaScreen,
-        firstName,secondName,routeData
+        navigation, process,  duaScreen,
+        firstName,secondName,routeData,firstScreen,secondScreen
     } = props;
     const onPress = () => {
         navigation?.navigate('More',{routeData});
     };
-    props.parentCallBack(message)
+    props.parentCallBack(message);
     const callbackFunction = (childData) => {
         setMessage(childData);
     };
@@ -29,7 +27,7 @@ const HomeHeaderTest = (props) => {
             flexDirection={'row'}
             style={[styles.container,{backgroundColor:colors.primary}]}
             navigation={navigation}>
-            {leftIcon ? <TrustTouchableOpacity
+            {message ==='Home' ? <TrustTouchableOpacity
             >
                 <TrustImage
                     tintColor={'white'}
@@ -37,18 +35,17 @@ const HomeHeaderTest = (props) => {
                     localSource={Images.im_noti}
                 />
             </TrustTouchableOpacity> : <TrustView/>}
-            <TopTabNavigatorTest
+            <TopTabNavigator
+                firstScreen={firstScreen}
+                secondScreen={secondScreen}
                 parentCallBack={callbackFunction}
                 firstName={firstName}
                 secondName={secondName}
-                firstScreen={firstScreen}
-                secondScreen={secondScreen}
-                thirdScreen={thirdScreen}
                 duaScreen={duaScreen}
                 process={process}
                 navigation={navigation}
             />
-            {rightIcon ? <TrustTouchableOpacity
+            {message ==='Home'? <TrustTouchableOpacity
                 onPress={onPress}
             >
                 <TrustImage
@@ -74,4 +71,4 @@ const styles = StyleSheet.create({
 
     },
 });
-export default HomeHeaderTest;
+export default HeaderTest;

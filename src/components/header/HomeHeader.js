@@ -7,7 +7,6 @@ import {StyleSheet} from 'react-native';
 import Dimens from '../../common/Dimens';
 import TrustTouchableOpacity from '../common/TrustTouchableOpacity';
 import {useTheme} from '@react-navigation/native';
-import TopTabNavigatorTest from '../common/TabNavigatorTest';
 
 const HomeHeader = (props) => {
     const {colors}=useTheme();

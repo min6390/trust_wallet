@@ -11,37 +11,16 @@ import Dimens from '../common/Dimens';
 import TrustLine from '../components/common/TrustLine';
 import {styles} from './styles';
 import {useTheme} from '@react-navigation/native';
-import {io} from 'socket.io-client';
 import TrustTouchableOpacity from '../components/common/TrustTouchableOpacity';
-import store from '../redux/store/store';
-import {showAppLoading} from '../redux/actions/LoadingAction';
-import ServiceApis from '../services/apis/ServiceApis';
+
 
 function HomeContainer(props) {
   const {colors} = useTheme();
   const {navigation} = props;
   const [dataSocket, setDataSocket] = useState([]);
-  const [data, setData] = useState([]);
-  const {cryptData} = useSelector(state => state.crypt);
+  const {socketData} = useSelector(state => state.socket);
 
-
-  useEffect(() => {
-    // ServiceApis.getService((res)=>{
-    //     setData(res.data)
-    // },err =>{
-    //     alert(err)
-    // })
-    const socket = io('https://server-coin-wallet.herokuapp.com',
-      {transports: ['websocket', 'polling', 'flashsocket']},
-    );
-   // store.dispatch(showAppLoading(true));
-    socket.on('SOCKET_COIN_CHANGE', res => {
-      setDataSocket(res);
-      console.log(res)
-   //   store.dispatch(showAppLoading(false));
-    });
-  }, []);
-  const renderItem = ({item}) => {
+  const renderItem = ({item, index}) => {
     return (
       <>
         <TrustTouchableOpacity
@@ -70,22 +49,13 @@ function HomeContainer(props) {
   return (
     <TrustContainer
       style={{backgroundColor: colors.primary}}
-      routeData={dataSocket}
-      firstScreen={'Home'}
-      secondScreen={'Cryt'}
-      thirdScreen={'Collection'}
-      firstName={'Tiền mã hóa'}
-      secondName={'Tài chính'}
-      duaScreen={true}
-      leftIcon={true}
-      rightIcon={true}
-      process={0}
+      hasHeader={false}
       navigation={navigation}
       renderContentView={() =>
         <>
           <TrustFlatList
-              style={{backgroundColor: colors.background}}
-            data={dataSocket}
+            style={{backgroundColor: colors.background}}
+            data={socketData}
             keyExtractor={item => item.id}
             renderItem={renderItem}
             ListHeaderComponent={() => {

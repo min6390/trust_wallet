@@ -7,20 +7,12 @@ import Dimens from '../common/Dimens';
 import PercentList from '../components/dex/convert/PercentList';
 import {styles} from './styles';
 import TrustContainer from '../components/common/TrustContainer';
-import {HEADER_MODE} from '../common/Constants';
-import {useTheme} from '@react-navigation/native';
 
 function ConvertContainer(props) {
     const {navigation,} = props;
     return (
         <TrustContainer
-            process={0}
-            navigation={navigation}
-            firstScreen={'Convert'}
-            secondScreen={'Exchanges'}
-            firstName={'Chuyển đổi'}
-            secondName={'Sàn giao dịch'}
-            headerMode={HEADER_MODE.HOME}
+            hasHeader={false}
             renderContentView={() => {
                 return (
                     <TrustView style={{alignItems: 'center'}}>

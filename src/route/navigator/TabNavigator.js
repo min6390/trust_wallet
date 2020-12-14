@@ -23,10 +23,9 @@ function TabNavigator() {
                 },
         }}>
             <BottomTabNavigator.Screen
-                name={'Home'}
+                name={'Ví'}
                 component={HomeStackNavigator}
                 options={{
-
                     tabBarIcon: ({color}) => <TrustImage
                         tintColor={color}
                         style={styles.image}
@@ -57,7 +56,7 @@ function TabNavigator() {
                 }}
             />
             <BottomTabNavigator.Screen
-                name="Settings"
+                name="Cài đặt"
                 component={SettingContainer}
                 options={{
                     tabBarIcon: ({color}) => <TrustImage

@@ -4,14 +4,14 @@ const initialState = {
     switchData: ''
 };
 
-function setCryptData(state, payload) {
+function setSwitchData(state, payload) {
     return updateObject(state, {
         switchData: payload.data,
     });
 }
 
 const handles = {};
-handles['ADD_TO_DATA'] = setCryptData;
+handles['ADD_TO_DATA'] = setSwitchData;
 
 const SwitchReducer = createReducer(initialState, handles);
 export default SwitchReducer;

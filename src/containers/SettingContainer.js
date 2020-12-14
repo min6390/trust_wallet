@@ -9,44 +9,48 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 function SettingContainer() {
-    const dispatch = useDispatch();
-    const [theme, setTheme] = useState(false);
-    const currentTheme = useSelector(state => {
-        return state.myDarMode;
-    });
+  const dispatch = useDispatch();
+  const [theme, setTheme] = useState(false);
+  const [data, setData] = useState([]);
+  const currentTheme = useSelector(state => {
+    return state.myDarMode;
+  });
 
-    const onToggle = () => {
-       setTheme(!theme);
-        dispatch({type: 'change_theme', payload: !currentTheme});
-        storeData(JSON.stringify(theme));
-    };
-    const storeData = async (value) => {
-        try {
-            await AsyncStorage.setItem('@storage_Key', value);
-        } catch (e) {
-            console.log(e);
-        }
-    };
-    return (
+  const onToggle = () => {
+    setTheme(!theme);
+    dispatch({type: 'change_theme', payload: !currentTheme});
+    storeData(JSON.stringify(theme));
+  };
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem('@storage_Key', value);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
-        <TrustView flexDirection={'row'}
-                   style={{
-                       justifyContent: 'space-between',
-                       paddingHorizontal: Dimens.scale(10),
-                   }}>
-            <TrustText
-                style={currentTheme ? {color: 'white'} : {color: 'black'}}
-                text={'Dark mode'}
-            />
-            <ToggleSwitch
-                isOn={currentTheme}
-                onColor={Colors.secondBackground}
-                offColor="#dcdcdc"
-                size="small"
-                onToggle={onToggle}
-            />
-        </TrustView>
-    );
+
+
+  return (
+
+    <TrustView flexDirection={'row'}
+               style={{
+                 justifyContent: 'space-between',
+                 paddingHorizontal: Dimens.scale(10),
+               }}>
+      <TrustText
+        style={currentTheme ? {color: 'white'} : {color: 'black'}}
+        text={'Dark mode'}
+      />
+      <ToggleSwitch
+        isOn={currentTheme}
+        onColor={Colors.secondBackground}
+        offColor="#dcdcdc"
+        size="small"
+        onToggle={onToggle}
+      />
+    </TrustView>
+  );
 }
 
 export default SettingContainer;
