@@ -5,13 +5,13 @@ import TrustImage from '../common/TrustImage';
 import Images from '../../common/Images';
 import InformationItemList from './InformationItemList';
 import TrustLine from '../common/TrustLine';
-import React, {useEffect, useState} from 'react';
+import React, {} from 'react';
 import {useTheme} from '@react-navigation/native';
-import {styles} from '../../containers/styles';
+import {StyleSheet} from 'react-native';
+import FontSizes from '../../common/FontSizes';
 
-function DetailItem(props) {
-  const {dataItem}=props
-  const {colors}=useTheme()
+function DetailItem() {
+  const {colors}=useTheme();
   const data = [
     {
       id: 1,
@@ -38,7 +38,7 @@ function DetailItem(props) {
           text={'COIN'}/>
         <TrustText
           style={{color: colors.textColor}}
-          text={item.price}/>
+          text={'ahihihi'}/>
       </TrustView>
       <TrustView style={{alignItems: 'center'}}>
         <TrustImage
@@ -55,4 +55,18 @@ function DetailItem(props) {
     </>
   );
 }
+const styles = StyleSheet.create({
+  imageCoin: {
+    color: 'black',
+    height: Dimens.scale(80),
+    width: Dimens.scale(80),
+    borderRadius: Dimens.scale(40),
+  },
+  txtCoin: {
+    fontSize: FontSizes.size45,
+  },
+  itemList: {
+    marginTop: Dimens.scale(30),
+  },
+});
 export default DetailItem

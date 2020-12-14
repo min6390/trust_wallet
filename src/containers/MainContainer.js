@@ -3,18 +3,23 @@ import HomeHeaderTest from '../components/header/HeaderTest';
 import HomeContainer from './HomeContainer';
 import CryptocurrencyContainer from './CryptocurrencyContainer';
 import TrustText from '../components/common/TrustText';
+import TrustContainer from '../components/common/TrustContainer';
 
 
 function MainCointainer(props) {
-  const {navigation, } = props;
+  const {navigation} = props;
   const [message, setMessage] = useState('');
   const [icon, setIcon] = useState(false);
   const renderItem = ({message}) => {
     switch (message) {
       case 'Home':
-        return <HomeContainer callbackIcon={callbackIcon}/>;
+        return <HomeContainer
+          navigation={navigation}
+          callbackIcon={callbackIcon}/>;
       case 'Crypto' :
-        return <CryptocurrencyContainer callbackIcon={callbackIcon}/>;
+        return <CryptocurrencyContainer
+          navigation={navigation}
+          callbackIcon={callbackIcon}/>;
       case 'Collection':
         return <><TrustText text={'Collection'} callbackIcon={callbackIcon}/></>;
       default :
@@ -30,22 +35,30 @@ function MainCointainer(props) {
   };
 
   return (
-    <>
-      <HomeHeaderTest
-        leftIcon={icon}
-        rightIcon={icon}
-        firstScreen={'Home'}
-        secondScreen={'Crypto'}
-        navigation={navigation}
-        firstName={'Tiền mã hóa'}
-        secondName={'Tài chính'}
-        duaScreen={true}
-        callbackScreen={callbackScreen}
-      />
-      <>
-        {renderItem({message})}
-      </>
-    </>
+    <TrustContainer
+      hasHeader={false}
+      style={{backgroundColor:'pink'}}
+      renderContentView={() => {
+        return (
+          <>
+            <HomeHeaderTest
+              leftIcon={icon}
+              rightIcon={icon}
+              firstScreen={'Home'}
+              secondScreen={'Crypto'}
+              navigation={navigation}
+              firstName={'Tiền mã hóa'}
+              secondName={'Tài chính'}
+              duaScreen={true}
+              callbackScreen={callbackScreen}
+            />
+            <>
+              {renderItem({message})}
+            </>
+          </>
+        );
+      }}
+    />
   );
 }
 

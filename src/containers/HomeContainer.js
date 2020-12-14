@@ -21,12 +21,12 @@ function HomeContainer(props) {
   props.callbackIcon(true);
 
 
-  const renderItem = ({item,}) => {
+  const renderItem = ({item}) => {
     return (
       <>
         <TrustTouchableOpacity
           style={[styles.content]}
-          onPress={() => navigation?.navigate('Detail', item)}
+          onPress={() => navigation?.navigate('Detail', item.name)}
         >
           <TrustImage
             style={styles.image}

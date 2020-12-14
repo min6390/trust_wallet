@@ -16,20 +16,7 @@ TrustContainer.propTypes = {
     hasHeader: PropTypes.bool,
     headerMode: PropTypes.string,
     navigation: PropTypes.object,
-    leftIcon: PropTypes.bool,
-    rightIcon: PropTypes.bool,
     title: PropTypes.string,
-    firstScreen :PropTypes.string,
-    secondScreen :PropTypes.string,
-    thirdScreen :PropTypes.string,
-    duaScreen :PropTypes.bool,
-    firstName:PropTypes.string,
-    secondName:PropTypes.string,
-    routeData: PropTypes.oneOfType([
-        PropTypes.array,
-        PropTypes.object,
-    ]),
-    nameScreen:PropTypes.string,
 };
 
 TrustContainer.defaultProps = {
@@ -38,22 +25,11 @@ TrustContainer.defaultProps = {
 
 function TrustContainer(props) {
     const {
-        leftIcon,
-        rightIcon,
         style,
         title,
         renderContentView,
         hasHeader,
-        headerMode,
         navigation,
-        process,
-        firstScreen,
-        secondScreen,
-        thirdScreen,
-        duaScreen,
-        firstName,
-        secondName,
-        routeData,
         nameScreen,
     } = props;
 
@@ -63,20 +39,9 @@ function TrustContainer(props) {
         }, style]}
     >
         {hasHeader && <TrustHeader
-            nameScreen={nameScreen}
-            routeData={routeData}
-            firstName={firstName}
-            secondName={secondName}
-            firstScreen={firstScreen}
-            secondScreen={secondScreen}
-            thirdScreen={thirdScreen}
-            duaScreen={duaScreen}
-            leftIcon={leftIcon}
-            rightIcon={rightIcon}
-            title={title}
-            process={process}
-            headerMode={headerMode}
-            navigation={navigation}
+          nameScreen={nameScreen}
+          navigation={navigation}
+          title={title}
         />}
         {renderContentView()}
     </TrustView>;
