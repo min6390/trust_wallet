@@ -6,7 +6,7 @@ import ExchangesContainer from './ExchangesContainer';
 
 function DexContainer(props) {
   const {navigation} = props;
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('Convert');
   const renderItem = ({message}) => {
     switch (message) {
       case 'Convert':
@@ -17,7 +17,7 @@ function DexContainer(props) {
         return <ConvertContainer/>;
     }
   };
-  const callbackFunction = (childData) => {
+  const callbackScreen = (childData) => {
     setMessage(childData);
   };
   return (
@@ -29,7 +29,7 @@ function DexContainer(props) {
         firstName={'Chuyển đổi'}
         secondName={'Sàn giao dịch'}
         duaScreen={false}
-        parentCallBack={callbackFunction}
+        callbackScreen={callbackScreen}
       />
       <>
         {renderItem({message})}

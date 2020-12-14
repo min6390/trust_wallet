@@ -6,33 +6,41 @@ import TrustText from '../components/common/TrustText';
 
 
 function MainCointainer(props) {
-  const {navigation} = props;
+  const {navigation, } = props;
   const [message, setMessage] = useState('');
+  const [icon, setIcon] = useState(false);
   const renderItem = ({message}) => {
     switch (message) {
       case 'Home':
-        return <HomeContainer/>;
+        return <HomeContainer callbackIcon={callbackIcon}/>;
       case 'Crypto' :
-        return <CryptocurrencyContainer/>;
+        return <CryptocurrencyContainer callbackIcon={callbackIcon}/>;
       case 'Collection':
-        return <><TrustText text={'Collection'}/></>;
+        return <><TrustText text={'Collection'} callbackIcon={callbackIcon}/></>;
       default :
-        return <HomeContainer/>;
+        return <HomeContainer callbackIcon={callbackIcon}/>;
     }
   };
-  const callbackFunction = (childData) => {
+  const callbackScreen = (childData) => {
     setMessage(childData);
   };
+
+  const callbackIcon = (childData) => {
+    setIcon(childData);
+  };
+
   return (
     <>
       <HomeHeaderTest
+        leftIcon={icon}
+        rightIcon={icon}
         firstScreen={'Home'}
         secondScreen={'Crypto'}
         navigation={navigation}
         firstName={'Tiền mã hóa'}
         secondName={'Tài chính'}
         duaScreen={true}
-        parentCallBack={callbackFunction}
+        callbackScreen={callbackScreen}
       />
       <>
         {renderItem({message})}

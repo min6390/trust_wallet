@@ -9,13 +9,11 @@ import Dimens from '../common/Dimens';
 import FontSizes from '../common/FontSizes';
 import TrustTouchableOpacity from '../components/common/TrustTouchableOpacity';
 import TrustContainer from '../components/common/TrustContainer';
-import {HEADER_MODE} from '../common/Constants';
 import Images from '../common/Images';
 import {useTheme} from '@react-navigation/native';
 import TrustImage from '../components/common/TrustImage';
 import TrustLine from '../components/common/TrustLine';
 import Colors from '../common/Colors';
-import HeaderTest from '../components/header/HeaderTest';
 
 const data = [
   {
@@ -47,6 +45,11 @@ const data = [
 function CryptocurrencyContainer(props) {
   const {colors} = useTheme();
   const {navigation} = props;
+
+  useTheme(() => {
+    props.callbackIcon(false);
+  }, []);
+
   const renderItem = ({item}) => {
     return (
       <>

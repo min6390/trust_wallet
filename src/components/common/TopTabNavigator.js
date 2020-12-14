@@ -12,15 +12,15 @@ const TopTabNavigator = (props) => {
   const {duaScreen, firstName, secondName,firstScreen,secondScreen} = props;
   const [process, setProcess] = useState(0);
   const onPressHome = () => {
-    props.parentCallBack(firstScreen);
+    props.callbackScreen(firstScreen);
     setProcess(0);
   };
   const onPressCrypt = () => {
-    props.parentCallBack(secondScreen);
+    props.callbackScreen(secondScreen);
     setProcess(1);
   };
   const onPressCollection = () => {
-    props.parentCallBack('Collection');
+    props.callbackScreen('Collection');
     setProcess(2);
   };
   return (

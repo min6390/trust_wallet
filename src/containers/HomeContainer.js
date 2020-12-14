@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {} from 'react';
 import TrustContainer from '../components/common/TrustContainer';
 import Information from '../components/home/Information';
 import TrustFlatList from '../components/common/TrustFlatList';
@@ -17,10 +17,11 @@ import TrustTouchableOpacity from '../components/common/TrustTouchableOpacity';
 function HomeContainer(props) {
   const {colors} = useTheme();
   const {navigation} = props;
-  const [dataSocket, setDataSocket] = useState([]);
   const {socketData} = useSelector(state => state.socket);
+  props.callbackIcon(true);
 
-  const renderItem = ({item, index}) => {
+
+  const renderItem = ({item,}) => {
     return (
       <>
         <TrustTouchableOpacity
