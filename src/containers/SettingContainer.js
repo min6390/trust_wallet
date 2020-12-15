@@ -6,6 +6,7 @@ import TrustText from '../components/common/TrustText';
 import TrustView from '../components/common/TrustView';
 import Dimens from '../common/Dimens';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {setDarkMode} from '../redux/actions/ThemeAction';
 
 
 function SettingContainer() {
@@ -13,17 +14,20 @@ function SettingContainer() {
   const [theme, setTheme] = useState(false);
   const [data, setData] = useState([]);
   const currentTheme = useSelector(state => {
-    return state.myDarMode;
+    return state.myDarMode.darkMode;
   });
 
-  const onToggle = () => {
-    setTheme(!theme);
-    dispatch({type: 'change_theme', payload: !currentTheme});
-    storeData(JSON.stringify(theme));
-  };
+  // const onToggle = () => {
+  //   setTheme(!theme);
+  //   dispatch({type: 'change_theme', payload: !currentTheme});
+  //   storeData(JSON.stringify(theme));
+  // };
   const storeData = async (value) => {
     try {
-      await AsyncStorage.setItem('@storage_Key', value);
+      console.log(value)
+      setTheme(!theme)
+      dispatch(setDarkMode(!currentTheme));
+      await AsyncStorage.setItem('DarkMode', JSON.stringify(value));
     } catch (e) {
       console.log(e);
     }
@@ -47,7 +51,7 @@ function SettingContainer() {
         onColor={Colors.secondBackground}
         offColor="#dcdcdc"
         size="small"
-        onToggle={onToggle}
+        onToggle={storeData}
       />
     </TrustView>
   );

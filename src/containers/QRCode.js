@@ -1,5 +1,3 @@
-// Barcode and QR Code Scanner using Camera in React Native
-// https://aboutreact.com/react-native-scan-qr-code/
 
 // import React in our code
 import React, {useState} from 'react';

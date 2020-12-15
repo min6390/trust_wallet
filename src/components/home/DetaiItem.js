@@ -54,7 +54,8 @@ function DetailItem(props) {
                 style={item.rate < 0 ? {
                   color: 'red',
                 } : {color: Colors.secondBackground}}
-                text={parseFloat(item.rate).toFixed(6) + ' %'}
+                text={item.rate < 0 ? parseFloat(item.rate).toFixed(6) + ' %'
+                  : '+' + parseFloat(item.rate).toFixed(6) + ' %'}
               />
             </TrustView>
           </TrustView>

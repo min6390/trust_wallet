@@ -13,6 +13,8 @@ import {styles} from './styles';
 import {useTheme} from '@react-navigation/native';
 import TrustTouchableOpacity from '../components/common/TrustTouchableOpacity';
 import Colors from '../common/Colors';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+import FontSizes from '../common/FontSizes';
 
 
 function HomeContainer(props) {
@@ -20,39 +22,57 @@ function HomeContainer(props) {
   const {navigation} = props;
   const {socketData} = useSelector(state => state.socket);
   props.callbackIcon(true);
-
+  const RightActions = () => {
+    return (
+      <TrustView
+        style={{width: Dimens.scale(150), backgroundColor: '#dcdcdc', justifyContent: 'center'}}>
+        <TrustText
+          style={{
+            color: 'white',
+            paddingHorizontal: 10,
+            fontSize: FontSizes.size28,
+          }}
+          text={'DELETE'}>
+        </TrustText>
+      </TrustView>
+    );
+  };
   const renderItem = ({item}) => {
     return (
-      <>
+      <Swipeable renderRightActions ={RightActions}>
         <TrustTouchableOpacity
-          style={[styles.content]}
+          style={[styles.content,{justifyContent:'space-between'}]}
           onPress={() => navigation?.navigate('Detail', item.name)}
         >
-          <TrustImage
-            style={styles.image}
-            localSource={Images.im_xrp}
-          />
-          <TrustView style={{marginHorizontal: Dimens.scale(10)}}>
-            <TrustText
-              style={{color: colors.textColor}}
-              text={item.name}
+          <TrustView style={styles.content}>
+            <TrustImage
+              style={styles.image}
+              localSource={Images.im_xrp}
             />
-            <TrustView style={{flexDirection: 'row'}}>
+            <TrustView style={{marginHorizontal: Dimens.scale(10)}}>
               <TrustText
-                style={{color: '#8C8FBF',marginRight:Dimens.scale(10)}}
-                text={item.price+' $'}
+                style={{color: colors.textColor}}
+                text={item.name}
               />
-              <TrustText
-                style={item.rate < 0 ? {
-                  color: 'red',
-                } :{ color: Colors.secondBackground}}
-                text={parseFloat(item.rate).toFixed(6)+' %'}
-              />
+              <TrustView style={{flexDirection: 'row'}}>
+                <TrustText
+                  style={{color: '#8C8FBF', marginRight: Dimens.scale(10)}}
+                  text={item.price + ' $'}
+                />
+                <TrustText
+                  style={item.rate < 0 ? {
+                    color: 'red',
+                  } : {color: Colors.secondBackground}}
+                  text={item.rate < 0 ? parseFloat(item.rate).toFixed(6) + ' %'
+                    : '+' + parseFloat(item.rate).toFixed(6) + ' %'}
+                />
+              </TrustView>
             </TrustView>
           </TrustView>
+          <TrustText text={item.symbol}/>
         </TrustTouchableOpacity>
-        <TrustLine/>
-      </>
+
+      </Swipeable>
     );
   };
   return (
@@ -65,8 +85,9 @@ function HomeContainer(props) {
           <TrustFlatList
             style={{backgroundColor: colors.background}}
             data={socketData}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item.name}
             renderItem={renderItem}
+            ItemSeparatorComponent={() => <TrustLine/>}
             ListHeaderComponent={() => {
               return (
                 <Information/>

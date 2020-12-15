@@ -19,11 +19,12 @@ import {showAppLoading} from '../redux/actions/LoadingAction';
 const RouteNavigator = createStackNavigator();
 
 function Route() {
-  let currentTheme = useSelector(state => {
-    return state.myDarMode;
-  });
-  const state = store.getState();
-  useEffect(() => {
+    let currentTheme = useSelector(state => {
+      return state.myDarMode.darkMode;
+    });
+
+    const state = store.getState();
+   useEffect(() => {
     const socket = io('https://coin-wallet-server.herokuapp.com',
       {transports: ['websocket', 'polling', 'flashsocket']},
     );
@@ -31,12 +32,14 @@ function Route() {
     socket.on('SOCKET_COIN_CHANGE', res => {
       store.dispatch(showAppLoading(false));
       const {socketData} = state.socket;
-      socketData.push(res);
-      if (socketData.length > 1) {
-        socketData.shift();
-        socketData.forEach(item => store.dispatch(setSocketData(item)),
-        );
-      }
+      //const newSocketData = socketData.concat(res)
+      store.dispatch(setSocketData(res))
+    //  socketData.push(res);
+      // if (socketData.length > 1) {
+      //   socketData.shift();
+      //   socketData.forEach(item =>),
+      //   );
+      // }
     });
   }, []);
 

@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import LoadingReducer from './LoadingReducer';
-import {ThemeReducer} from './ThemeReducer';
+import ThemeReducer from './ThemeReducer';
 import CryptReducer from './CryptReducer';
 import SwitchReducer from './SwitchReducer';
 import SocketReducer from './SocketReducer';
