@@ -23,26 +23,6 @@ function Route() {
       return state.myDarMode.darkMode;
     });
 
-    const state = store.getState();
-   useEffect(() => {
-    const socket = io('https://coin-wallet-server.herokuapp.com',
-      {transports: ['websocket', 'polling', 'flashsocket']},
-    );
-    store.dispatch(showAppLoading(true));
-    socket.on('SOCKET_COIN_CHANGE', res => {
-      store.dispatch(showAppLoading(false));
-      const {socketData} = state.socket;
-      //const newSocketData = socketData.concat(res)
-      store.dispatch(setSocketData(res))
-    //  socketData.push(res);
-      // if (socketData.length > 1) {
-      //   socketData.shift();
-      //   socketData.forEach(item =>),
-      //   );
-      // }
-    });
-  }, []);
-
 
   return (
     <AppearanceProvider>
