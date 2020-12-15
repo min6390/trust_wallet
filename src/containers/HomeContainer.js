@@ -69,9 +69,10 @@ function HomeContainer(props) {
               </TrustView>
             </TrustView>
           </TrustView>
-          <TrustText text={item.symbol}/>
+          <TrustText
+            style={{color: colors.textColor}}
+            text={item.symbol}/>
         </TrustTouchableOpacity>
-
       </Swipeable>
     );
   };

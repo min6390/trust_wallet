@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {} from 'react';
 import ToggleSwitch from 'toggle-switch-react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Colors from '../common/Colors';
@@ -11,21 +11,12 @@ import {setDarkMode} from '../redux/actions/ThemeAction';
 
 function SettingContainer() {
   const dispatch = useDispatch();
-  const [theme, setTheme] = useState(false);
-  const [data, setData] = useState([]);
   const currentTheme = useSelector(state => {
     return state.myDarMode.darkMode;
   });
 
-  // const onToggle = () => {
-  //   setTheme(!theme);
-  //   dispatch({type: 'change_theme', payload: !currentTheme});
-  //   storeData(JSON.stringify(theme));
-  // };
-  const storeData = async (value) => {
+  const onToggle = async (value) => {
     try {
-      console.log(value)
-      setTheme(!theme)
       dispatch(setDarkMode(!currentTheme));
       await AsyncStorage.setItem('DarkMode', JSON.stringify(value));
     } catch (e) {
@@ -33,10 +24,7 @@ function SettingContainer() {
     }
   };
 
-
-
   return (
-
     <TrustView flexDirection={'row'}
                style={{
                  justifyContent: 'space-between',
@@ -51,7 +39,7 @@ function SettingContainer() {
         onColor={Colors.secondBackground}
         offColor="#dcdcdc"
         size="small"
-        onToggle={storeData}
+        onToggle={onToggle}
       />
     </TrustView>
   );
