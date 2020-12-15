@@ -37,7 +37,6 @@ function MainCointainer(props) {
   return (
     <TrustContainer
       hasHeader={false}
-      style={{backgroundColor:'pink'}}
       renderContentView={() => {
         return (
           <>

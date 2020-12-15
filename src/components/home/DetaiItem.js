@@ -5,13 +5,15 @@ import TrustImage from '../common/TrustImage';
 import Images from '../../common/Images';
 import InformationItemList from './InformationItemList';
 import TrustLine from '../common/TrustLine';
-import React, {} from 'react';
+import React, {useState} from 'react';
 import {useTheme} from '@react-navigation/native';
 import {StyleSheet} from 'react-native';
 import FontSizes from '../../common/FontSizes';
+import {useSelector} from 'react-redux';
+import Colors from '../../common/Colors';
 
-function DetailItem() {
-  const {colors}=useTheme();
+
+function DetailItem(props) {
   const data = [
     {
       id: 1,
@@ -29,32 +31,51 @@ function DetailItem() {
       name: 'Sao chép',
     },
   ];
+  const {colors} = useTheme();
+  const {price} = props;
+  const {socketData} = useSelector(state => state.socket);
+  const [dataSocket] = useState(socketData.filter(item => item.name === price));
   return (
-    <>
-      <TrustView flexDirection={'row'}
-                 style={{justifyContent: 'space-between', margin: Dimens.scale(5)}}>
-        <TrustText
-          style={{color: colors.textColor}}
-          text={'COIN'}/>
-        <TrustText
-          style={{color: colors.textColor}}
-          text={'ahihihi'}/>
-      </TrustView>
-      <TrustView style={{alignItems: 'center'}}>
-        <TrustImage
-          style={styles.imageCoin}
-          localSource={Images.im_ele}/>
-        <TrustText
-          style={[styles.txtCoin, {color: colors.textColor}]}
-          text={' 0 BTC '}/>
-        <InformationItemList
-          style={styles.itemList}
-          data={data}/>
-      </TrustView>
-      <TrustLine/>
-    </>
+    dataSocket.map((item, index) => {
+      return (
+        <>
+          <TrustView
+            key={index}
+            flexDirection={'row'}
+            style={{justifyContent: 'space-between', margin: Dimens.scale(5)}}>
+            <TrustText
+              style={{color: colors.textColor}}
+              text={'COIN'}/>
+            <TrustView flexDirection={'row'}>
+              <TrustText
+                style={{color: colors.textColor,marginRight:Dimens.scale(10)}}
+                text={item.price +' $'}/>
+              <TrustText
+                style={item.rate < 0 ? {
+                  color: 'red',
+                } : {color: Colors.secondBackground}}
+                text={parseFloat(item.rate).toFixed(6) + ' %'}
+              />
+            </TrustView>
+          </TrustView>
+          <TrustView style={{alignItems: 'center'}}>
+            <TrustImage
+              style={styles.imageCoin}
+              localSource={Images.im_ele}/>
+            <TrustText
+              style={[styles.txtCoin, {color: colors.textColor}]}
+              text={' 0 BTC '}/>
+            <InformationItemList
+              style={styles.itemList}
+              data={data}/>
+          </TrustView>
+          <TrustLine/>
+        </>
+      );
+    })
   );
 }
+
 const styles = StyleSheet.create({
   imageCoin: {
     color: 'black',
@@ -69,4 +90,4 @@ const styles = StyleSheet.create({
     marginTop: Dimens.scale(30),
   },
 });
-export default DetailItem
+export default DetailItem;

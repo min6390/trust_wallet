@@ -255,7 +255,7 @@ function NotificationContainer(props) {
                   <Search parentCallBack={callbackFunction}/>
                   <TrustFlatList
                     data={data}
-                    keyExtractor={item => item.id}
+                    keyExtractor={item => item.id?.toString()}
                     renderItem={({item}) =>
                       <>
                           <TrustView
@@ -277,8 +277,8 @@ function NotificationContainer(props) {
                             showsHorizontalScrollIndicator={false}
                             horizontal={true}
                             data={handleItems(item.contents)}
-                            keyExtractor={item => item.id}
                             renderItem={renderItem}
+                            keyExtractor={item => item.id?.toString()}
                           />
                       </>
                     }

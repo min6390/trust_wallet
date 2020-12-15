@@ -26,6 +26,7 @@ TrustContainer.defaultProps = {
 function TrustContainer(props) {
     const {
         style,
+        headerMode,
         title,
         renderContentView,
         hasHeader,
@@ -39,6 +40,7 @@ function TrustContainer(props) {
         }, style]}
     >
         {hasHeader && <TrustHeader
+          headerMode={headerMode}
           nameScreen={nameScreen}
           navigation={navigation}
           title={title}

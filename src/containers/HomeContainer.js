@@ -12,6 +12,7 @@ import TrustLine from '../components/common/TrustLine';
 import {styles} from './styles';
 import {useTheme} from '@react-navigation/native';
 import TrustTouchableOpacity from '../components/common/TrustTouchableOpacity';
+import Colors from '../common/Colors';
 
 
 function HomeContainer(props) {
@@ -19,7 +20,6 @@ function HomeContainer(props) {
   const {navigation} = props;
   const {socketData} = useSelector(state => state.socket);
   props.callbackIcon(true);
-
 
   const renderItem = ({item}) => {
     return (
@@ -37,10 +37,18 @@ function HomeContainer(props) {
               style={{color: colors.textColor}}
               text={item.name}
             />
-            <TrustText
-              style={{color: '#8C8FBF'}}
-              text={item.price}
-            />
+            <TrustView style={{flexDirection: 'row'}}>
+              <TrustText
+                style={{color: '#8C8FBF',marginRight:Dimens.scale(10)}}
+                text={item.price+' $'}
+              />
+              <TrustText
+                style={item.rate < 0 ? {
+                  color: 'red',
+                } :{ color: Colors.secondBackground}}
+                text={parseFloat(item.rate).toFixed(6)+' %'}
+              />
+            </TrustView>
           </TrustView>
         </TrustTouchableOpacity>
         <TrustLine/>

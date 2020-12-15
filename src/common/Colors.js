@@ -1,6 +1,6 @@
 
 export default {
-  secondBackground: '#3375BB',
+  secondBackground: '#07ad87',
   thirdBackground :'#055aaf'
 
 }
