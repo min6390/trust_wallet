@@ -20,12 +20,11 @@ function HomeContainer(props) {
             hasHeader={false}
             navigation={navigation}
             renderContentView={() =>
-                <>
                     <TrustFlatList
                         style={{backgroundColor: colors.background}}
                         data={socketData}
                         keyExtractor={item => item.name}
-                        renderItem={({item, index}) => <ListCoinItem navigation={navigation} item={item}/>}
+                        renderItem={({item}) => <ListCoinItem navigation={navigation} item={item}/>}
                         ItemSeparatorComponent={() => <TrustLine/>}
                         ListHeaderComponent={() => {
                             return (
@@ -34,7 +33,6 @@ function HomeContainer(props) {
                         }
                         }
                     />
-                </>
             }
         />
     );

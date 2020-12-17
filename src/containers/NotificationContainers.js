@@ -11,7 +11,7 @@ import FontSizes from '../common/FontSizes';
 import Dimens from '../common/Dimens';
 import TrustTouchableOpacity from '../components/common/TrustTouchableOpacity';
 import TrustContainer from '../components/common/TrustContainer';
-import {HEADER_MODE} from '../common/Constants';
+import {HEADER_MODE, NAVIGATION_CONSTANTS} from '../common/Constants';
 import {useTheme} from '@react-navigation/native';
 import Colors from '../common/Colors';
 import Search from '../components/notification/Search';
@@ -26,7 +26,7 @@ const data = [
                 id: 1,
                 name: 'TESSSTER',
                 image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
+                content: '123Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
             },
             {
                 id: 2,
@@ -63,7 +63,7 @@ const data = [
                 id: 1,
                 name: 'TESSSTER',
                 image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
+                content: '456Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
             },
             {
                 id: 2,
@@ -241,9 +241,10 @@ function NotificationContainer(props) {
         );
     };
 
+
     return (
       <TrustContainer
-        nameScreen={'Home'}
+        nameScreen={NAVIGATION_CONSTANTS.HOME}
         hasHeader={false}
         headerMode={HEADER_MODE.SEARCH}
         renderContentView={() => {
@@ -266,7 +267,8 @@ function NotificationContainer(props) {
                                 style={[styles.txtTitle, {color: colors.textColor}]}
                                 text={item.title}
                               />
-                              <TrustTouchableOpacity>
+                              <TrustTouchableOpacity
+                              onPress={()=>{navigation?.navigate(NAVIGATION_CONSTANTS.SHOW_ALL,)}}>
                                   <TrustText
                                     style={[styles.txtShowAll, {color: Colors.secondBackground}]}
                                     text={' Show all '}
@@ -298,12 +300,12 @@ const styles = StyleSheet.create({
     },
     txtTitle: {
         fontWeight: 'bold',
-        fontSize: FontSizes.size35,
+        fontSize: FontSizes.size28,
 
     },
     txtShowAll: {
         color: 'blue',
-        fontSize: FontSizes.size35,
+        fontSize: FontSizes.size28,
     },
 });
 export default NotificationContainer;

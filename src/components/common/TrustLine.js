@@ -17,7 +17,7 @@ function TrustLine(props) {
 const styles = StyleSheet.create({
     borderCustom: {
         borderWidth: Dimens.scale(1 / 2),
-        marginVertical: Dimens.scale(5),
+
 
     },
 });

@@ -3,27 +3,28 @@ import React from 'react';
 import ConvertContainer from '../../containers/ConvertContainer';
 import ExchangesContainer from '../../containers/ExchangesContainer';
 import DexContainer from '../../containers/DexContainer';
+import {NAVIGATION_CONSTANTS} from '../../common/Constants';
 
 const DexStack = createStackNavigator();
 
 function DexStackNavigator() {
     return (
         <DexStack.Navigator
-          initialRouteName="Dex"
-          screenOptions={{
+            initialRouteName={NAVIGATION_CONSTANTS.DEX}
+            screenOptions={{
                 headerShown: false,
             }}
         >
-          <DexStack.Screen
-            name={'Dex'}
-            component={DexContainer}
-          />
             <DexStack.Screen
-                name={'Convert'}
+                name={NAVIGATION_CONSTANTS.DEX}
+                component={DexContainer}
+            />
+            <DexStack.Screen
+                name={NAVIGATION_CONSTANTS.CONVERT}
                 component={ConvertContainer}
             />
             <DexStack.Screen
-                name={'Exchanges'}
+                name={NAVIGATION_CONSTANTS.EXCHANGES}
                 component={ExchangesContainer}
             />
 
@@ -31,4 +32,5 @@ function DexStackNavigator() {
         </DexStack.Navigator>
     );
 }
-export default DexStackNavigator
+
+export default DexStackNavigator;

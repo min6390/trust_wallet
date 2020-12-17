@@ -9,23 +9,27 @@ import {styles} from './styles';
 import {useTheme} from '@react-navigation/native';
 
 function NewsItem(props) {
-    const {colors}=useTheme();
+    const {colors} = useTheme();
     const {item} = props;
     return (
         <TrustTouchableOpacity>
             <TrustView flexDirection={'row'} style={{margin: Dimens.scale(5)}}>
                 <TrustImage
-                    style={{height:Dimens.scale(70), width:Dimens.scale(70), borderRadius: Dimens.scale(20)}}
+                    style={{
+                        height: Dimens.scale(64),
+                        width: Dimens.scale(64),
+                        borderRadius: Dimens.scale(20),
+                    }}
                     localSource={Images.im_ele}
                 />
                 <TrustView style={{marginHorizontal: Dimens.scale(5)}}>
                     <TrustText
-                        style={[styles.txtName,{color:colors.textColor}]}
+                        style={[styles.txtName, {color: colors.textColor}]}
                         numberOfLines={1}
                         text={item.name}/>
                     <TrustText
                         numberOfLines={3}
-                        style={[styles.txtTitle,{color:colors.content}]}
+                        style={[styles.txtTitle, {color: colors.content}]}
                         text={item.content}/>
                 </TrustView>
             </TrustView>

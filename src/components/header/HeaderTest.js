@@ -12,7 +12,7 @@ const HeaderTest = (props) => {
   const {colors} = useTheme();
   const [message, setMessage] = useState('Home');
   const {
-    navigation, process, duaScreen, rightIcon, leftIcon,
+    navigation, process, duaScreen,hasIcon,
     firstName, secondName, routeData, firstScreen, secondScreen,
   } = props;
   const onPress = () => {
@@ -27,7 +27,7 @@ const HeaderTest = (props) => {
       flexDirection={'row'}
       style={[styles.container, {backgroundColor: colors.primary}]}
       navigation={navigation}>
-      {leftIcon ? <TrustTouchableOpacity
+      {hasIcon ? <TrustTouchableOpacity
       >
         <TrustImage
           tintColor={'white'}
@@ -45,7 +45,7 @@ const HeaderTest = (props) => {
         process={process}
         navigation={navigation}
       />
-      {rightIcon ? <TrustTouchableOpacity
+      {hasIcon ? <TrustTouchableOpacity
         onPress={onPress}
       >
         <TrustImage

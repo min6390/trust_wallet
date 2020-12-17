@@ -17,8 +17,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     content: {
-
-        marginVertical: Dimens.verticalScale(5),
+        marginVertical: Dimens.verticalScale(3),
         alignItems: 'center',
         flexDirection:'row',
         paddingHorizontal:Dimens.scale(5)

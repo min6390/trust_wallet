@@ -14,7 +14,7 @@ TrustHeader.propTypes = {
     renderItem: PropTypes.func,
     keyExtractor: PropTypes.func,
     title: PropTypes.string,
-
+    rightIcon : PropTypes.bool
 };
 
 TrustHeader.defaultProps = {
@@ -23,6 +23,7 @@ TrustHeader.defaultProps = {
 
 function TrustHeader(props) {
     const {
+        rightIcon,
         headerMode,
         title,
         navigation,
@@ -31,6 +32,7 @@ function TrustHeader(props) {
     switch (headerMode) {
         case HEADER_MODE.DETAIL:
             return <DetailHeader
+                rightIcon={rightIcon}
                 title={title}
                 navigation={navigation}
             />;

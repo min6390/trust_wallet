@@ -6,6 +6,8 @@ import MoreContainer from '../../containers/MoreContainer';
 import React from 'react';
 import DetailContainer from '../../containers/DetailContainer';
 import MainCointainer from '../../containers/MainContainer';
+import SendCoinContainer from '../../components/home/detail/SendCoinContainer';
+import {NAVIGATION_CONSTANTS} from '../../common/Constants';
 
 
 const HomeStack = createStackNavigator();
@@ -13,36 +15,39 @@ const HomeStack = createStackNavigator();
 function HomeStackNavigator() {
     return (
         <HomeStack.Navigator
-          initialRouteName="Main"
+          initialRouteName={NAVIGATION_CONSTANTS.MAIN}
             screenOptions={{
                 headerShown: false,
             }}
         >
             <HomeStack.Screen
-              name={'Main'}
+              name={NAVIGATION_CONSTANTS.MAIN}
               component={MainCointainer}
             />
             <HomeStack.Screen
-                name={'Home'}
+                name={NAVIGATION_CONSTANTS.HOME}
                 component={HomeContainer}
             />
             <HomeStack.Screen
-                name={'Cryt'}
+                name={NAVIGATION_CONSTANTS.CRYPT}
                 component={CryptocurrencyContainer}
             />
             <HomeStack.Screen
-                name={'Collection'}
+                name={NAVIGATION_CONSTANTS.COLLECTION}
                 component={CollectionContainer}
             />
             <HomeStack.Screen
-                name={'More'}
+                name={NAVIGATION_CONSTANTS.MORE}
                 component={MoreContainer}
             />
             <HomeStack.Screen
-                name={'Detail'}
+                name={NAVIGATION_CONSTANTS.DETAIL}
                 component={DetailContainer}
             />
-
+            <HomeStack.Screen
+                name={NAVIGATION_CONSTANTS.SEND_COIN}
+                component={SendCoinContainer}
+            />
         </HomeStack.Navigator>
     );
 }

@@ -14,7 +14,10 @@ function InformationItemList(props) {
     const renderItem = ({item}) => {
         return (
             <TrustView style={styles.container}>
-                <TrustTouchableOpacity style={styles.imType}>
+                <TrustTouchableOpacity
+                    style={styles.imType}
+                    onPress={item.onPress}
+                >
                     <TrustImage
                         tintColor={'white'}
                         style={{width: Dimens.scale(20), height: Dimens.scale(20)}}

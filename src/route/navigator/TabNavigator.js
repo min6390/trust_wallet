@@ -2,12 +2,12 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import TrustImage from '../../components/common/TrustImage';
 import {styles} from './styles';
 import Images from '../../common/Images';
-import NotificationContainer from '../../containers/NotificationContainers';
 import SettingContainer from '../../containers/SettingContainer';
 import HomeStackNavigator from './HomeStackNavigator';
 import React from 'react';
 import DexStackNavigator from './DexStackNavigator';
 import {useTheme} from '@react-navigation/native';
+import NotificationStackNavigator from './NotificationStackNavigator';
 
 const BottomTabNavigator = createBottomTabNavigator();
 
@@ -35,7 +35,7 @@ function TabNavigator() {
             />
             <BottomTabNavigator.Screen
                 name="DApps"
-                component={NotificationContainer}
+                component={NotificationStackNavigator}
                 options={{
                     tabBarIcon: ({color}) => <TrustImage
                         style={styles.image}

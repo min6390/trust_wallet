@@ -11,14 +11,20 @@ import {StyleSheet} from 'react-native';
 import FontSizes from '../../common/FontSizes';
 import {useSelector} from 'react-redux';
 import Colors from '../../common/Colors';
+import {NAVIGATION_CONSTANTS} from '../../common/Constants';
 
 
 function DetailItem(props) {
+  const {colors} = useTheme();
+  const {price,navigation} = props;
+  const {socketData} = useSelector(state => state.socket);
+  const [dataSocket] = useState(socketData.filter(item => item.name === price));
   const data = [
     {
       id: 1,
       image: Images.im_arrow_up,
       name: 'Gửi',
+      onPress:()=>{navigation?.navigate(NAVIGATION_CONSTANTS.SEND_COIN,price)}
     },
     {
       id: 2,
@@ -31,10 +37,7 @@ function DetailItem(props) {
       name: 'Sao chép',
     },
   ];
-  const {colors} = useTheme();
-  const {price} = props;
-  const {socketData} = useSelector(state => state.socket);
-  const [dataSocket] = useState(socketData.filter(item => item.name === price));
+
   return (
     dataSocket.map((item, index) => {
       return (

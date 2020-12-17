@@ -1,6 +1,5 @@
 import React, {} from 'react';
-import {} from 'react-native';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
+import {Animated} from 'react-native';
 import TrustTouchableOpacity from '../common/TrustTouchableOpacity';
 import {styles} from '../../containers/styles';
 import TrustView from '../common/TrustView';
@@ -10,14 +9,39 @@ import Dimens from '../../common/Dimens';
 import TrustText from '../common/TrustText';
 import Colors from '../../common/Colors';
 import {useTheme} from '@react-navigation/native';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+import FontSizes from '../../common/FontSizes';
+import {NAVIGATION_CONSTANTS} from '../../common/Constants';
 
 const ListCoinItem = (props) => {
-    const {navigation,item,index}=props
-    const {colors}=useTheme()
+    const {navigation, item} = props;
+    const {colors} = useTheme();
+
+    const RightActions = (progress, dragX) => {
+        const scale = dragX.interpolate({
+            inputRange: [-100, 0],
+            outputRange: [0.7, 1],
+            extrapolateLeft: 'clamp',
+        });
+        return (
+            <Animated.View style={{backgroundColor: '#a9a9a9', justifyContent: 'center', transform: [{scale}]}}>
+                <TrustText
+                    style={{
+                        color: 'white',
+                        paddingHorizontal: 10,
+                        fontSize: FontSizes.size25,
+                    }}
+                    text={'XÓA'}>
+                </TrustText>
+            </Animated.View>
+        );
+    };
+
     return (
+        <Swipeable renderRightActions={RightActions}>
             <TrustTouchableOpacity
                 style={[styles.content, {justifyContent: 'space-between'}]}
-                onPress={() => navigation?.navigate('Detail', item.name)}
+                onPress={() => navigation?.navigate(NAVIGATION_CONSTANTS.DETAIL, item.name)}
             >
                 <TrustView style={styles.content}>
                     <TrustImage
@@ -48,6 +72,7 @@ const ListCoinItem = (props) => {
                     style={{color: colors.textColor}}
                     text={item.symbol}/>
             </TrustTouchableOpacity>
+        </Swipeable>
     );
 };
-export default ListCoinItem
+export default ListCoinItem;
