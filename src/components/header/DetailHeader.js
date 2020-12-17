@@ -9,7 +9,7 @@ import {useTheme} from '@react-navigation/native';
 
 const DetailHeader = (props) => {
     const {colors} = useTheme();
-    const {navigation, title, rightIcon} = props;
+    const {navigation, title, rightIcon,text} = props;
     const onPress = () => {
         navigation?.goBack();
     };
@@ -42,7 +42,11 @@ const DetailHeader = (props) => {
                     tintColor={'white'}
                     localSource={Images.im_chart}
                 />
-            </TrustView> : <TrustView/>}
+            </TrustView>
+                : <TrustText
+                    style={[styles.text,{color:colors.text}]}
+                text={text}
+                />}
         </TrustView>
     );
 };

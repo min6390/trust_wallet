@@ -21,6 +21,7 @@ export const darkTheme = {
         searchHeader:'#343651',
         deal:'#343651',
         backgroundTop:'#28293D',
+        borderColor:'#dcdcdc',
     },
 };
 export const defaultTheme={
@@ -44,5 +45,6 @@ export const defaultTheme={
         searchHeader:'#F7F7FA',
         deal:'white',
         backgroundTop:'#078266',
+        borderColor:'#28293D',
     },
 };

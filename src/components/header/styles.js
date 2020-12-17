@@ -6,7 +6,7 @@ import TrustView from '../common/TrustView';
 
 export const styles = StyleSheet.create({
     container: {
-        flexDirection:'row',
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: Dimens.scale(5),
@@ -28,20 +28,23 @@ export const styles = StyleSheet.create({
         fontSize: FontSizes.size28,
         top: Dimens.scale(5),
     },
-    searchInput:{
-        marginHorizontal:Dimens.scale(10),
-        right:Dimens.scale(15),
-        width:Dimens.widthScreen - Dimens.scale(90),
+    searchInput: {
+        marginHorizontal: Dimens.scale(10),
+        right: Dimens.scale(15),
+        width: Dimens.widthScreen - Dimens.scale(90),
     },
-    imageFind:{
-        marginHorizontal:Dimens.scale(8),
-        height:Dimens.scale(20),
-        width:Dimens.scale(20)
+    imageFind: {
+        marginHorizontal: Dimens.scale(8),
+        height: Dimens.scale(20),
+        width: Dimens.scale(20),
     },
-    content:{
-        borderRadius:Dimens.scale(8),
-        backgroundColor:'white',
+    content: {
+        borderRadius: Dimens.scale(8),
+        backgroundColor: 'white',
         justifyContent: 'center',
-        alignItems: 'center'
-    }
+        alignItems: 'center',
+    },
+    text: {
+        marginHorizontal: Dimens.scale(15),
+    },
 });

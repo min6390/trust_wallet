@@ -17,7 +17,7 @@ import {
 // import CameraKitCameraScreen
 import {CameraKitCameraScreen} from 'react-native-camera-kit';
 
-const QRCode = () => {
+const ScanQR = () => {
     const [qrvalue, setQrvalue] = useState('');
     const [opneScanner, setOpneScanner] = useState(false);
 
@@ -27,7 +27,7 @@ const QRCode = () => {
     };
 
     const onBarcodeScan = (qrvalue) => {
-        // Called after te successful scanning of QRCode/Barcode
+        // Called after te successful scanning of ScanQR/Barcode
         setQrvalue(qrvalue);
         setOpneScanner(false);
     };
@@ -117,7 +117,7 @@ const QRCode = () => {
     );
 };
 
-export default QRCode;
+export default ScanQR;
 
 const styles = StyleSheet.create({
     container: {

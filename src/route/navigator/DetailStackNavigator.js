@@ -11,49 +11,29 @@ import {NAVIGATION_CONSTANTS} from '../../common/Constants';
 import ScanQR from '../../components/common/ScanQR';
 
 
-const HomeStack = createStackNavigator();
+const DetailStack = createStackNavigator();
 
-function HomeStackNavigator() {
+function DetailStackNavigator() {
     return (
-        <HomeStack.Navigator
-          initialRouteName={NAVIGATION_CONSTANTS.MAIN}
+        <DetailStack.Navigator
+            initialRouteName={NAVIGATION_CONSTANTS.DETAIL}
             screenOptions={{
                 headerShown: false,
             }}
         >
-            <HomeStack.Screen
-              name={NAVIGATION_CONSTANTS.MAIN}
-              component={MainCointainer}
-            />
-            <HomeStack.Screen
-                name={NAVIGATION_CONSTANTS.HOME}
-                component={HomeContainer}
-            />
-            <HomeStack.Screen
-                name={NAVIGATION_CONSTANTS.CRYPT}
-                component={CryptocurrencyContainer}
-            />
-            <HomeStack.Screen
-                name={NAVIGATION_CONSTANTS.COLLECTION}
-                component={CollectionContainer}
-            />
-            <HomeStack.Screen
-                name={NAVIGATION_CONSTANTS.MORE}
-                component={MoreContainer}
-            />
-            <HomeStack.Screen
+            <DetailStack.Screen
                 name={NAVIGATION_CONSTANTS.DETAIL}
                 component={DetailContainer}
             />
-            <HomeStack.Screen
+            <DetailStack.Screen
                 name={NAVIGATION_CONSTANTS.SEND_COIN}
                 component={SendCoinContainer}
             />
-            <HomeStack.Screen
+            <DetailStack.Screen
                 name={NAVIGATION_CONSTANTS.SCAN_QR}
                 component={ScanQR}
             />
-        </HomeStack.Navigator>
+        </DetailStack.Navigator>
     );
 }
-export default HomeStackNavigator
+export default DetailStackNavigator

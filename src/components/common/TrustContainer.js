@@ -33,6 +33,7 @@ function TrustContainer(props) {
         hasHeader,
         navigation,
         nameScreen,
+        text,
     } = props;
 
     return <TrustView
@@ -46,6 +47,7 @@ function TrustContainer(props) {
             nameScreen={nameScreen}
             navigation={navigation}
             title={title}
+            text={text}
         />}
         {renderContentView()}
     </TrustView>;
