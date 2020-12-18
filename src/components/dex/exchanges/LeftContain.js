@@ -48,12 +48,14 @@ function LeftContain() {
             <StockMarket/>
             {purchaseItem()}
             <TrustTextInput
+                label={'Giá BNB'}
                 style={[styles.inputText,{color:colors.textColor,borderColor:colors.inactiveTintColor}]}
             />
             <TrustText
                 style={{color:colors.textColor}}
                 text={'~0.0043533 $'}/>
             <TrustTextInput
+                label={'Số lượng ANKR'}
                 style={[styles.inputText,{color:colors.textColor,borderColor:colors.inactiveTintColor}]}
             />
             <PercentList

@@ -1,14 +1,14 @@
 import React,{} from 'react';
 
 
-function Collection() {
+function CollectionContainer() {
 
   return (
     <>
 
     </>
   );
-};
+}
 
-export default Collection;
+export default CollectionContainer;
 

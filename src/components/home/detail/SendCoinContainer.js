@@ -29,6 +29,7 @@ function SendCoinContainer(props) {
                             image={Images.im_scan}
                             txtRight={'Dán'}
                         />
+
                     </TrustView>
                 );
             }}

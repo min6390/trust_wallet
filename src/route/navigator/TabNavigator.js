@@ -69,4 +69,6 @@ function TabNavigator() {
         </BottomTabNavigator.Navigator>
     );
 }
+
+
 export default TabNavigator

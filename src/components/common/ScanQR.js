@@ -1,14 +1,11 @@
-
 // import React in our code
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 // import all the components we are going to use
 import {
     SafeAreaView,
-    Text,
     View,
     Linking,
-    TouchableHighlight,
     PermissionsAndroid,
     Platform,
     StyleSheet,
@@ -16,21 +13,17 @@ import {
 
 // import CameraKitCameraScreen
 import {CameraKitCameraScreen} from 'react-native-camera-kit';
+import TrustImage from './TrustImage';
+import Images from '../../common/Images';
 
 const ScanQR = () => {
     const [qrvalue, setQrvalue] = useState('');
     const [opneScanner, setOpneScanner] = useState(false);
 
-    const onOpenlink = () => {
-        // If scanned then function to open URL in Browser
-        Linking.openURL(qrvalue);
-    };
 
-    const onBarcodeScan = (qrvalue) => {
-        // Called after te successful scanning of ScanQR/Barcode
-        setQrvalue(qrvalue);
-        setOpneScanner(false);
-    };
+    useEffect(() => {
+        onOpneScanner();
+    }, []);
 
     const onOpneScanner = () => {
         // To Start Scanning
@@ -56,6 +49,7 @@ const ScanQR = () => {
                     console.warn(err);
                 }
             }
+
             // Calling the camera permission function
             requestCameraPermission();
         } else {
@@ -64,12 +58,24 @@ const ScanQR = () => {
         }
     };
 
+    const onBarcodeScan = (qrvalue) => {
+        // Called after te successful scanning of ScanQR/Barcode
+        Linking.openURL(qrvalue);
+      //  setQrvalue(qrvalue);
+        setOpneScanner(false);
+    };
+
+    const onOpenlink = () => {
+        // If scanned then function to open URL in Browser
+        Linking.openURL(qrvalue);
+    };
+
     return (
         <SafeAreaView style={{flex: 1}}>
             {opneScanner ? (
                 <View style={{flex: 1}}>
                     <CameraKitCameraScreen
-                        showFrame={false}
+                        showFrame={true}
                         // Show/hide scan frame
                         scanBarcode={true}
                         // Can restrict for the QR Code only
@@ -84,35 +90,29 @@ const ScanQR = () => {
                         }
                     />
                 </View>
-            ) : (
-                <View style={styles.container}>
-                    <Text style={styles.titleText}>
-                        Barcode and QR Code Scanner using Camera in React Native
-                    </Text>
-                    <Text style={styles.textStyle}>
-                        {qrvalue ? 'Scanned Result: ' + qrvalue : ''}
-                    </Text>
-                    {qrvalue.includes('https://') ||
-                    qrvalue.includes('http://') ||
-                    qrvalue.includes('geo:') ? (
-                        <TouchableHighlight onPress={onOpenlink}>
-                            <Text style={styles.textLinkStyle}>
-                                {
-                                    qrvalue.includes('geo:') ?
-                                        'Open in Map' : 'Open Link'
-                                }
-                            </Text>
-                        </TouchableHighlight>
-                    ) : null}
-                    <TouchableHighlight
-                        onPress={onOpneScanner}
-                        style={styles.buttonStyle}>
-                        <Text style={styles.buttonTextStyle}>
-                            Open QR Scanner
-                        </Text>
-                    </TouchableHighlight>
-                </View>
-            )}
+            ) : null}
+            {/* ) : <TouchableHighlight*/}
+            {/*//     onPress={onOpneScanner}*/}
+            {/*// >*/}
+            {/*//     <TrustImage*/}
+            {/*//         style={{height: 24, width: 25}}*/}
+            {/*//         localSource={Images.im_scan}*/}
+            {/*//     />*/}
+            {/*// </TouchableHighlight>}*/}
+
+            {/*/!*{qrvalue.includes('https://') ||*!/*/}
+            {/*/!*qrvalue.includes('http://') ||*!/*/}
+            {/*/!*qrvalue.includes('geo:') ? (*!/*/}
+            {/*/!*    <TouchableHighlight onPress={onOpenlink}>*!/*/}
+            {/*/!*        <Text style={styles.textLinkStyle}>*!/*/}
+            {/*/!*            {*!/*/}
+            {/*/!*                qrvalue.includes('geo:') ?*!/*/}
+            {/*/!*                    'Open in Map' : 'Open Link'*!/*/}
+            {/*/!*            }*!/*/}
+            {/*/!*        </Text>*!/*/}
+            {/*/!*    </TouchableHighlight>*!/*/}
+
+
         </SafeAreaView>
     );
 };

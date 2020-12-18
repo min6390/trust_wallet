@@ -1,8 +1,8 @@
 import React, {} from 'react';
+import {TextInput} from 'react-native';
 import TrustView from '../../common/TrustView';
 import Dimens from '../../../common/Dimens';
 import TrustText from '../../common/TrustText';
-import TrustTextInput from '../../common/TrustTextInput';
 import FontSizes from '../../../common/FontSizes';
 import TrustImage from '../../common/TrustImage';
 import Images from '../../../common/Images';
@@ -10,7 +10,7 @@ import TrustTouchableOpacity from '../../common/TrustTouchableOpacity';
 import {useTheme} from '@react-navigation/native';
 
 function ConvertItem(props) {
-    const {colors} = useTheme()
+    const {colors} = useTheme();
     const {text} = props;
     return (
         <TrustView flexDirection={'row'} style={{justifyContent: 'space-between', alignItems: 'center'}}>
@@ -19,7 +19,7 @@ function ConvertItem(props) {
                     style={{color:colors.textConvert}}
                     text={text}
                 />
-                <TrustTextInput
+                <TextInput
                     keyboardType={'number-pad'}
                     style={{fontSize: FontSizes.size35,width:Dimens.scale(200),color:colors.textColor}}
                     placeholder={'0'}

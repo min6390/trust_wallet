@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import HomeHeaderTest from '../components/header/HeaderTest';
 import HomeContainer from './HomeContainer';
 import CryptocurrencyContainer from './CryptocurrencyContainer';
-import TrustText from '../components/common/TrustText';
 import TrustContainer from '../components/common/TrustContainer';
 import {NAVIGATION_CONSTANTS} from '../common/Constants';
+import CollectionContainer from './CollectionContainer';
 
 
 function MainCointainer(props) {
@@ -22,9 +22,13 @@ function MainCointainer(props) {
                     navigation={navigation}
                     callbackIcon={callbackIcon}/>;
             case 'Collection':
-                return <><TrustText text={'Collection'} callbackIcon={callbackIcon}/></>;
+                return <CollectionContainer
+                    navigation={navigation}
+                    callbackIcon={callbackIcon}/>;
             default :
-                return <HomeContainer callbackIcon={callbackIcon}/>;
+                return <HomeContainer
+                    navigation={navigation}
+                    callbackIcon={callbackIcon}/>;
         }
     };
     const callbackScreen = (childData) => {
