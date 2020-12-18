@@ -5,6 +5,7 @@ import TrustText from './TrustText';
 import Dimens from '../../common/Dimens';
 import {styles} from './styles';
 import {useTheme} from '@react-navigation/native';
+import {NAVIGATION_CONSTANTS} from '../../common/Constants';
 
 
 const TopTabNavigator = (props) => {
@@ -20,7 +21,7 @@ const TopTabNavigator = (props) => {
     setProcess(1);
   };
   const onPressCollection = () => {
-    props.callbackScreen('Collection');
+    props.callbackScreen(NAVIGATION_CONSTANTS.COLLECTION);
     setProcess(2);
   };
   return (

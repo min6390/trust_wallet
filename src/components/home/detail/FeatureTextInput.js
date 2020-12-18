@@ -1,19 +1,21 @@
 import React, {useState} from 'react';
 import {
-    StyleSheet, Text,
-    TextInput, View,
+    TextInput,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import Dimens from '../../common/Dimens';
-import TrustView from './TrustView';
-import TrustText from './TrustText';
-import FontSizes from '../../common/FontSizes';
-import Colors from '../../common/Colors';
+import Dimens from '../../../common/Dimens';
 import {useTheme} from '@react-navigation/native';
+import TrustView from '../../common/TrustView';
+import TrustText from '../../common/TrustText';
+import Colors from '../../../common/Colors';
+import FontSizes from '../../../common/FontSizes';
+import {styles} from './styles';
 
-const TrustTextInput = (props) => {
+
+
+const FeatureTextInput = (props) => {
     const {label} = props;
-    TrustTextInput.propTypes = {
+    FeatureTextInput.propTypes = {
         ref: PropTypes.object,
         style: PropTypes.oneOfType([
             PropTypes.array,
@@ -27,60 +29,47 @@ const TrustTextInput = (props) => {
         value: PropTypes.string,
         maxLength: PropTypes.number,
     };
-    TrustTextInput.defaultProps = {
+    FeatureTextInput.defaultProps = {
         style: undefined,
     };
     const {colors} = useTheme();
     const [isFocused, setIsFocused] = useState(false);
-    const [borderColor, setBorderColor] = useState(false);
 
     const handleBlur = () => setIsFocused(false);
     const handleFocus = () => {
         setIsFocused(true);
-        setBorderColor(!borderColor);
     };
     const labelStyle = {
         position: 'absolute',
         left: !isFocused ? Dimens.scale(10) : Dimens.scale(10),
-        top: !isFocused ? Dimens.verticalScale(14) : Dimens.verticalScale(-5),
+        top: !isFocused ? Dimens.verticalScale(11) : Dimens.verticalScale(-8),
         backgroundColor: colors.background,
         zIndex: 2,
     };
     const textColor = {
-        fontWeight: 'bold',
-        fontSize: !isFocused ? FontSizes.size25 : FontSizes.size23,
+        fontSize: !isFocused ? FontSizes.size25: FontSizes.size22,
         color: !isFocused ? '#aaa' : Colors.secondBackground,
     };
     return (
-        <View style={{justifyContent: 'center', marginVertical: Dimens.scale(5)}}>
+        <TrustView style={[styles.container,!isFocused ? {borderColor: colors.borderColor} : {borderColor: Colors.secondBackground}]}>
             <TrustView
                 style={labelStyle}>
                 <TrustText
+                    onPress={handleBlur}
                     style={textColor}
                     text={label}
                 />
             </TrustView>
             <TextInput
                 {...props}
-                style={[styles.container, !isFocused ? {borderColor: colors.borderColor} : {borderColor: Colors.secondBackground}]}
+                style={styles.content}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
             />
-        </View>
+        </TrustView>
     );
 };
 
 
-const styles = StyleSheet.create({
-    container: {
-        marginVertical: Dimens.scale(3),
-        paddingHorizontal: Dimens.scale(10),
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: Dimens.scale(1 / 2),
-        borderRadius: Dimens.scale(3),
-    },
-});
 
-
-export default TrustTextInput;
+export default FeatureTextInput;

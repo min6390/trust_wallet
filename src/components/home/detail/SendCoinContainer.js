@@ -6,6 +6,7 @@ import {useTheme} from '@react-navigation/native';
 import TrustView from '../../common/TrustView';
 import Images from '../../../common/Images';
 import Dimens from '../../../common/Dimens';
+import FeatureTextInput from './FeatureTextInput';
 
 function SendCoinContainer(props) {
     const {colors} = useTheme();
@@ -29,7 +30,8 @@ function SendCoinContainer(props) {
                             image={Images.im_scan}
                             txtRight={'Dán'}
                         />
-
+                        <FeatureTextInput
+                            label={'Địa chỉ người nhận'}/>
                     </TrustView>
                 );
             }}

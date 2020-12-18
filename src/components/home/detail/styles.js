@@ -3,10 +3,10 @@ import FontSizes from '../../../common/FontSizes';
 import Dimens from '../../../common/Dimens';
 export const styles = StyleSheet.create({
     container: {
-        borderRadius: Dimens.scale(8),
+        marginVertical: 20,
+        borderRadius: Dimens.scale(5),
         borderWidth:1,
         width: Dimens.widthScreen -30,
-        padding:Dimens.scale(5),
         flexDirection:'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -26,5 +26,12 @@ export const styles = StyleSheet.create({
     },
     txtType: {
         color: 'white',
+    },
+    content: {
+        paddingHorizontal: Dimens.scale(10),
+        justifyContent: 'center',
+        alignItems: 'center',
+        width:Dimens.widthScreen-150,
+
     },
 });

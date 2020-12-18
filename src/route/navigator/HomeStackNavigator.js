@@ -30,7 +30,7 @@ function HomeStackNavigator() {
                 component={HomeContainer}
             />
             <HomeStack.Screen
-                name={NAVIGATION_CONSTANTS.CRYPT}
+                name={NAVIGATION_CONSTANTS.CRYPTO}
                 component={CryptocurrencyContainer}
             />
             <HomeStack.Screen

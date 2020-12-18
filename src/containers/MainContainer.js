@@ -13,15 +13,15 @@ function MainCointainer(props) {
     const [icon, setIcon] = useState(false);
     const renderItem = ({message}) => {
         switch (message) {
-            case 'Home':
+            case NAVIGATION_CONSTANTS.HOME:
                 return <HomeContainer
                     navigation={navigation}
                     callbackIcon={callbackIcon}/>;
-            case 'Crypto' :
+            case NAVIGATION_CONSTANTS.CRYPTO :
                 return <CryptocurrencyContainer
                     navigation={navigation}
                     callbackIcon={callbackIcon}/>;
-            case 'Collection':
+            case NAVIGATION_CONSTANTS.COLLECTION:
                 return <CollectionContainer
                     navigation={navigation}
                     callbackIcon={callbackIcon}/>;
@@ -48,7 +48,7 @@ function MainCointainer(props) {
                         <HomeHeaderTest
                             hasIcon={icon}
                             firstScreen={NAVIGATION_CONSTANTS.HOME}
-                            secondScreen={NAVIGATION_CONSTANTS.CRYPT}
+                            secondScreen={NAVIGATION_CONSTANTS.CRYPTO}
                             navigation={navigation}
                             firstName={'Tiền mã hóa'}
                             secondName={'Tài chính'}
