@@ -32,12 +32,9 @@ const TrustTextInput = (props) => {
     };
     const {colors} = useTheme();
     const [isFocused, setIsFocused] = useState(false);
-    const [borderColor, setBorderColor] = useState(false);
-
     const handleBlur = () => setIsFocused(false);
     const handleFocus = () => {
         setIsFocused(true);
-        setBorderColor(!borderColor);
     };
     const labelStyle = {
         position: 'absolute',

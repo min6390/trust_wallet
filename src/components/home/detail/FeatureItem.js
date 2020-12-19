@@ -1,38 +1,79 @@
-import React, {} from 'react';
-import {} from 'react-native';
-import TrustText from '../../common/TrustText';
-import TrustView from '../../common/TrustView';
-import {styles} from './styles';
-import {useTheme} from '@react-navigation/native';
-import TrustImage from '../../common/TrustImage';
+import React, {useState} from 'react';
+import {
+    TextInput,
+} from 'react-native';
 import PropTypes from 'prop-types';
+import Dimens from '../../../common/Dimens';
+import {useTheme} from '@react-navigation/native';
+import TrustView from '../../common/TrustView';
+import TrustText from '../../common/TrustText';
+import Colors from '../../../common/Colors';
+import FontSizes from '../../../common/FontSizes';
+import {styles} from './styles';
 import TrustTouchableOpacity from '../../common/TrustTouchableOpacity';
+import TrustImage from '../../common/TrustImage';
 import {NAVIGATION_CONSTANTS} from '../../../common/Constants';
 
-FeatureItem.propTypes = {
-    hasImage: PropTypes.bool,
-    content: PropTypes.string,
-    txtRight: PropTypes.string,
-    txtLeft: PropTypes.string,
-    image: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-    ]),
-};
 
-function FeatureItem(props) {
-    const {hasImage, image, content, txtLeft, txtRight,navigation,nameScreen} = props;
+const FeatureTextInput = (props) => {
+    const {label} = props;
+    const {hasImage, image, txtLeft, txtRight, navigation} = props;
+    FeatureTextInput.propTypes = {
+        style: PropTypes.oneOfType([
+            PropTypes.array,
+            PropTypes.object,
+        ]),
+        keyboardType: PropTypes.string,
+        onChangeText: PropTypes.func,
+        onSubmitEditing: PropTypes.func,
+        value: PropTypes.string,
+        maxLength: PropTypes.number,
+    };
+    FeatureTextInput.defaultProps = {
+        style: undefined,
+    };
     const {colors} = useTheme();
+    const [isFocused, setIsFocused] = useState(false);
+    const handleBlur = () => setIsFocused(false);
+    const handleFocus = () => {
+        setIsFocused(true);
+    };
+    const labelStyle = {
+        position: 'absolute',
+        left: !isFocused ? Dimens.scale(10) : Dimens.scale(10),
+        top: !isFocused ? Dimens.verticalScale(11) : Dimens.verticalScale(-8),
+        backgroundColor: colors.background,
+        zIndex: 2,
+    };
+    const textColor = {
+        fontSize: !isFocused ? FontSizes.size25 : FontSizes.size22,
+        color: !isFocused ? '#aaa' : Colors.secondBackground,
+    };
     const onPress = () => {
-        navigation?.navigate(NAVIGATION_CONSTANTS.SCAN_QR)
-
+        navigation?.navigate(NAVIGATION_CONSTANTS.SCAN_QR);
     };
 
     return (
-        <TrustView style={[styles.container, {borderColor: colors.content}]}>
-            <TrustText
-                style={[{color: colors.text}, styles.text]}
-                text={content}/>
+        <TrustView
+            style={[styles.container,
+                !isFocused ? {borderColor: colors.borderColor} : {borderColor: Colors.secondBackground},
+            ]}>
+            {isFocused ? <TrustView
+                style={labelStyle}>
+                <TrustText
+                    style={textColor}
+                    text={label}
+                />
+            </TrustView>:<></>}
+            <TextInput
+                placeholderTextColor={'white'}
+                placeholder={isFocused?'':label}
+                blurOnSubmit
+                {...props}
+                style={styles.content}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+            />
             <TrustView style={{flexDirection: 'row', alignItems: 'center'}}>
                 {hasImage ?
                     <TrustTouchableOpacity
@@ -45,7 +86,8 @@ function FeatureItem(props) {
                     : <TrustText
                         style={[{color: colors.activeTintColor}, styles.txtRight]}
                         text={txtLeft}
-                    />}
+                    />
+                }
                 <TrustText
                     style={[{color: colors.activeTintColor}, styles.txtRight]}
                     text={txtRight}
@@ -53,6 +95,7 @@ function FeatureItem(props) {
             </TrustView>
         </TrustView>
     );
-}
+};
 
-export default FeatureItem;
+
+export default FeatureTextInput;
