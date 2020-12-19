@@ -17,7 +17,7 @@ import {NAVIGATION_CONSTANTS} from '../../../common/Constants';
 
 const FeatureTextInput = (props) => {
     const {label} = props;
-    const {hasImage, image, txtLeft, txtRight, navigation} = props;
+    const {hasImage, image, txtLeft, txtRight, navigation,keyboardType} = props;
     FeatureTextInput.propTypes = {
         style: PropTypes.oneOfType([
             PropTypes.array,
@@ -66,11 +66,12 @@ const FeatureTextInput = (props) => {
                 />
             </TrustView>:<></>}
             <TextInput
-                placeholderTextColor={'white'}
+                keyboardType={keyboardType}
+                placeholderTextColor={'#AAAAAA'}
                 placeholder={isFocused?'':label}
                 blurOnSubmit
                 {...props}
-                style={styles.content}
+                style={[styles.content,{color:colors.textColor}]}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
             />

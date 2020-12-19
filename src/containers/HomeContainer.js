@@ -24,7 +24,7 @@ function HomeContainer(props) {
                         style={{backgroundColor: colors.background}}
                         data={socketData}
                         keyExtractor={item => item.name}
-                        renderItem={({item}) => <ListCoinItem navigation={navigation} item={item}/>}
+                        renderItem={({item,index}) => <ListCoinItem navigation={navigation} item={item} index={index}/>}
                         ItemSeparatorComponent={() => <TrustLine/>}
                         ListHeaderComponent={() => {
                             return (

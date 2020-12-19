@@ -9,7 +9,7 @@ import {useTheme} from '@react-navigation/native';
 
 const DetailHeader = (props) => {
     const {colors} = useTheme();
-    const {navigation, title, rightIcon,text} = props;
+    const {navigation, title, rightIcon, text} = props;
     const onPress = () => {
         navigation?.goBack();
     };
@@ -34,18 +34,18 @@ const DetailHeader = (props) => {
                 />
             </TrustView>
             {rightIcon ? <TrustView flexDirection={'row'} style={{alignItems: 'center'}}>
-                <TrustText
-                    style={styles.txtBuy}
-                    text={'MUA'}/>
-                <TrustImage
-                    style={styles.image}
-                    tintColor={'white'}
-                    localSource={Images.im_chart}
-                />
-            </TrustView>
+                    <TrustText
+                        style={styles.txtBuy}
+                        text={'MUA'}/>
+                    <TrustImage
+                        style={styles.image}
+                        tintColor={'white'}
+                        localSource={Images.im_chart}
+                    />
+                </TrustView>
                 : <TrustText
-                    style={[styles.text,{color:colors.text}]}
-                text={text}
+                    style={[styles.text, {color: 'white'}]}
+                    text={text}
                 />}
         </TrustView>
     );

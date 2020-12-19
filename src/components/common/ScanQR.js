@@ -1,20 +1,12 @@
-// import React in our code
 import React, {useEffect, useState} from 'react';
-
-// import all the components we are going to use
 import {
-    SafeAreaView,
-    View,
     Linking,
     PermissionsAndroid,
     Platform,
-    StyleSheet,
 } from 'react-native';
 
-// import CameraKitCameraScreen
 import {CameraKitCameraScreen} from 'react-native-camera-kit';
-import TrustImage from './TrustImage';
-import Images from '../../common/Images';
+import TrustView from './TrustView';
 
 const ScanQR = () => {
     const [qrvalue, setQrvalue] = useState('');
@@ -60,7 +52,10 @@ const ScanQR = () => {
 
     const onBarcodeScan = (qrvalue) => {
         // Called after te successful scanning of ScanQR/Barcode
-        Linking.openURL(qrvalue);
+      if( qrvalue.includes('https://') || qrvalue.includes('http://')){
+          Linking.openURL(qrvalue);
+      }
+
       //  setQrvalue(qrvalue);
         setOpneScanner(false);
     };
@@ -71,26 +66,21 @@ const ScanQR = () => {
     };
 
     return (
-        <SafeAreaView style={{flex: 1}}>
-            {opneScanner ? (
-                <View style={{flex: 1}}>
+            opneScanner ? (
+                <TrustView style={{flex: 1}}>
                     <CameraKitCameraScreen
                         showFrame={true}
-                        // Show/hide scan frame
                         scanBarcode={true}
-                        // Can restrict for the QR Code only
                         laserColor={'blue'}
-                        // Color can be of your choice
                         frameColor={'yellow'}
-                        // If frame is visible then frame color
                         colorForScannerFrame={'black'}
-                        // Scanner Frame color
                         onReadCode={(event) =>
                             onBarcodeScan(event.nativeEvent.codeStringValue)
                         }
                     />
-                </View>
-            ) : null}
+                </TrustView>
+            ) : null
+    );
             {/* ) : <TouchableHighlight*/}
             {/*//     onPress={onOpneScanner}*/}
             {/*// >*/}
@@ -99,7 +89,6 @@ const ScanQR = () => {
             {/*//         localSource={Images.im_scan}*/}
             {/*//     />*/}
             {/*// </TouchableHighlight>}*/}
-
             {/*/!*{qrvalue.includes('https://') ||*!/*/}
             {/*/!*qrvalue.includes('http://') ||*!/*/}
             {/*/!*qrvalue.includes('geo:') ? (*!/*/}
@@ -113,45 +102,6 @@ const ScanQR = () => {
             {/*/!*    </TouchableHighlight>*!/*/}
 
 
-        </SafeAreaView>
-    );
 };
 
 export default ScanQR;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-        padding: 10,
-        alignItems: 'center',
-    },
-    titleText: {
-        fontSize: 22,
-        textAlign: 'center',
-        fontWeight: 'bold',
-    },
-    textStyle: {
-        color: 'black',
-        fontSize: 16,
-        textAlign: 'center',
-        padding: 10,
-        marginTop: 16,
-    },
-    buttonStyle: {
-        fontSize: 16,
-        color: 'white',
-        backgroundColor: 'green',
-        padding: 5,
-        minWidth: 250,
-    },
-    buttonTextStyle: {
-        padding: 5,
-        color: 'white',
-        textAlign: 'center',
-    },
-    textLinkStyle: {
-        color: 'blue',
-        paddingVertical: 20,
-    },
-});

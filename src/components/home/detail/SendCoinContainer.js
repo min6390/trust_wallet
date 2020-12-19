@@ -30,6 +30,7 @@ function SendCoinContainer(props) {
                             label={'Địa chỉ người nhận'}
                         />
                         <FeatureItem
+                            keyboardType={'number-pad'}
                             image={Images.im_scan}
                             txtRight={'Dán'}
                             navigation={navigation}

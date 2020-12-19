@@ -38,7 +38,8 @@ const ListCoinItem = (props) => {
     };
 
     return (
-        <Swipeable renderRightActions={RightActions}>
+        <Swipeable
+            renderRightActions={RightActions}>
             <TrustTouchableOpacity
                 style={[styles.content, {justifyContent: 'space-between'}]}
                 onPress={() => navigation?.navigate(NAVIGATION_CONSTANTS.DETAIL, item.name)}

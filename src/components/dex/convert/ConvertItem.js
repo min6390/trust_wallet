@@ -23,7 +23,7 @@ function ConvertItem(props) {
                     keyboardType={'number-pad'}
                     style={{fontSize: FontSizes.size35,width:Dimens.scale(200),color:colors.textColor}}
                     placeholder={'0'}
-                    placeholderTextColor={colors.textColor}
+                    placeholderTextColor={'#AAAAAA'}
                 />
                 <TrustView flexDirection={'row'}>
                     <TrustText

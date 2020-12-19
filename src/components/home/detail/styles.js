@@ -3,9 +3,9 @@ import FontSizes from '../../../common/FontSizes';
 import Dimens from '../../../common/Dimens';
 export const styles = StyleSheet.create({
     container: {
-        marginVertical: 20,
+        marginVertical: Dimens.verticalScale(10),
         borderRadius: Dimens.scale(5),
-        borderWidth:1,
+        borderWidth:Dimens.scale(1/2),
         width: Dimens.widthScreen -30,
         flexDirection:'row',
         justifyContent: 'space-between',

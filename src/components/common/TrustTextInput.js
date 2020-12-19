@@ -1,8 +1,5 @@
 import React, {useState} from 'react';
-import {
-    StyleSheet, Text,
-    TextInput, View,
-} from 'react-native';
+import {StyleSheet, TextInput,} from 'react-native';
 import PropTypes from 'prop-types';
 import Dimens from '../../common/Dimens';
 import TrustView from './TrustView';
@@ -32,38 +29,44 @@ const TrustTextInput = (props) => {
     };
     const {colors} = useTheme();
     const [isFocused, setIsFocused] = useState(false);
+    const [borderColor, setBorderColor] = useState(false);
+
     const handleBlur = () => setIsFocused(false);
     const handleFocus = () => {
         setIsFocused(true);
+        setBorderColor(!borderColor);
     };
     const labelStyle = {
         position: 'absolute',
         left: !isFocused ? Dimens.scale(10) : Dimens.scale(10),
         top: !isFocused ? Dimens.verticalScale(14) : Dimens.verticalScale(-5),
-        backgroundColor: colors.background,
         zIndex: 2,
     };
     const textColor = {
         fontWeight: 'bold',
         fontSize: !isFocused ? FontSizes.size25 : FontSizes.size23,
         color: !isFocused ? '#aaa' : Colors.secondBackground,
+        backgroundColor: colors.background,
     };
     return (
-        <View style={{justifyContent: 'center', marginVertical: Dimens.scale(5)}}>
-            <TrustView
+        <TrustView>
+            {isFocused ? <TrustView
                 style={labelStyle}>
                 <TrustText
                     style={textColor}
                     text={label}
                 />
-            </TrustView>
+            </TrustView> : <></>}
             <TextInput
                 {...props}
+                placeholderTextColor={'#AAAAAA'}
+                placeholder={isFocused ? '' : label}
+                blurOnSubmit
                 style={[styles.container, !isFocused ? {borderColor: colors.borderColor} : {borderColor: Colors.secondBackground}]}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
             />
-        </View>
+        </TrustView>
     );
 };
 
