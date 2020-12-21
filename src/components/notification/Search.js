@@ -5,10 +5,9 @@ import TrustImage from '../common/TrustImage';
 import Images from '../../common/Images';
 import {styles} from '../header/styles';
 import {useTheme} from '@react-navigation/native';
-import {set} from 'react-native-reanimated';
 
 const Search = (props) => {
-  const {navigation}=props
+  const {navigation}=props;
   const {colors} = useTheme();
   const [text, setText] = useState();
   const onChangeText = (text) => {
@@ -18,7 +17,6 @@ const Search = (props) => {
     const unsubscribe = navigation?.addListener('blur', () => {
       setText('');
     });
-
     return unsubscribe;
   }, [navigation]);
 

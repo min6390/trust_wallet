@@ -60,11 +60,6 @@ const ScanQR = () => {
         setOpneScanner(false);
     };
 
-    const onOpenlink = () => {
-        // If scanned then function to open URL in Browser
-        Linking.openURL(qrvalue);
-    };
-
     return (
             opneScanner ? (
                 <TrustView style={{flex: 1}}>
@@ -89,6 +84,7 @@ const ScanQR = () => {
             {/*//         localSource={Images.im_scan}*/}
             {/*//     />*/}
             {/*// </TouchableHighlight>}*/}
+
             {/*/!*{qrvalue.includes('https://') ||*!/*/}
             {/*/!*qrvalue.includes('http://') ||*!/*/}
             {/*/!*qrvalue.includes('geo:') ? (*!/*/}
