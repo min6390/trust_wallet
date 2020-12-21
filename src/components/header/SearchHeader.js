@@ -1,4 +1,4 @@
-import React, {} from 'react';
+import React, {useEffect} from 'react';
 import TrustView from '../common/TrustView';
 import TrustImage from '../common/TrustImage';
 import Images from '../../common/Images';
@@ -10,12 +10,17 @@ import {useTheme} from '@react-navigation/native';
 const SearchHeader = (props) => {
   const {colors}=useTheme();
   const {navigation,nameScreen} = props;
+
   const onPress = () => {
     navigation?.navigate(nameScreen);
   };
   const onFocus = () => {
 
   };
+
+
+
+
   return (
     <TrustView flexDirection={'row'} style={[styles.container,{backgroundColor:colors.primary}]}>
       <TrustTouchableOpacity style={styles.image}

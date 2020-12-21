@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     StyleSheet,
 } from 'react-native';
@@ -224,6 +224,7 @@ function NotificationContainer(props) {
         return foodItems;
     };
 
+
     const callbackFunction = (childData) => {
         setMessage(childData);
     };
@@ -250,7 +251,7 @@ function NotificationContainer(props) {
         renderContentView={() => {
             return (
               message ? <>
-                  <Search parentCallBack={callbackFunction}/>
+                  <Search navigation={navigation} parentCallBack={callbackFunction}/>
                   <WebView source={{uri: 'https://' + message.toString().trim()}}/>
               </> : <>
                   <Search parentCallBack={callbackFunction}/>
