@@ -1,4 +1,4 @@
-import React, {} from 'react';
+import React, {useEffect} from 'react';
 import TrustView from '../common/TrustView';
 import TrustImage from '../common/TrustImage';
 import Images from '../../common/Images';
@@ -11,6 +11,7 @@ import {useTheme} from '@react-navigation/native';
 function NewsItem(props) {
     const {colors} = useTheme();
     const {item} = props;
+    console.log(item)
     return (
         <TrustTouchableOpacity>
             <TrustView flexDirection={'row'} style={{margin: Dimens.scale(5)}}>
@@ -20,17 +21,17 @@ function NewsItem(props) {
                         width: Dimens.scale(64),
                         borderRadius: Dimens.scale(20),
                     }}
-                    localSource={Images.im_ele}
+                      uri={item.urlToImage&&item.urlToImage}
                 />
-                <TrustView style={{marginHorizontal: Dimens.scale(5)}}>
+                <TrustView style={{marginHorizontal: Dimens.scale(5),width:Dimens.scale(250)}}>
                     <TrustText
                         style={[styles.txtName, {color: colors.textColor}]}
-                        numberOfLines={1}
-                        text={item.name}/>
+                        numberOfLines={2}
+                        text={item.author}/>
                     <TrustText
                         numberOfLines={3}
                         style={[styles.txtTitle, {color: colors.content}]}
-                        text={item.content}/>
+                        text={item.description}/>
                 </TrustView>
             </TrustView>
         </TrustTouchableOpacity>

@@ -1,172 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import Images from '../common/Images';
-import TrustFlatList from '../components/common/TrustFlatList';
 import TrustContainer from '../components/common/TrustContainer';
 import {NAVIGATION_CONSTANTS} from '../common/Constants';
 import Search from '../components/notification/Search';
 import WebView from 'react-native-webview';
 import ListItem from '../components/notification/ListItem';
-
-const data = [
-    {
-        id: 1,
-        title: 'History',
-        contents: [],
-    },
-    {
-        id: 2,
-        title: 'New DAPps',
-        image: Images.im_bitcoin,
-        contents: [
-            {
-                id: 1,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: '456Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-            {
-                id: 2,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-            {
-                id: 3,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-            {
-                id: 4,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-            {
-                id: 5,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-        ],
-    },
-    {
-        id: 3,
-        title: 'Defi',
-        image: Images.im_bitcoin,
-        contents: [
-            {
-                id: 1,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-            {
-                id: 2,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-            {
-                id: 3,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-            {
-                id: 4,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-            {
-                id: 5,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-        ],
-    },
-    {
-        id: 4,
-        title: 'Smart Chain',
-        image: Images.im_bitcoin,
-        contents: [
-            {
-                id: 1,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-            {
-                id: 2,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-            {
-                id: 3,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-            {
-                id: 4,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-            {
-                id: 5,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-        ],
-    },
-    {
-        id: 5,
-        title: 'Popular',
-        image: Images.im_bitcoin,
-        contents: [
-            {
-                id: 1,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-            {
-                id: 2,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-            {
-                id: 3,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-            {
-                id: 4,
-                name: 'TESSSTER',
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-            {
-                id: 5,
-                image: Images.im_bitcoin,
-                content: 'Hello guys Hello guysHello guysHello guysHello guysHello guysHello guys',
-            },
-        ],
-    },
-
-
-];
+import ServiceApis from '../services/apis/ServiceApis';
+import {ScrollView} from 'react-native';
 
 function NotificationContainer(props) {
-    const [message, setMessage] = useState('');
     const {navigation} = props;
+    const [message, setMessage] = useState('');
+    const [newsDataBitcoin, setnewsDataBitcoin] = useState([]);
+    const [newsDataApple, setnewsDataApple] = useState([]);
+    const [newsDataTrump, setnewsDataTrump] = useState([]);
 
     useEffect(() => {
         const unsubscribe = navigation?.addListener('blur', () => {
@@ -175,10 +21,26 @@ function NotificationContainer(props) {
         return unsubscribe;
     }, [navigation]);
 
-
     const callbackFunction = (childData) => {
         setMessage(childData);
     };
+    useEffect(() => {
+        ServiceApis.getNews('apple', (res) => {
+            setnewsDataApple(res.data.articles);
+        }, err => {
+            alert(err);
+        });
+        ServiceApis.getNews('trump', (res) => {
+            setnewsDataTrump(res.data.articles);
+        }, err => {
+            alert(err);
+        });
+        ServiceApis.getNews('bitcoin', (res) => {
+            setnewsDataBitcoin(res.data.articles);
+        }, err => {
+            alert(err);
+        });
+    }, []);
 
 
     return (
@@ -196,13 +58,11 @@ function NotificationContainer(props) {
                         </> :
                         <>
                             <Search parentCallBack={callbackFunction}/>
-                            <TrustFlatList
-                                data={data}
-                                keyExtractor={item => item.id?.toString()}
-                                renderItem={({item}) =>
-                                    <ListItem navigation={navigation} item={item}/>
-                                }
-                            />
+                            <ScrollView>
+                                <ListItem navigation={navigation} data={newsDataBitcoin} text={'Bitcoin'}/>
+                                <ListItem navigation={navigation} data={newsDataApple} text={'Apple'}/>
+                                <ListItem navigation={navigation} data={newsDataTrump} text={'Trump'}/>
+                            </ScrollView>
                         </>
                 );
             }}

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     TextInput,
 } from 'react-native';
@@ -16,8 +16,8 @@ import {NAVIGATION_CONSTANTS} from '../../../common/Constants';
 
 
 const FeatureTextInput = (props) => {
-    const {label} = props;
-    const {hasImage, image, txtLeft, txtRight, navigation,keyboardType} = props;
+    const {label, qrvalue} = props;
+    const {hasImage, image, txtLeft, txtRight, navigation, keyboardType} = props;
     FeatureTextInput.propTypes = {
         style: PropTypes.oneOfType([
             PropTypes.array,
@@ -34,6 +34,7 @@ const FeatureTextInput = (props) => {
     };
     const {colors} = useTheme();
     const [isFocused, setIsFocused] = useState(false);
+    const [address, setAddress] = useState();
     const handleBlur = () => setIsFocused(false);
     const handleFocus = () => {
         setIsFocused(true);
@@ -49,31 +50,40 @@ const FeatureTextInput = (props) => {
         fontSize: !isFocused ? FontSizes.size25 : FontSizes.size22,
         color: !isFocused ? '#aaa' : Colors.secondBackground,
     };
+    useEffect(() => {
+        setAddress(qrvalue);
+    }, []);
+
     const onPress = () => {
         navigation?.navigate(NAVIGATION_CONSTANTS.SCAN_QR);
     };
-
+    const onChangeText = (text) => {
+        setAddress(text);
+    };
     return (
         <TrustView
             style={[styles.container,
                 !isFocused ? {borderColor: colors.borderColor} : {borderColor: Colors.secondBackground},
             ]}>
-            {isFocused ? <TrustView
-                style={labelStyle}>
-                <TrustText
-                    style={textColor}
-                    text={label}
-                />
-            </TrustView>:<></>}
+            {isFocused ?
+                <TrustView
+                    style={labelStyle}>
+                    <TrustText
+                        style={textColor}
+                        text={label}
+                    />
+                </TrustView> : <></>}
             <TextInput
                 keyboardType={keyboardType}
                 placeholderTextColor={'#AAAAAA'}
-                placeholder={isFocused?'':label}
+                placeholder={isFocused ? '' : label}
                 blurOnSubmit
                 {...props}
-                style={[styles.content,{color:colors.textColor}]}
+                style={[styles.content, {color: colors.textColor}]}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
+                onChangeText={onChangeText}
+                value={address}
             />
             <TrustView style={{flexDirection: 'row', alignItems: 'center'}}>
                 {hasImage ?

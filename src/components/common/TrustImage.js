@@ -18,7 +18,7 @@ TrustImage.propTypes = {
     ])
 }
 
-TrustImage.defaultProps = {}
+TrustImage.defaultProps = {};
 
 function TrustImage(props) {
     const {
@@ -32,7 +32,7 @@ function TrustImage(props) {
         source={uri ? {uri: uri} : localSource}
         resizeMode={FastImage.resizeMode.cover}
     />
-};
+}
 
 const styles = StyleSheet.create({
     image: {}

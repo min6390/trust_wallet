@@ -1,7 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import DetailContainer from '../../containers/DetailContainer';
-import SendCoinContainer from '../../components/home/detail/SendCoinContainer';
+import SendCoinContainer from '../../containers/SendCoinContainer';
 import {NAVIGATION_CONSTANTS} from '../../common/Constants';
 import ScanQR from '../../components/common/ScanQR';
 

@@ -6,7 +6,7 @@ import MoreContainer from '../../containers/MoreContainer';
 import React from 'react';
 import DetailContainer from '../../containers/DetailContainer';
 import MainCointainer from '../../containers/MainContainer';
-import SendCoinContainer from '../../components/home/detail/SendCoinContainer';
+import SendCoinContainer from '../../containers/SendCoinContainer';
 import {NAVIGATION_CONSTANTS} from '../../common/Constants';
 import ScanQR from '../../components/common/ScanQR';
 

@@ -1,4 +1,4 @@
-import React, {} from 'react';
+import React, {useState} from 'react';
 import TrustView from '../common/TrustView';
 import TrustText from '../common/TrustText';
 import TrustTouchableOpacity from '../common/TrustTouchableOpacity';
@@ -13,8 +13,7 @@ import {useTheme} from '@react-navigation/native';
 
 function ListItem(props) {
     const {colors} = useTheme();
-    const {item,navigation} = props;
-
+    const {data,navigation,text} = props;
     const handleItems = (items) => {
         const newsItems = [];
         let index = 0;
@@ -29,16 +28,18 @@ function ListItem(props) {
         }
         return newsItems;
     };
-    const renderItem = ({item}) => {
+
+    const renderItem = (item) => {
+        console.log('item=================----------',item.item)
         return (
             <TrustView>
-                <NewsItem item={item[0]}
+                <NewsItem item={item.item[0]}
                           navigation={navigation}
                 />
-                {item[1] && <NewsItem
-                    item={item[1]}
+                 <NewsItem
+                    item={item.item[1]}
                     navigation={navigation}
-                />}
+                />
             </TrustView>
         );
     };
@@ -51,7 +52,7 @@ function ListItem(props) {
             >
                 <TrustText
                     style={[styles.txtTitle, {color: colors.textColor}]}
-                    text={item.title}
+                    text={text}
                 />
                 <TrustTouchableOpacity
                     onPress={() => {
@@ -66,7 +67,7 @@ function ListItem(props) {
             <TrustFlatList
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
-                data={handleItems(item.contents)}
+                data={handleItems(data)}
                 renderItem={renderItem}
                 keyExtractor={item => item.id?.toString()}
             />

@@ -4,11 +4,13 @@ import {
     PermissionsAndroid,
     Platform,
 } from 'react-native';
-
+import {BackHandler, Alert} from 'react-native';
 import {CameraKitCameraScreen} from 'react-native-camera-kit';
 import TrustView from './TrustView';
+import {NAVIGATION_CONSTANTS} from '../../common/Constants';
 
-const ScanQR = () => {
+const ScanQR = (props) => {
+    const {navigation} = props;
     const [qrvalue, setQrvalue] = useState('');
     const [opneScanner, setOpneScanner] = useState(false);
 
@@ -49,53 +51,80 @@ const ScanQR = () => {
             setOpneScanner(true);
         }
     };
+    useEffect(() => {
+        const backHandler = BackHandler.addEventListener(
+            'hardwareBackPress',
+            navigation?.navigate(NAVIGATION_CONSTANTS.SEND_COIN),
+        );
+        return () => backHandler.remove();
+    }, []);
 
     const onBarcodeScan = (qrvalue) => {
         // Called after te successful scanning of ScanQR/Barcode
-      if( qrvalue.includes('https://') || qrvalue.includes('http://')){
-          Linking.openURL(qrvalue);
-      }
-
-      //  setQrvalue(qrvalue);
+        if (qrvalue.includes('https://') || qrvalue.includes('http://')) {
+            Linking.openURL(qrvalue);
+        } else {
+            navigation?.navigate(NAVIGATION_CONSTANTS.SEND_COIN, qrvalue);
+        }
+        //  setQrvalue(qrvalue);
         setOpneScanner(false);
     };
 
     return (
-            opneScanner ? (
-                <TrustView style={{flex: 1}}>
-                    <CameraKitCameraScreen
-                        showFrame={true}
-                        scanBarcode={true}
-                        laserColor={'blue'}
-                        frameColor={'yellow'}
-                        colorForScannerFrame={'black'}
-                        onReadCode={(event) =>
-                            onBarcodeScan(event.nativeEvent.codeStringValue)
-                        }
-                    />
-                </TrustView>
-            ) : null
+        opneScanner ? (
+            <TrustView style={{flex: 1}}>
+                <CameraKitCameraScreen
+                    showFrame={true}
+                    scanBarcode={true}
+                    laserColor={'blue'}
+                    frameColor={'yellow'}
+                    colorForScannerFrame={'black'}
+                    onReadCode={(event) =>
+                        onBarcodeScan(event.nativeEvent.codeStringValue)
+                    }
+                />
+            </TrustView>
+        ) : null
     );
-            {/* ) : <TouchableHighlight*/}
-            {/*//     onPress={onOpneScanner}*/}
-            {/*// >*/}
-            {/*//     <TrustImage*/}
-            {/*//         style={{height: 24, width: 25}}*/}
-            {/*//         localSource={Images.im_scan}*/}
-            {/*//     />*/}
-            {/*// </TouchableHighlight>}*/}
+    {/* ) : <TouchableHighlight*/
+    }
+    {/*//     onPress={onOpneScanner}*/
+    }
+    {/*// >*/
+    }
+    {/*//     <TrustImage*/
+    }
+    {/*//         style={{height: 24, width: 25}}*/
+    }
+    {/*//         localSource={Images.im_scan}*/
+    }
+    {/*//     />*/
+    }
+    {/*// </TouchableHighlight>}*/
+    }
 
-            {/*/!*{qrvalue.includes('https://') ||*!/*/}
-            {/*/!*qrvalue.includes('http://') ||*!/*/}
-            {/*/!*qrvalue.includes('geo:') ? (*!/*/}
-            {/*/!*    <TouchableHighlight onPress={onOpenlink}>*!/*/}
-            {/*/!*        <Text style={styles.textLinkStyle}>*!/*/}
-            {/*/!*            {*!/*/}
-            {/*/!*                qrvalue.includes('geo:') ?*!/*/}
-            {/*/!*                    'Open in Map' : 'Open Link'*!/*/}
-            {/*/!*            }*!/*/}
-            {/*/!*        </Text>*!/*/}
-            {/*/!*    </TouchableHighlight>*!/*/}
+    {/*/!*{qrvalue.includes('https://') ||*!/*/
+    }
+    {/*/!*qrvalue.includes('http://') ||*!/*/
+    }
+    {/*/!*qrvalue.includes('geo:') ? (*!/*/
+    }
+    {/*/!*    <TouchableHighlight onPress={onOpenlink}>*!/*/
+    }
+    {/*/!*        <Text style={styles.textLinkStyle}>*!/*/
+    }
+    {/*/!*            {*!/*/
+    }
+    {/*/!*                qrvalue.includes('geo:') ?*!/*/
+    }
+    {/*/!*                    'Open in Map' : 'Open Link'*!/*/
+    }
+    {/*/!*            }*!/*/
+    }
+    {/*/!*        </Text>*!/*/
+    }
+    {/*/!*    </TouchableHighlight>*!/*/
+    }
 
 
 };
