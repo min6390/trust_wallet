@@ -21,7 +21,6 @@ const AmountCoinItem = (props) => {
     keyboardType: PropTypes.string,
     onChangeText: PropTypes.func,
     onSubmitEditing: PropTypes.func,
-    value: PropTypes.string,
     maxLength: PropTypes.number,
     onPressAmount: PropTypes.func,
     onPressCoinSwap: PropTypes.func,
@@ -66,7 +65,7 @@ const AmountCoinItem = (props) => {
         onFocus={handleFocus}
         onBlur={handleBlur}
         onChangeText={onChangeAmount}
-        value={amount}
+        value={amount.toString()}
       />
       <TrustView style={{
         flexDirection: 'row',

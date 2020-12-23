@@ -17,9 +17,9 @@ function TabNavigator(props) {
   const {navigation} = props;
   const {colors} = useTheme();
 
-
   return (
     <BottomTabNavigator.Navigator
+    // lazy={false}
       tabBarOptions={{
         activeTintColor: colors.activeTintColor,
         inactiveTintColor: colors.inactiveTintColor,
