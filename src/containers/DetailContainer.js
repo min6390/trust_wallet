@@ -16,6 +16,7 @@ function DetailContainer(props) {
             </>
         );
     };
+
     return (
         <TrustContainer
             rightIcon={true}

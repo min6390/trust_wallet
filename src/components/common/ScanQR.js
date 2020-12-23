@@ -77,7 +77,7 @@ const ScanQR = (props) => {
         if (qrvalue.includes('https://') || qrvalue.includes('http://')) {
             Linking.openURL(qrvalue);
         } else {
-            navigation?.navigate(NAVIGATION_CONSTANTS.SEND_COIN, {itemID:60});
+            navigation?.navigate(NAVIGATION_CONSTANTS.SEND_COIN, {qrvalue});
         }
         setQrvalue(qrvalue);
         setOpneScanner(false);

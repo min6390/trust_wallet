@@ -26,7 +26,7 @@ function DetailItem(props) {
       image: Images.im_arrow_up,
       name: 'Gửi',
       onPress:()=>{
-        navigation?.navigate(NAVIGATION_CONSTANTS.SEND_COIN)
+        navigation?.navigate(NAVIGATION_CONSTANTS.SEND_COIN,{price})
       }
 
     },
