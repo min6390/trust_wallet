@@ -30,7 +30,6 @@ function ListItem(props) {
     };
 
     const renderItem = (item) => {
-        console.log('item=================----------',item.item)
         return (
             <TrustView>
                 <NewsItem item={item.item[0]}

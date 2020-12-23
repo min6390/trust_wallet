@@ -71,7 +71,7 @@ const ListCoinItem = (props) => {
                 </TrustView>
                 <TrustText
                     style={{color: colors.textColor}}
-                    text={item.symbol}/>
+                    text={'0 '+item.symbol}/>
             </TrustTouchableOpacity>
         </Swipeable>
     );

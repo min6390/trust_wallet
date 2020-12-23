@@ -47,15 +47,28 @@ const ScanQR = (props) => {
             // Calling the camera permission function
             requestCameraPermission();
         } else {
-            setQrvalue('');
+           // setQrvalue('');
             setOpneScanner(true);
         }
     };
     useEffect(() => {
+        const backAction = () => {
+            Alert.alert("Hold on!", "Are you sure you want to go back?", [
+                {
+                    text: "Cancel",
+                    onPress: () => null,
+                    style: "cancel"
+                },
+                { text: "YES", onPress: () => navigation?.goBack() }
+            ]);
+            return true;
+        };
+
         const backHandler = BackHandler.addEventListener(
-            'hardwareBackPress',
-            navigation?.navigate(NAVIGATION_CONSTANTS.SEND_COIN),
+            "hardwareBackPress",
+            backAction
         );
+
         return () => backHandler.remove();
     }, []);
 
@@ -64,9 +77,9 @@ const ScanQR = (props) => {
         if (qrvalue.includes('https://') || qrvalue.includes('http://')) {
             Linking.openURL(qrvalue);
         } else {
-            navigation?.navigate(NAVIGATION_CONSTANTS.SEND_COIN, qrvalue);
+            navigation?.navigate(NAVIGATION_CONSTANTS.SEND_COIN, {itemID:60});
         }
-        //  setQrvalue(qrvalue);
+        setQrvalue(qrvalue);
         setOpneScanner(false);
     };
 

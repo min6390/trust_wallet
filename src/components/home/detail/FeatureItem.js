@@ -16,7 +16,7 @@ import {NAVIGATION_CONSTANTS} from '../../../common/Constants';
 
 
 const FeatureTextInput = (props) => {
-    const {label, qrvalue} = props;
+    const {label, itemID} = props;
     const {hasImage, image, txtLeft, txtRight, navigation, keyboardType} = props;
     FeatureTextInput.propTypes = {
         style: PropTypes.oneOfType([
@@ -41,17 +41,17 @@ const FeatureTextInput = (props) => {
     };
     const labelStyle = {
         position: 'absolute',
-        left: !isFocused ? Dimens.scale(10) : Dimens.scale(10),
-        top: !isFocused ? Dimens.verticalScale(11) : Dimens.verticalScale(-8),
+        left: Dimens.scale(10),
+        top: Dimens.verticalScale(-8),
         backgroundColor: colors.background,
         zIndex: 2,
     };
     const textColor = {
-        fontSize: !isFocused ? FontSizes.size25 : FontSizes.size22,
-        color: !isFocused ? '#aaa' : Colors.secondBackground,
+        fontSize: FontSizes.size22,
+        color: Colors.secondBackground,
     };
     useEffect(() => {
-        setAddress(qrvalue);
+        setAddress(itemID);
     }, []);
 
     const onPress = () => {
@@ -63,7 +63,8 @@ const FeatureTextInput = (props) => {
     return (
         <TrustView
             style={[styles.container,
-                !isFocused ? {borderColor: colors.borderColor} : {borderColor: Colors.secondBackground},
+                !isFocused ?
+                    {borderColor: colors.borderColor} : {borderColor: Colors.secondBackground},
             ]}>
             {isFocused ?
                 <TrustView

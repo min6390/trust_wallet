@@ -19,12 +19,16 @@ function DetailItem(props) {
   const {price,navigation} = props;
   const {socketData} = useSelector(state => state.socket);
   const [dataSocket] = useState(socketData.filter(item => item.name === price));
+
   const data = [
     {
       id: 1,
       image: Images.im_arrow_up,
       name: 'Gửi',
-      onPress:()=>{navigation?.navigate(NAVIGATION_CONSTANTS.SEND_COIN,price)}
+      onPress:()=>{
+        navigation?.navigate(NAVIGATION_CONSTANTS.SEND_COIN)
+      }
+
     },
     {
       id: 2,

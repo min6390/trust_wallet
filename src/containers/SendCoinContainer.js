@@ -10,10 +10,11 @@ import Dimens from '../common/Dimens';
 function SendCoinContainer(props) {
     const {colors} = useTheme();
     const {navigation, route} = props;
-    const {price,qrvalue}= route.params;
+   // const {price} = route.params;
+    const itemID = route.params;
     return (
         <TrustContainer
-            title={price}
+            title={'ahii'}
             text={'Tiếp Tục'}
             rightIcon={false}
             navigation={navigation}
@@ -22,16 +23,7 @@ function SendCoinContainer(props) {
                 return (
                     <TrustView style={{alignItems: 'center', marginVertical: Dimens.verticalScale(10)}}>
                         <FeatureItem
-                            qrvalue={qrvalue}
-                            image={Images.im_scan}
-                            txtRight={'Dán'}
-                            navigation={navigation}
-                            nameScreen={NAVIGATION_CONSTANTS.SCAN_QR}
-                            hasImage={true}
-                            label={'Địa chỉ người nhận'}
-                        />
-                        <FeatureItem
-                            keyboardType={'number-pad'}
+                            itemID={itemID}
                             image={Images.im_scan}
                             txtRight={'Dán'}
                             navigation={navigation}
