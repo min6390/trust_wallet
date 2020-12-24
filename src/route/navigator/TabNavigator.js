@@ -19,7 +19,7 @@ function TabNavigator(props) {
 
   return (
     <BottomTabNavigator.Navigator
-     lazy={false}
+     //lazy={false}
       tabBarOptions={{
         activeTintColor: colors.activeTintColor,
         inactiveTintColor: colors.inactiveTintColor,

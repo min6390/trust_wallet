@@ -60,8 +60,8 @@ function NotificationContainer(props) {
                             <Search parentCallBack={callbackFunction}/>
                             <ScrollView>
                                 <ListItem navigation={navigation} data={newsDataBitcoin} text={'Bitcoin'}/>
-                                <ListItem navigation={navigation} data={newsDataApple} text={'Apple'}/>
-                                <ListItem navigation={navigation} data={newsDataTrump} text={'Trump'}/>
+                                {/*<ListItem navigation={navigation} data={newsDataApple} text={'Apple'}/>*/}
+                                {/*<ListItem navigation={navigation} data={newsDataTrump} text={'Trump'}/>*/}
                             </ScrollView>
                         </>
                 );
