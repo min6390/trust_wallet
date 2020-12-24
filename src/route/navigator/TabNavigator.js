@@ -4,7 +4,7 @@ import {styles} from './styles';
 import Images from '../../common/Images';
 import SettingContainer from '../../containers/SettingContainer';
 import HomeStackNavigator from './HomeStackNavigator';
-import React, {useEffect} from 'react';
+import React, {} from 'react';
 import DexStackNavigator from './DexStackNavigator';
 import {useTheme} from '@react-navigation/native';
 import NotificationStackNavigator from './NotificationStackNavigator';
@@ -19,7 +19,7 @@ function TabNavigator(props) {
 
   return (
     <BottomTabNavigator.Navigator
-    // lazy={false}
+     lazy={false}
       tabBarOptions={{
         activeTintColor: colors.activeTintColor,
         inactiveTintColor: colors.inactiveTintColor,
