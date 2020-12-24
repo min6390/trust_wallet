@@ -4,15 +4,15 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import {useTheme} from '@react-navigation/native';
-import TrustView from '../../common/TrustView';
-import TrustText from '../../common/TrustText';
-import Colors from '../../../common/Colors';
+import TrustView from '../common/TrustView';
+import TrustText from '../common/TrustText';
+import Colors from '../../common/Colors';
 import {styles} from './styles';
-import TrustTouchableOpacity from '../../common/TrustTouchableOpacity';
-import TrustImage from '../../common/TrustImage';
-import {NAVIGATION_CONSTANTS} from '../../../common/Constants';
-import Dimens from '../../../common/Dimens';
-import Images from '../../../common/Images';
+import TrustTouchableOpacity from '../common/TrustTouchableOpacity';
+import TrustImage from '../common/TrustImage';
+import {NAVIGATION_CONSTANTS} from '../../common/Constants';
+import Dimens from '../../common/Dimens';
+import Images from '../../common/Images';
 
 const AddressItem = (props) => {
   const {navigation, keyboardType, qrvalue,style} = props;

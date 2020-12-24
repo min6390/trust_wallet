@@ -22,6 +22,9 @@ export const darkTheme = {
         deal:'#343651',
         backgroundTop:'#28293D',
         borderColor:'#dcdcdc',
+        buttonPay:'#555770',
+        txtPay: '#28293D',
+        payItem:'#343651'
     },
 };
 export const defaultTheme={
@@ -46,5 +49,8 @@ export const defaultTheme={
         deal:'white',
         backgroundTop:'#078266',
         borderColor:'#28293D',
+        buttonPay:'#dcdcdc',
+        txtPay:'white',
+        payItem:'#AAAAAA'
     },
 };

@@ -34,4 +34,21 @@ export const styles = StyleSheet.create({
     left: Dimens.scale(30),
     top: Dimens.verticalScale(50),
   },
+  containQR:{
+    alignItems:'center',
+    backgroundColor: 'white',
+    height:Dimens.verticalScale(240),
+    width:Dimens.scale(240),
+    borderRadius: Dimens.scale(8),
+    justifyContent:'center',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
+  },
 });

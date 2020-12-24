@@ -9,6 +9,7 @@ import MainCointainer from '../../containers/MainContainer';
 import SendCoinContainer from '../../containers/SendCoinContainer';
 import {NAVIGATION_CONSTANTS} from '../../common/Constants';
 import ScanQR from '../../components/common/ScanQR';
+import ReceiveContainer from '../../containers/ReceiveContainer';
 
 
 const HomeStack = createStackNavigator();
@@ -52,6 +53,10 @@ function HomeStackNavigator() {
             <HomeStack.Screen
                 name={NAVIGATION_CONSTANTS.SCAN_QR}
                 component={ScanQR}
+            />
+            <HomeStack.Screen
+              name={NAVIGATION_CONSTANTS.RECEIVE_COIN}
+              component={ReceiveContainer}
             />
         </HomeStack.Navigator>
     );

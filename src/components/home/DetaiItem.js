@@ -34,6 +34,9 @@ function DetailItem(props) {
       id: 2,
       image: Images.im_arrow_down,
       name: 'Nhận',
+      onPress:()=>{
+        navigation?.navigate(NAVIGATION_CONSTANTS.RECEIVE_COIN,{price})
+      }
     },
     {
       id: 3,

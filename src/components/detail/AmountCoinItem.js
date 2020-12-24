@@ -4,12 +4,12 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import {useTheme} from '@react-navigation/native';
-import TrustView from '../../common/TrustView';
-import TrustText from '../../common/TrustText';
-import Colors from '../../../common/Colors';
+import TrustView from '../common/TrustView';
+import TrustText from '../common/TrustText';
+import Colors from '../../common/Colors';
 import {styles} from './styles';
-import TrustTouchableOpacity from '../../common/TrustTouchableOpacity';
-import Dimens from '../../../common/Dimens';
+import TrustTouchableOpacity from '../common/TrustTouchableOpacity';
+import Dimens from '../../common/Dimens';
 
 const AmountCoinItem = (props) => {
   const {txtRight, keyboardType, label,onPressCoinSwap,} = props;

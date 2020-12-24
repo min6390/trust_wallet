@@ -3,12 +3,11 @@ import TrustContainer from '../components/common/TrustContainer';
 import {HEADER_MODE} from '../common/Constants';
 import TrustView from '../components/common/TrustView';
 import Dimens from '../common/Dimens';
-import AddressItem from '../components/home/detail/AddressItem';
-import AmountCoinItem from '../components/home/detail/AmountCoinItem';
+import AddressItem from '../components/detail/AddressItem';
+import AmountCoinItem from '../components/detail/AmountCoinItem';
 import TrustText from '../components/common/TrustText';
 import {styles} from './styles';
-import PayModal from '../components/home/detail/PayModal';
-import {Alert, Modal, Text, TouchableHighlight, View} from 'react-native';
+import PayModal from '../components/detail/PayModal';
 
 function SendCoinContainer(props) {
   const {navigation, route} = props;
@@ -33,7 +32,6 @@ function SendCoinContainer(props) {
       setTextError(true);
     }
   };
-  console.log('onpress',modalVisible)
   return (
     <TrustContainer
       onPressContinue={onPressContinue}
@@ -63,6 +61,7 @@ function SendCoinContainer(props) {
               txtRight={symbol}
             />
             <PayModal
+              navigation={navigation}
               callbackModal={callbackModal}
               modal={modalVisible}/>
           </TrustView>
