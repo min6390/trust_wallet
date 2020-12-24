@@ -47,4 +47,13 @@ export const styles = StyleSheet.create({
     fontSize: FontSizes.size22,
     color: Colors.secondBackground,
   },
+  modalContainer:{
+    alignItems:'center',
+    justifyContent:'center',
+    marginTop:Dimens.verticalScale(22),
+    height: Dimens.heightScreen,
+    width:Dimens.widthScreen,
+    backgroundColor:'white',
+    borderRadius: Dimens.scale(15)
+  },
 });
