@@ -39,6 +39,7 @@ const AddressItem = (props) => {
   };
   useEffect(() => {
     setAddress(qrvalue);
+    setIsFocused(true)
   }, [qrvalue]);
   props.callbackAddress(address);
 
