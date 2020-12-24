@@ -16,7 +16,7 @@ TrustHeader.propTypes = {
     title: PropTypes.string,
     rightIcon : PropTypes.bool,
     text: PropTypes.string,
-
+    onPressContinue:PropTypes.func
 };
 
 TrustHeader.defaultProps = {
@@ -31,10 +31,12 @@ function TrustHeader(props) {
         title,
         navigation,
         nameScreen,
+        onPressContinue,
     } = props;
     switch (headerMode) {
         case HEADER_MODE.DETAIL:
             return <DetailHeader
+              onPressContinue={onPressContinue}
                 text={text}
                 rightIcon={rightIcon}
                 title={title}

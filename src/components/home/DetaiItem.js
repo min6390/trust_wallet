@@ -16,7 +16,7 @@ import {NAVIGATION_CONSTANTS} from '../../common/Constants';
 
 function DetailItem(props) {
   const {colors} = useTheme();
-  const {price,navigation} = props;
+  const {price,symbol,navigation} = props;
   const {socketData} = useSelector(state => state.socket);
   const [dataSocket] = useState(socketData.filter(item => item.name === price));
 
@@ -26,7 +26,7 @@ function DetailItem(props) {
       image: Images.im_arrow_up,
       name: 'Gửi',
       onPress:()=>{
-        navigation?.navigate(NAVIGATION_CONSTANTS.SEND_COIN,{price})
+        navigation?.navigate(NAVIGATION_CONSTANTS.SEND_COIN,{price,symbol})
       }
 
     },

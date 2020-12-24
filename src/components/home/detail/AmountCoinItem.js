@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import {
   TextInput,
 } from 'react-native';
@@ -30,7 +30,7 @@ const AmountCoinItem = (props) => {
   };
   const {colors} = useTheme();
   const [isFocused, setIsFocused] = useState(false);
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState('');
   const handleBlur = () => setIsFocused(false);
   const handleFocus = () => {
     setIsFocused(true);
@@ -39,7 +39,8 @@ const AmountCoinItem = (props) => {
     setAmount(amount);
   };
   const onPressAmount = () => {
-   setAmount(amount+1)
+   setAmount(Number(amount)+1);
+    setIsFocused(true);
   };
   return (
     <TrustView
@@ -70,7 +71,7 @@ const AmountCoinItem = (props) => {
       <TrustView style={{
         flexDirection: 'row',
         alignItems: 'center',
-        marginRight: Dimens.scale(15),
+        marginRight: Dimens.scale(5),
       }}>
         <TrustTouchableOpacity
           {...props}

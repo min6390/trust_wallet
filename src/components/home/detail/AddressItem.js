@@ -15,7 +15,7 @@ import Dimens from '../../../common/Dimens';
 import Images from '../../../common/Images';
 
 const AddressItem = (props) => {
-  const {navigation, keyboardType, qrvalue} = props;
+  const {navigation, keyboardType, qrvalue,style} = props;
   AddressItem.propTypes = {
     style: PropTypes.oneOfType([
       PropTypes.array,
@@ -40,7 +40,7 @@ const AddressItem = (props) => {
   useEffect(() => {
     setAddress(qrvalue);
   }, [qrvalue]);
-
+  props.callbackAddress(address);
 
   const onPress = () => {
     navigation?.navigate(NAVIGATION_CONSTANTS.SCAN_QR);
@@ -50,7 +50,8 @@ const AddressItem = (props) => {
   };
   return (
     <TrustView
-      style={[styles.container,
+      {...props}
+      style={[style,styles.container,
         !isFocused ?
           {borderColor: colors.borderColor} : {borderColor: Colors.secondBackground},
       ]}>
@@ -77,7 +78,7 @@ const AddressItem = (props) => {
       <TrustView style={{
         flexDirection: 'row',
         alignItems: 'center',
-        marginRight: Dimens.scale(15),
+        marginRight: Dimens.scale(5),
       }}>
         <TrustTouchableOpacity
           onPress={onPress}>
