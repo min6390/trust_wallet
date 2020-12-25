@@ -4,15 +4,25 @@ import {NAVIGATION_CONSTANTS} from '../common/Constants';
 import Search from '../components/notification/Search';
 import WebView from 'react-native-webview';
 import ListItem from '../components/notification/ListItem';
-import ServiceApis from '../services/apis/ServiceApis';
 import {ScrollView} from 'react-native';
+import {io} from 'socket.io-client';
 
 function NotificationContainer(props) {
     const {navigation} = props;
     const [message, setMessage] = useState('');
     const [newsDataBitcoin, setnewsDataBitcoin] = useState([]);
-    const [newsDataApple, setnewsDataApple] = useState([]);
-    const [newsDataTrump, setnewsDataTrump] = useState([]);
+
+    useEffect(() => {
+        const socket = io('https://vinawallet.net',
+            {transports: ['websocket', 'polling', 'flashsocket']},
+        );
+        socket.emit('/socketVnaWallet',  { "api_passer": { "key_passer": "get_nws"}});
+        socket.on('get_nws', (res)=>{
+                setnewsDataBitcoin(res)
+        });
+
+
+    }, []);
 
     useEffect(() => {
         const unsubscribe = navigation?.addListener('blur', () => {
@@ -24,23 +34,13 @@ function NotificationContainer(props) {
     const callbackFunction = (childData) => {
         setMessage(childData);
     };
-    useEffect(() => {
-        ServiceApis.getNews('apple', (res) => {
-            setnewsDataApple(res.data.articles);
-        }, err => {
-            alert(err);
-        });
-        ServiceApis.getNews('trump', (res) => {
-            setnewsDataTrump(res.data.articles);
-        }, err => {
-            alert(err);
-        });
-        ServiceApis.getNews('bitcoin', (res) => {
-            setnewsDataBitcoin(res.data.articles);
-        }, err => {
-            alert(err);
-        });
-    }, []);
+    // useEffect(() => {
+    //     ServiceApis.getNews( (res) => {
+    //         setnewsDataBitcoin(res.data.articles);
+    //     }, err => {
+    //         console.log(err);
+    //     });
+    // }, []);
 
 
     return (
@@ -59,9 +59,8 @@ function NotificationContainer(props) {
                         <>
                             <Search parentCallBack={callbackFunction}/>
                             <ScrollView>
-                                <ListItem navigation={navigation} data={newsDataBitcoin} text={'Bitcoin'}/>
-                                {/*<ListItem navigation={navigation} data={newsDataApple} text={'Apple'}/>*/}
-                                {/*<ListItem navigation={navigation} data={newsDataTrump} text={'Trump'}/>*/}
+                                <ListItem navigation={navigation} data={newsDataBitcoin} text={'Techcrunch'}/>
+                                <ListItem navigation={navigation} data={newsDataBitcoin} text={'Techcrunch'}/>
                             </ScrollView>
                         </>
                 );

@@ -18,13 +18,12 @@ import PropTypes from 'prop-types';
 //
 //export const GET_NEWS_RESULTS_PER_PAGE = 10;
 
-function getNews( q,onSuccess, onError,) {
+function getNews( onSuccess, onError,) {
     TrustService.GET({
-        url: '/v2/everything',
+        url: '/v2/top-headlines',
         params: {
-            q: q,
+            sources: "techcrunch",
             apiKey: "cad5474cc40f4346b3ddcef68a9a940d",
-
         },
 
         onSuccess,

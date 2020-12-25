@@ -5,10 +5,11 @@ import Images from '../../common/Images';
 import InformationItemList from './InformationItemList';
 import {styles} from './styles';
 import {useTheme} from '@react-navigation/native';
+import TrustTouchableOpacity from '../common/TrustTouchableOpacity';
 
 
-function Information() {
-    const {colors} = useTheme();
+function Information(props) {
+    const {onPressHide,currentHide}=props;
     const data = [
         {
             id: 1,
@@ -27,12 +28,17 @@ function Information() {
         },
     ];
 
+    const {colors} = useTheme();
+
     return (
-        <TrustView style={{backgroundColor:colors.primary,alignItems: 'center'}}>
-            <TrustText
-                style={styles.txtMoney}
-                text={'Money' + ' $'}
-            />
+        <TrustView style={{backgroundColor: colors.primary, alignItems: 'center'}}>
+            <TrustTouchableOpacity
+                onPress={onPressHide}>
+                <TrustText
+                    style={styles.txtMoney}
+                    text={currentHide ? '******' : '0,00' + ' $'}
+                />
+            </TrustTouchableOpacity>
             <TrustText
                 style={styles.txtCoin}
                 text={'Ví Multi-Coin 1'}

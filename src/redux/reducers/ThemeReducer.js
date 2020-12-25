@@ -1,4 +1,3 @@
-
 import {createReducer, updateObject} from '../ReduxUtils';
 import {APP_ACTIONS} from '../../common/Constants';
 

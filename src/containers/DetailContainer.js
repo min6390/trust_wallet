@@ -6,48 +6,48 @@ import TrustFlatList from '../components/common/TrustFlatList';
 import DetailItem from '../components/home/DetaiItem';
 
 function DetailContainer(props) {
-  const {navigation, route} = props;
-  let itemName = route.params;
-  const {socketData} = useSelector(state => state.socket);
-  const [data] = useState(socketData.filter(item => item.name === itemName));
-  const [symbol, setSymbol] = useState();
-  useEffect(() => {
-    data.forEach(item => setSymbol(item.symbol));
-  }, []);
-  const renderItem = () => {
-    return (
-      <>
-      </>
-    );
-  };
-
-  return (
-    <TrustContainer
-      rightIcon={true}
-      navigation={navigation}
-      headerMode={HEADER_MODE.DETAIL}
-      title={itemName}
-      renderContentView={() => {
+    const {navigation, route} = props;
+    let itemName = route.params;
+    const {socketData} = useSelector(state => state.socket);
+    const [data] = useState(socketData.filter(item => item.name === itemName));
+    const [symbol, setSymbol] = useState();
+    useEffect(() => {
+        data.forEach(item => setSymbol(item.symbol));
+    }, []);
+    const renderItem = () => {
         return (
-          <TrustFlatList
-            data={data}
-            keyExtractor={item => item.name}
-            renderItem={renderItem}
-            ListHeaderComponent={() => {
-              return (
-                <DetailItem
-                  symbol={symbol}
-                  navigation={navigation}
-                  price={itemName}
-                />
-              );
-            }
-            }
-          />
+            <>
+            </>
         );
-      }}
-    />
-  );
+    };
+
+    return (
+        <TrustContainer
+            rightIcon={true}
+            navigation={navigation}
+            headerMode={HEADER_MODE.DETAIL}
+            title={itemName}
+            renderContentView={() => {
+                return (
+                    <TrustFlatList
+                        data={data}
+                        keyExtractor={item => item.name}
+                        renderItem={renderItem}
+                        ListHeaderComponent={() => {
+                            return (
+                                <DetailItem
+                                    symbol={symbol}
+                                    navigation={navigation}
+                                    price={itemName}
+                                />
+                            );
+                        }
+                        }
+                    />
+                );
+            }}
+        />
+    );
 }
 
 

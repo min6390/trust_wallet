@@ -9,32 +9,41 @@ import {setDarkMode} from './src/redux/actions/ThemeAction';
 import {io} from 'socket.io-client';
 import {showAppLoading} from './src/redux/actions/LoadingAction';
 import {setSocketData} from './src/redux/actions/SocketAction';
+import {setHide} from './src/redux/actions/HideAction';
 
 function AppContainer() {
-  const {loading} = useSelector(state => state.loading);
-  useEffect(() => {
-    const socket = io('https://coin-wallet-server.herokuapp.com',
-      {transports: ['websocket', 'polling', 'flashsocket']},
-    );
-    store.dispatch(showAppLoading(true));
-    socket.on('SOCKET_COIN_CHANGE', res => {
-      store.dispatch(showAppLoading(false));
-      store.dispatch(setSocketData(res))
-    });
-    getDarkmode();
-  }, []);
+    const {loading} = useSelector(state => state.loading);
+    useEffect(() => {
+        const socket = io('https://vinawallet.net/',
+            {transports: ['websocket', 'polling', 'flashsocket']},
+        );
+        store.dispatch(showAppLoading(true));
+        socket.on('SOCKET_COIN_CHANGE', res => {
+            store.dispatch(showAppLoading(false));
+            store.dispatch(setSocketData(res));
+        });
+        getDarkmode();
+        getHide();
 
-  const getDarkmode = async () => {
-    const darkModeJson = await AsyncStorage.getItem('DarkMode');
-    const darkMode = JSON.parse(darkModeJson);
-    store.dispatch(setDarkMode(darkMode));
-  };
-  return (
-    <TrustView style={{flex: 1}}>
-      <Route/>
-      {loading && <AppLoading/>}
-    </TrustView>
-  );
+    }, []);
+
+    const getDarkmode = async () => {
+        const darkModeJson = await AsyncStorage.getItem('DarkMode');
+        const darkMode = JSON.parse(darkModeJson);
+        store.dispatch(setDarkMode(darkMode));
+    };
+    const getHide = async () => {
+        const hasHideJson = await AsyncStorage.getItem('HasHide');
+        const hasHide = JSON.parse(hasHideJson);
+        store.dispatch(setHide(hasHide));
+    };
+
+    return (
+        <TrustView style={{flex: 1}}>
+            <Route/>
+            {loading && <AppLoading/>}
+        </TrustView>
+    );
 }
 
 export default AppContainer;

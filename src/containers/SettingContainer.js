@@ -17,7 +17,7 @@ function SettingContainer() {
 
   const onToggle = async (value) => {
     try {
-      dispatch(setDarkMode(!currentTheme));
+        dispatch(setDarkMode(!currentTheme));
       await AsyncStorage.setItem('DarkMode', JSON.stringify(value));
     } catch (e) {
       console.log(e);

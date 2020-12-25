@@ -14,9 +14,8 @@ import FontSizes from '../../common/FontSizes';
 import {NAVIGATION_CONSTANTS} from '../../common/Constants';
 
 const ListCoinItem = (props) => {
-    const {navigation, item} = props;
+    const {navigation, item,hide} = props;
     const {colors} = useTheme();
-
     const RightActions = (progress, dragX) => {
         const scale = dragX.interpolate({
             inputRange: [-100, 0],
@@ -71,7 +70,7 @@ const ListCoinItem = (props) => {
                 </TrustView>
                 <TrustText
                     style={{color: colors.textColor}}
-                    text={'0 '+item.symbol}/>
+                    text={hide?'******':'0 '+item.symbol}/>
             </TrustTouchableOpacity>
         </Swipeable>
     );

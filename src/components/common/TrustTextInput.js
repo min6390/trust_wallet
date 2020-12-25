@@ -9,7 +9,7 @@ import Colors from '../../common/Colors';
 import {useTheme} from '@react-navigation/native';
 
 const TrustTextInput = (props) => {
-    const {label} = props;
+    const {label,style} = props;
     TrustTextInput.propTypes = {
         ref: PropTypes.object,
         style: PropTypes.oneOfType([
@@ -62,7 +62,7 @@ const TrustTextInput = (props) => {
                 placeholderTextColor={'#AAAAAA'}
                 placeholder={isFocused ? '' : label}
                 blurOnSubmit
-                style={[styles.container, !isFocused ? {borderColor: colors.borderColor} : {borderColor: Colors.secondBackground}]}
+                style={[style,styles.container, !isFocused ? {borderColor: colors.borderColor} : {borderColor: Colors.secondBackground}]}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
             />

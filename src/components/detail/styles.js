@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+   paddingRight:Dimens.scale(8)
   },
   text: {
     margin: Dimens.scale(5),
@@ -33,7 +34,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: Dimens.scale(10),
     justifyContent: 'center',
     alignItems: 'center',
-    width: Dimens.widthScreen - 160,
+    width: Dimens.widthScreen - 180,
 
   },
   labelStyle: {
@@ -103,4 +104,20 @@ export const styles = StyleSheet.create({
     bottom:Dimens.verticalScale(50),
     borderRadius:Dimens.scale(5)
   },
+  modalSettingContain:{
+    alignItems: 'center',
+    marginTop: Dimens.verticalScale(50),
+    height: Dimens.heightScreen,
+    width: Dimens.widthScreen,
+    backgroundColor: 'pink',
+    borderRadius: Dimens.scale(15),
+  },
+  modalView: {
+    alignItems: 'center',
+    marginTop: Dimens.verticalScale(40),
+    height: Dimens.heightScreen,
+    width: Dimens.widthScreen,
+    backgroundColor: 'white',
+    borderRadius: Dimens.scale(15),
+    },
 });
