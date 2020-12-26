@@ -10,18 +10,16 @@ import {io} from 'socket.io-client';
 function NotificationContainer(props) {
     const {navigation} = props;
     const [message, setMessage] = useState('');
-    const [newsDataBitcoin, setnewsDataBitcoin] = useState([]);
+    const [newsDataBitcoin, setNewsDataBitcoin] = useState([]);
 
     useEffect(() => {
         const socket = io('https://vinawallet.net',
             {transports: ['websocket', 'polling', 'flashsocket']},
         );
-        socket.emit('/socketVnaWallet',  { "api_passer": { "key_passer": "get_nws"}});
-        socket.on('get_nws', (res)=>{
-                setnewsDataBitcoin(res)
+        socket.emit('/socketVnaWallet', {'api_passer': {'key_passer': 'get_nws'}});
+        socket.on('get_nws', (res) => {
+            setNewsDataBitcoin(res);
         });
-
-
     }, []);
 
     useEffect(() => {
@@ -34,14 +32,6 @@ function NotificationContainer(props) {
     const callbackFunction = (childData) => {
         setMessage(childData);
     };
-    // useEffect(() => {
-    //     ServiceApis.getNews( (res) => {
-    //         setnewsDataBitcoin(res.data.articles);
-    //     }, err => {
-    //         console.log(err);
-    //     });
-    // }, []);
-
 
     return (
         <TrustContainer
@@ -59,8 +49,16 @@ function NotificationContainer(props) {
                         <>
                             <Search parentCallBack={callbackFunction}/>
                             <ScrollView>
-                                <ListItem navigation={navigation} data={newsDataBitcoin} text={'Techcrunch'}/>
-                                <ListItem navigation={navigation} data={newsDataBitcoin} text={'Techcrunch'}/>
+                                <ListItem
+                                    navigation={navigation}
+                                    data={newsDataBitcoin}
+                                    text={'Techcrunch'}
+                                />
+                                <ListItem
+                                    navigation={navigation}
+                                    data={newsDataBitcoin}
+                                    text={'Techcrunch'}
+                                />
                             </ScrollView>
                         </>
                 );
@@ -69,6 +67,5 @@ function NotificationContainer(props) {
 
     );
 }
-
 
 export default NotificationContainer;

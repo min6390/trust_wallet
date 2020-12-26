@@ -21,9 +21,6 @@ function SendCoinContainer(props) {
     const callbackModal = (childData) => {
         setModalVisible(childData);
     };
-    const onPressCoinSwap = () => {
-
-    };
     const onPressContinue = () => {
         if (address) {
             setTextError(false);
@@ -58,7 +55,6 @@ function SendCoinContainer(props) {
                             style={styles.textError}
                         /> : <></>}
                         <AmountCoinItem
-                            onPressCoinSwap={onPressCoinSwap}
                             keyboardType={'number-pad'}
                             label={'Số lượng ' + price}
                             txtLeft={'TỐI ĐA'}

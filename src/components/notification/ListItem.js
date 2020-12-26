@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {} from 'react';
 import TrustView from '../common/TrustView';
 import TrustText from '../common/TrustText';
 import TrustTouchableOpacity from '../common/TrustTouchableOpacity';
