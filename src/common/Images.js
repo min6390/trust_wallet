@@ -20,6 +20,10 @@ import im_find from '../assets/images/searching-magnifying-glass.png'
 import im_right_arrow from '../assets/images/right_arrow.png'
 import im_up_down_arrow from '../assets/images/up-down-arrow.png'
 import im_scan from '../assets/images/scan.png'
+import im_coppy from '../assets/images/copy.png'
+import im_share from '../assets/images/share.png'
+import im_tag from '../assets/images/tag.png'
+
 const Images = {
     im_arrow_down,
     im_arrow_up,
@@ -43,5 +47,8 @@ const Images = {
     im_right_arrow,
     im_up_down_arrow,
     im_scan,
+    im_coppy,
+    im_share,
+    im_tag,
 };
 export default Images;

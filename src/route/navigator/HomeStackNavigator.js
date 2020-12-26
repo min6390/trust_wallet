@@ -17,14 +17,14 @@ const HomeStack = createStackNavigator();
 function HomeStackNavigator() {
     return (
         <HomeStack.Navigator
-          initialRouteName={NAVIGATION_CONSTANTS.MAIN}
+            initialRouteName={NAVIGATION_CONSTANTS.MAIN}
             screenOptions={{
                 headerShown: false,
             }}
         >
             <HomeStack.Screen
-              name={NAVIGATION_CONSTANTS.MAIN}
-              component={MainCointainer}
+                name={NAVIGATION_CONSTANTS.MAIN}
+                component={MainCointainer}
             />
             <HomeStack.Screen
                 name={NAVIGATION_CONSTANTS.HOME}
@@ -55,10 +55,11 @@ function HomeStackNavigator() {
                 component={ScanQR}
             />
             <HomeStack.Screen
-              name={NAVIGATION_CONSTANTS.RECEIVE_COIN}
-              component={ReceiveContainer}
+                name={NAVIGATION_CONSTANTS.RECEIVE_COIN}
+                component={ReceiveContainer}
             />
         </HomeStack.Navigator>
     );
 }
-export default HomeStackNavigator
+
+export default HomeStackNavigator;
