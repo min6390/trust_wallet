@@ -20,7 +20,7 @@ function HomeContainer(props) {
     const currentHide = useSelector(state => {
         return state.hasHide.hideMoney;
     });
-
+    console.log('socketData================',socketData)
     const onPressHide = async (value) => {
         // try {
         //     dispatch(setHide(!currentHide));

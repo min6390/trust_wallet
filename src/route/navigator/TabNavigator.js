@@ -5,7 +5,7 @@ import Images from '../../common/Images';
 import SettingContainer from '../../containers/SettingContainer';
 import HomeStackNavigator from './HomeStackNavigator';
 import React, {} from 'react';
-import DexStackNavigator from './DexStackNavigator';
+import LoginStackNavigator from './LoginStackNavigator';
 import {useTheme} from '@react-navigation/native';
 import NotificationStackNavigator from './NotificationStackNavigator';
 import TrustTouchableOpacity from '../../components/common/TrustTouchableOpacity';
@@ -56,7 +56,7 @@ function TabNavigator(props) {
       />
       <BottomTabNavigator.Screen
         name="DEX"
-        component={DexStackNavigator}
+        component={LoginStackNavigator}
         options={{
           tabBarIcon: ({color}) => <TrustImage
             tintColor={color}

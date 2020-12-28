@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Route from './src/route/Route';
 import TrustView from './src/components/common/TrustView';
 import AppLoading from './src/components/common/AppLoading';
@@ -13,20 +13,26 @@ import {setHide} from './src/redux/actions/HideAction';
 
 function AppContainer() {
     const {loading} = useSelector(state => state.loading);
+    const [data, setData] = useState();
     useEffect(() => {
         const socket = io('https://vinawallet.net/',
             {transports: ['websocket', 'polling', 'flashsocket']},
         );
-        store.dispatch(showAppLoading(true));
+       // store.dispatch(showAppLoading(true));
+        socket.emit('/socketVnaWallet',
+            {'api_passer': {'key_passer': 'cus_log_in', 'email': 'egvietnam@gmail.com', 'password': 'egvietnam123'}});
+        socket.on('cus_log_in', (res) => {
+            setData(res.data.coin_list);
+        });
         socket.on('SOCKET_COIN_CHANGE', res => {
-            store.dispatch(showAppLoading(false));
+            setData(res);
+            //store.dispatch(showAppLoading(false));
             store.dispatch(setSocketData(res));
         });
         getDarkmode();
         getHide();
 
     }, []);
-
     const getDarkmode = async () => {
         const darkModeJson = await AsyncStorage.getItem('DarkMode');
         const darkMode = JSON.parse(darkModeJson);

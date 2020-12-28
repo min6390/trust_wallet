@@ -23,6 +23,7 @@ import im_scan from '../assets/images/scan.png'
 import im_coppy from '../assets/images/copy.png'
 import im_share from '../assets/images/share.png'
 import im_tag from '../assets/images/tag.png'
+import im_attention from '../assets/images/attention.png'
 
 const Images = {
     im_arrow_down,
@@ -50,5 +51,6 @@ const Images = {
     im_coppy,
     im_share,
     im_tag,
+    im_attention,
 };
 export default Images;
