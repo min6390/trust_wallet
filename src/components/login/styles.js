@@ -45,5 +45,42 @@ export const styles = StyleSheet.create({
         alignItems:'center',
         borderRadius:Dimens.scale(5)
     },
+    containQR: {
+        alignItems: 'center',
+        backgroundColor: 'white',
+        height: Dimens.verticalScale(240),
+        width: Dimens.scale(240),
+        borderRadius: Dimens.scale(8),
+        justifyContent: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
 
+    },
+    txtQR: {
+        marginHorizontal: Dimens.scale(5),
+        fontSize: FontSizes.size20,
+        marginVertical: Dimens.scale(8),
+        position: 'absolute',
+        left: 0,
+        bottom: 0,
+        textAlign:'center'
+    },
+    containQRSVG: {
+        alignItems: 'center',
+        flex: 1,
+        justifyContent: 'center',
+    },
+    roundContain:{
+        width:Dimens.scale(240),
+        flexDirection: 'row',
+        justifyContent:'space-between',
+        position:'absolute',
+        bottom: Dimens.verticalScale(10),
+    },
 });

@@ -15,20 +15,15 @@ function AppContainer() {
     const {loading} = useSelector(state => state.loading);
     const [data, setData] = useState();
     useEffect(() => {
-        const socket = io('https://vinawallet.net/',
-            {transports: ['websocket', 'polling', 'flashsocket']},
-        );
-       // store.dispatch(showAppLoading(true));
-        socket.emit('/socketVnaWallet',
-            {'api_passer': {'key_passer': 'cus_log_in', 'email': 'egvietnam@gmail.com', 'password': 'egvietnam123'}});
-        socket.on('cus_log_in', (res) => {
-            setData(res.data.coin_list);
-        });
-        socket.on('SOCKET_COIN_CHANGE', res => {
-            setData(res);
-            //store.dispatch(showAppLoading(false));
-            store.dispatch(setSocketData(res));
-        });
+        // const socket = io('https://vinawallet.net/',
+        //     {transports: ['websocket', 'polling', 'flashsocket']},
+        // );
+        // store.dispatch(showAppLoading(true));
+        // socket.on('SOCKET_COIN_CHANGE', res => {
+        //     setData(res);
+        //     store.dispatch(showAppLoading(false));
+        //     store.dispatch(setSocketData(res));
+        // });
         getDarkmode();
         getHide();
 

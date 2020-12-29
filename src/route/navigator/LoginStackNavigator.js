@@ -3,6 +3,7 @@ import React from 'react';
 import {NAVIGATION_CONSTANTS} from '../../common/Constants';
 import LoginContainer from '../../containers/LoginContainer';
 import VerifyLoginContainer from '../../containers/VerifyLoginContainer';
+import QRCode from '../../components/login/QRCodeContainer';
 
 const LoginStack = createStackNavigator();
 
@@ -22,7 +23,10 @@ function LoginStackNavigator() {
                 name={NAVIGATION_CONSTANTS.VERIFY_LOGIN}
                 component={VerifyLoginContainer}
             />
-
+            <LoginStack.Screen
+                name={NAVIGATION_CONSTANTS.QR_CODE}
+                component={QRCode}
+            />
         </LoginStack.Navigator>
     );
 }

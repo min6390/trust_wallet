@@ -8,18 +8,43 @@ import ButtonLogin from '../components/login/ButtonLogin';
 import {useTheme} from '@react-navigation/native';
 import TrustText from '../components/common/TrustText';
 import {io} from 'socket.io-client';
+import store from '../redux/store/store';
+import {setSocketData} from '../redux/actions/SocketAction';
+import {showAppLoading} from '../redux/actions/LoadingAction';
 
 
 function VerifyLoginContainer(props) {
     const {colors} = useTheme();
-    const {route,navigation} = props;
+    const {route, navigation} = props;
     const item = route.params;
-    const [data, setData] = useState([]);
+    const [coinPrices, setCoinPrices] = useState([]);
+    const [login,setLogin]=useState([]);
+    const [coinPricesObj,setCoinPricesObj]= useState({})
     const [newData, setNewData] = useState([]);
-    const onPressLogin=()=>{
-        navigation?.navigate('Tab Navigator')
+    useEffect(() => {
+        const socket = io('https://vinawallet.net/',
+            {transports: ['websocket', 'polling', 'flashsocket']},
+        );
+        // Socket lấy dữ liệu User
+        socket.emit('/socketVnaWallet',
+            {'api_passer': {'key_passer': 'cus_log_in', 'email': 'egvietnam@gmail.com', 'password': 'egvietnam123'}});
+        socket.on('cus_log_in', (res) => {
+            setLogin(res.data.coin_list);
+        });
+        // Socket lấy tỉ giá Coin
+        socket.on('SOCKET_COIN_CHANGE', res => {
+            setCoinPrices(res);
+        });
+    }, []);
+    const onPressLogin = () => {
+        navigation?.navigate('Tab Navigator');
+        coinPrices.forEach((item)=>{
+            setCoinPricesObj( coinPricesObj[item?.code] = item)
+        });
+        store.dispatch(setSocketData(coinPricesObj));
     };
 
+    console.log(coinPricesObj)
     return (
         <TrustContainer
             hasHeader={false}

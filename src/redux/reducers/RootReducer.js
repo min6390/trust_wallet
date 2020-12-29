@@ -13,6 +13,7 @@ const RootReducer = combineReducers({
     switchItem: SwitchReducer,
     socket: SocketReducer,
     hasHide: HideReducer,
+   // posts: Dual
 });
 
 export default RootReducer;

@@ -55,7 +55,9 @@ function LoginContainer(props) {
                                 style={styles.txtChar}
                                 text={'SAO CHÉP'}
                             />
+
                             <TrustText
+                                onPress={()=>{navigation?.navigate(NAVIGATION_CONSTANTS.QR_CODE,data)}}
                                 style={styles.txtChar}
                                 text={'HIỂN THỊ QR'}
                             />
