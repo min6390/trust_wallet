@@ -31,10 +31,6 @@ function CharacterList() {
                             }
                         }}>
                         <TrustText
-                            style={{color: '#AAAAAA'}}
-                            text={index + 1 + ' '}
-                        />
-                        <TrustText
                             style={{color:colors.textColor}}
                             text={item.title}/>
                     </TrustTouchableOpacity>

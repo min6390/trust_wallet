@@ -7,6 +7,7 @@ import TabNavigator from './navigator/TabNavigator';
 import {AppearanceProvider} from 'react-native-appearance';
 import {darkTheme, defaultTheme} from '../common/Themes';
 import {useSelector} from 'react-redux';
+import LoginStackNavigator from './navigator/LoginStackNavigator';
 
 const RouteNavigator = createStackNavigator();
 
@@ -22,10 +23,10 @@ function Route() {
                         headerShown: false,
                     }}
                 >
-                    {/*<RouteNavigator.Screen*/}
-                    {/*    name={'Login'}*/}
-                    {/*    component={LoginStackNavigator}*/}
-                    {/*/>*/}
+                    <RouteNavigator.Screen
+                        name={'Login'}
+                        component={LoginStackNavigator}
+                    />
                     <RouteNavigator.Screen
                         name={'Tab Navigator'}
                         component={TabNavigator}

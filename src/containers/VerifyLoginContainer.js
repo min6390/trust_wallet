@@ -66,7 +66,7 @@ function VerifyLoginContainer(props) {
                                             const arr = charData.filter((charItem) => charItem.id === item.id);
                                             if (arr?.length !== 0) {
                                                 store.dispatch(setOldCharData(oldCharData));
-                                                console.log('  oldCharData.push(item)',  oldCharData.push(item))
+
                                             }
                                         }}>
                                         <TrustText

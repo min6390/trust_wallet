@@ -81,6 +81,7 @@ export const styles = StyleSheet.create({
         flex:1
     },
     character:{
+        backgroundColor:'white',
         margin: Dimens.scale(5),
         borderRadius:Dimens.scale(5),
         borderWidth:Dimens.scale(1/3),

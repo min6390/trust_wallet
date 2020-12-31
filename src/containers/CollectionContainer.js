@@ -1,17 +1,24 @@
 import React, {useEffect, useState} from 'react';
 
 import ServiceSocket from '../services/socket/ServiceSocket';
+import {io} from 'socket.io-client';
 
 
 function CollectionContainer() {
     const [test,setTest] = useState()
     console.log('data================', test);
     useEffect(() => {
-        const params= {'verify_string': 'theirwithdigitalaccessglobalmarketingtowithpremiumstrategybrandsor'}
+           a()
       //  handles();
-        setTest( ServiceSocket({service:'get_nws',params:params} ))
 
     }, []);
+   const a= async ()=>{
+       const socket = io('https://app.vinawallet.net/',
+           {transports: ['websocket', 'polling', 'flashsocket']},
+       );
+       const params= {'verify_string': 'theirwithdigitalaccessglobalmarketingtowithpremiumstrategybrandsor'}
+       setTest(await ServiceSocket('get_nws',params,socket ))
+   }
 
     // const handles = async () => {
     //     const socket = io('https://app.vinawallet.net/',

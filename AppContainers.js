@@ -9,43 +9,41 @@ import {setDarkMode} from './src/redux/actions/ThemeAction';
 import {io} from 'socket.io-client';
 import {showAppLoading} from './src/redux/actions/LoadingAction';
 import {setSocketData} from './src/redux/actions/SocketAction';
-import {setHide} from './src/redux/actions/HideAction';
 
 function AppContainer() {
     const {loading} = useSelector(state => state.loading);
     const [data, setData] = useState();
-    const [img, setImg] = useState();
-    useEffect(() => {
-        handles();
-        getDarkmode();
-    }, []);
+    const [img, setImg] = useState([]);
 
-    const handles = async () => {
+    useEffect(() => {
         const socket = io('https://app.vinawallet.net/',
             {transports: ['websocket', 'polling', 'flashsocket']},
         );
         store.dispatch(showAppLoading(true));
-        await socket.emit('/socketVnaWallet', {'api_passer': {'key_passer': 'get_coi_lst'}});
-        await socket.on('get_coi_lst', res => {
+        socket.emit('/socketVnaWallet', {'api_passer': {'key_passer': 'get_coi_lst'}});
+        socket.on('get_coi_lst', res => {
             setImg(res);
         });
-        await socket.on('SOCKET_COIN_CHANGE', (res) => {
+        socket.on('SOCKET_COIN_CHANGE', (res) => {
             setData(res);
         });
-        setTimeout(f,15000)
-    };
+        setTimeout(handle, 2000);
+        getDarkmode();
+    }, []);
 
-    function f() {
-        img.forEach(item => {
-            data.forEach(data => {
-                if (item.coin == data.symbol) {
-                    data.img = item.img;
-                }
+    const handle = () => {
+        if (img && data ) {
+            img.forEach(item => {
+                data.forEach(data => {
+                    if (item.coin == data.symbol) {
+                        data.img = item.img;
+                    }
+                });
             });
-        });
-        store.dispatch(setSocketData(data));
-        store.dispatch(showAppLoading(false))
-    }
+            store.dispatch(setSocketData(data));
+            store.dispatch(showAppLoading(false));
+        }
+    };
     const getDarkmode = async () => {
         const darkModeJson = await AsyncStorage.getItem('DarkMode');
         const darkMode = JSON.parse(darkModeJson);

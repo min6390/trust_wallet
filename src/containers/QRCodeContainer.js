@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import QRCode from 'react-native-qrcode-svg';
-import {HEADER_MODE} from '../../common/Constants';
-import TrustContainer from '../common/TrustContainer';
-import TrustView from '../common/TrustView';
-import TrustText from '../common/TrustText';
-import {styles} from './styles';
-import ButtonAttention from './ButtonAttention';
+import {HEADER_MODE} from '../common/Constants';
+import TrustContainer from '../components/common/TrustContainer';
+import TrustView from '../components/common/TrustView';
+import TrustText from '../components/common/TrustText';
+import {styles} from '../components/login/styles';
+import ButtonAttention from '../components/login/ButtonAttention';
 
 function QRCodeContainer(props) {
     const {navigation, route} = props;
