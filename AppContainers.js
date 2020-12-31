@@ -9,30 +9,55 @@ import {setDarkMode} from './src/redux/actions/ThemeAction';
 import {io} from 'socket.io-client';
 import {showAppLoading} from './src/redux/actions/LoadingAction';
 import {setSocketData} from './src/redux/actions/SocketAction';
+import ServiceSocket from './src/services/socket/ServiceSocket';
 
 function AppContainer() {
     const {loading} = useSelector(state => state.loading);
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
     const [img, setImg] = useState([]);
 
     useEffect(() => {
-        const socket = io('https://app.vinawallet.net/',
-            {transports: ['websocket', 'polling', 'flashsocket']},
-        );
-        store.dispatch(showAppLoading(true));
-        socket.emit('/socketVnaWallet', {'api_passer': {'key_passer': 'get_coi_lst'}});
-        socket.on('get_coi_lst', res => {
-            setImg(res);
-        });
-        socket.on('SOCKET_COIN_CHANGE', (res) => {
-            setData(res);
-        });
-        setTimeout(handle, 2000);
-        getDarkmode();
-    }, []);
+        // async function f() {
+            const socket = io('https://app.vinawallet.net/',
+                {transports: ['websocket', 'polling', 'flashsocket']},
+            );
+            store.dispatch(showAppLoading(true));
+            // socket.emit('/socketVnaWallet', {'api_passer': {'key_passer': 'get_coi_lst'}});
+            // socket.on('get_coi_lst', res => {
+            //     setImg(res);
+            // });
+            socket.on('SOCKET_COIN_CHANGE', (res) => {
+                ahihi(res,socket);
+            });
+            // console.log('AAAAAAAAAAAAAAA');
+        // }
 
-    const handle = () => {
-        if (img && data ) {
+        // console.log('BBBBBBBBBBBBB');
+        // f().then(() => {
+        //     handle()
+        //     console.log('TTTTTTTTTTTTTTTTT')
+        // })
+        // getDarkmode();
+
+    }, []);
+    const ahihi =async (res,socket)=>{
+        const params = {};
+        const coinList = await ServiceSocket('get_coi_lst', params, socket);
+            if ('undefined' != typeof (res)) {
+                await coinList.forEach(item => {
+                    res.forEach(ele => {
+                        if (item.coin == ele.symbol) {
+                            ele.img = item.img;
+                            // list.push(ele)
+                        }
+                    });
+                });
+                store.dispatch(setSocketData(Object.assign([], res)))
+                // console.log(list)
+            }
+    }
+    const handle = async () => {
+        if (img != undefined && data != undefined) {
             img.forEach(item => {
                 data.forEach(data => {
                     if (item.coin == data.symbol) {
@@ -40,7 +65,8 @@ function AppContainer() {
                     }
                 });
             });
-            store.dispatch(setSocketData(data));
+            store.dispatch(setSocketData(Object.assign([], data)));
+            console.log('data==============', data);
             store.dispatch(showAppLoading(false));
         }
     };
@@ -54,11 +80,10 @@ function AppContainer() {
     //     const hasHide = JSON.parse(hasHideJson);
     //     store.dispatch(setHide(hasHide));y
     // };
-
     return (
         <TrustView style={{flex: 1}}>
-            <Route/>
             {loading && <AppLoading/>}
+            <Route/>
         </TrustView>
     );
 }
