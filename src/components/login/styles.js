@@ -67,7 +67,6 @@ export const styles = StyleSheet.create({
         fontSize: FontSizes.size20,
         marginVertical: Dimens.scale(8),
         position: 'absolute',
-        left: 0,
         bottom: 0,
         textAlign:'center'
     },

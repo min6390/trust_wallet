@@ -5,12 +5,13 @@ import TrustText from '../common/TrustText';
 import Dimens from '../../common/Dimens';
 
 function ButtonLogin(props) {
-    const {onPress,txtLogin}=props
+    const {onPress,txtLogin,style}=props;
 
     return(
         <TrustTouchableOpacity
+            activeOpacity={10}
             onPress={onPress}
-            style={[styles.buttonNext]}>
+            style={[style,styles.buttonNext]}>
             <TrustText
                 style={{margin: Dimens.scale(10), color: 'white'}}
                 text={txtLogin}

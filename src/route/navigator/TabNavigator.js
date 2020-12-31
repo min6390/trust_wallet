@@ -5,11 +5,11 @@ import Images from '../../common/Images';
 import SettingContainer from '../../containers/SettingContainer';
 import HomeStackNavigator from './HomeStackNavigator';
 import React, {} from 'react';
-import LoginStackNavigator from './LoginStackNavigator';
 import {useTheme} from '@react-navigation/native';
 import NotificationStackNavigator from './NotificationStackNavigator';
 import TrustTouchableOpacity from '../../components/common/TrustTouchableOpacity';
 import {NAVIGATION_CONSTANTS} from '../../common/Constants';
+import DexContainer from '../../containers/DexContainer';
 
 const BottomTabNavigator = createBottomTabNavigator();
 
@@ -56,7 +56,7 @@ function TabNavigator(props) {
       />
       <BottomTabNavigator.Screen
         name="DEX"
-        component={LoginStackNavigator}
+        component={DexContainer}
         options={{
           tabBarIcon: ({color}) => <TrustImage
             tintColor={color}

@@ -4,7 +4,6 @@ import TrustTouchableOpacity from '../common/TrustTouchableOpacity';
 import {styles} from '../../containers/styles';
 import TrustView from '../common/TrustView';
 import TrustImage from '../common/TrustImage';
-import Images from '../../common/Images';
 import Dimens from '../../common/Dimens';
 import TrustText from '../common/TrustText';
 import Colors from '../../common/Colors';
@@ -46,7 +45,7 @@ const ListCoinItem = (props) => {
                 <TrustView style={styles.content}>
                     <TrustImage
                         style={styles.image}
-                        localSource={Images.im_xrp}
+                        uri={item.img}
                     />
                     <TrustView style={{marginHorizontal: Dimens.scale(10)}}>
                         <TrustText

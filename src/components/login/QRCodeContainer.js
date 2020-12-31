@@ -1,40 +1,27 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import QRCode from 'react-native-qrcode-svg';
-import {Share} from 'react-native';
 import {HEADER_MODE} from '../../common/Constants';
 import TrustContainer from '../common/TrustContainer';
 import TrustView from '../common/TrustView';
 import TrustText from '../common/TrustText';
-import {styles}from './styles'
+import {styles} from './styles';
+import ButtonAttention from './ButtonAttention';
 
 function QRCodeContainer(props) {
-    const {navigation,route } = props;
-    const item = route.params;
-    const [qr,setQR] = useState( item);
+    const {navigation, route} = props;
+    const [qr, setQR] = useState();
+    const items = route.params;
 
-    const onPressShare = async () => {
-        try {
-            const result = await Share.share({
-                message: qr,
-            });
-            if (result.action === Share.sharedAction) {
-                if (result.activityType) {
-                    // shared with activity type of result.activityType
-                } else {
-                    // shared
-                }
-            } else if (result.action === Share.dismissedAction) {
-                // dismissed
-            }
-        } catch (error) {
-            alert(error.message);
-        }
-    };
+    useEffect(() => {
+        let index='';
+        items.forEach((item) => {index += item.title + ' ' });
+        setQR(index.trim())
+    }, []);
 
     return (
         <TrustContainer
             navigation={navigation}
-            title={'QR COde'}
+            title={'QR Code'}
             headerMode={HEADER_MODE.DETAIL}
             renderContentView={() => {
                 return (
@@ -48,9 +35,10 @@ function QRCodeContainer(props) {
                             <TrustText
                                 numberOfLines={2}
                                 style={[styles.txtQR]}
-                                text={qr}
+                                text={'Mã QR này chứa cụm từ khôi phục'}
                             />
                         </TrustView>
+                        <ButtonAttention/>
                     </TrustView>
                 );
             }}

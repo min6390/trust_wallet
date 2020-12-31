@@ -5,6 +5,8 @@ import CryptReducer from './CryptReducer';
 import SwitchReducer from './SwitchReducer';
 import SocketReducer from './SocketReducer';
 import HideReducer from './HideReducer';
+import CharReducer from './CharReducer';
+import OldCharReducer from './OldCharReducer';
 
 const RootReducer = combineReducers({
     loading: LoadingReducer,
@@ -14,6 +16,8 @@ const RootReducer = combineReducers({
     socket: SocketReducer,
     hasHide: HideReducer,
    // posts: Dual
+    charData:CharReducer,
+    oldCharData:OldCharReducer,
 });
 
 export default RootReducer;

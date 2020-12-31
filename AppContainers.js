@@ -14,30 +14,48 @@ import {setHide} from './src/redux/actions/HideAction';
 function AppContainer() {
     const {loading} = useSelector(state => state.loading);
     const [data, setData] = useState();
+    const [img, setImg] = useState();
     useEffect(() => {
-        // const socket = io('https://vinawallet.net/',
-        //     {transports: ['websocket', 'polling', 'flashsocket']},
-        // );
-        // store.dispatch(showAppLoading(true));
-        // socket.on('SOCKET_COIN_CHANGE', res => {
-        //     setData(res);
-        //     store.dispatch(showAppLoading(false));
-        //     store.dispatch(setSocketData(res));
-        // });
+        handles();
         getDarkmode();
-        getHide();
-
     }, []);
+
+    const handles = async () => {
+        const socket = io('https://app.vinawallet.net/',
+            {transports: ['websocket', 'polling', 'flashsocket']},
+        );
+        store.dispatch(showAppLoading(true));
+        await socket.emit('/socketVnaWallet', {'api_passer': {'key_passer': 'get_coi_lst'}});
+        await socket.on('get_coi_lst', res => {
+            setImg(res);
+        });
+        await socket.on('SOCKET_COIN_CHANGE', (res) => {
+            setData(res);
+        });
+        setTimeout(f,15000)
+    };
+
+    function f() {
+        img.forEach(item => {
+            data.forEach(data => {
+                if (item.coin == data.symbol) {
+                    data.img = item.img;
+                }
+            });
+        });
+        store.dispatch(setSocketData(data));
+        store.dispatch(showAppLoading(false))
+    }
     const getDarkmode = async () => {
         const darkModeJson = await AsyncStorage.getItem('DarkMode');
         const darkMode = JSON.parse(darkModeJson);
         store.dispatch(setDarkMode(darkMode));
     };
-    const getHide = async () => {
-        const hasHideJson = await AsyncStorage.getItem('HasHide');
-        const hasHide = JSON.parse(hasHideJson);
-        store.dispatch(setHide(hasHide));
-    };
+    // const getHide = async () => {
+    //     const hasHideJson = await AsyncStorage.getItem('HasHide');
+    //     const hasHide = JSON.parse(hasHideJson);
+    //     store.dispatch(setHide(hasHide));y
+    // };
 
     return (
         <TrustView style={{flex: 1}}>

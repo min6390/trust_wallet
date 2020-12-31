@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, } from 'react';
 import TrustContainer from '../components/common/TrustContainer';
 import TrustView from '../components/common/TrustView';
 import {styles} from './styles';
@@ -7,44 +7,41 @@ import CharacterList from '../components/login/CharacterList';
 import ButtonLogin from '../components/login/ButtonLogin';
 import {useTheme} from '@react-navigation/native';
 import TrustText from '../components/common/TrustText';
-import {io} from 'socket.io-client';
+import { useSelector} from 'react-redux';
+import TrustTouchableOpacity from '../components/common/TrustTouchableOpacity';
 import store from '../redux/store/store';
-import {setSocketData} from '../redux/actions/SocketAction';
+import {setCharData} from '../redux/actions/CharAction';
+import Colors from '../common/Colors';
+import {setOldCharData} from '../redux/actions/OldCharAction';
+import {io} from 'socket.io-client';
 import {showAppLoading} from '../redux/actions/LoadingAction';
 
 
 function VerifyLoginContainer(props) {
     const {colors} = useTheme();
-    const {route, navigation} = props;
-    const item = route.params;
-    const [coinPrices, setCoinPrices] = useState([]);
-    const [login,setLogin]=useState([]);
-    const [coinPricesObj,setCoinPricesObj]= useState({})
-    const [newData, setNewData] = useState([]);
+    const { navigation} = props;
+    let {charData} = useSelector(state => state.charData);
+
     useEffect(() => {
-        const socket = io('https://vinawallet.net/',
+        const socket = io('https://app.vinawallet.net',
             {transports: ['websocket', 'polling', 'flashsocket']},
         );
-        // Socket lấy dữ liệu User
-        socket.emit('/socketVnaWallet',
-            {'api_passer': {'key_passer': 'cus_log_in', 'email': 'egvietnam@gmail.com', 'password': 'egvietnam123'}});
-        socket.on('cus_log_in', (res) => {
-            setLogin(res.data.coin_list);
-        });
-        // Socket lấy tỉ giá Coin
-        socket.on('SOCKET_COIN_CHANGE', res => {
-            setCoinPrices(res);
+        socket.emit('/socketVnaWallet', {'api_passer': {'key_passer': 'twl_aut_sig','verify_string':charData}});
+        store.dispatch(showAppLoading(true));
+        socket.on('twl_aut_sig', (res) => {
+                console.log(res.message)
+            store.dispatch(showAppLoading(false));
+
         });
     }, []);
     const onPressLogin = () => {
         navigation?.navigate('Tab Navigator');
-        coinPrices.forEach((item)=>{
-            setCoinPricesObj( coinPricesObj[item?.code] = item)
-        });
-        store.dispatch(setSocketData(coinPricesObj));
     };
 
-    console.log(coinPricesObj)
+    useEffect(() => {
+
+    }, []);
+
     return (
         <TrustContainer
             hasHeader={false}
@@ -55,25 +52,37 @@ function VerifyLoginContainer(props) {
                             txtTitle={'Xác minh các cụm từ khôi phục ví'}
                             txtContent={'Nhấn vào các từ để đặt chúng vào cạnh nhau theo đúng thứ tự'}
                         />
-                        <TrustView style={styles.confirmChar}>
-                            {newData.map((item, index) => {
+                        {charData.length !== 0 ? <TrustView style={[styles.confirmChar,{backgroundColor:colors.buttonPay}]}>
+                            {charData.map((item, index) => {
                                 return (
-                                    <TrustView key={index} style={styles.character}>
+                                    <TrustTouchableOpacity
+                                        key={index}
+                                        style={styles.character}
+                                        onPress={() => {
+                                            const state = store.getState();
+                                            const {oldCharData} = state.oldCharData;
+                                            const new_arr = charData.filter(char => char !== item);
+                                            store.dispatch(setCharData(Object.assign([], new_arr)));
+                                            const arr = charData.filter((charItem) => charItem.id === item.id);
+                                            if (arr?.length !== 0) {
+                                                store.dispatch(setOldCharData(oldCharData));
+                                                console.log('  oldCharData.push(item)',  oldCharData.push(item))
+                                            }
+                                        }}>
                                         <TrustText
                                             style={{color: '#AAAAAA'}}
-                                            text={item.id + ' '}
+                                            text={index + 1 + ' '}
                                         />
                                         <TrustText text={item.title}/>
-                                    </TrustView>
+                                    </TrustTouchableOpacity>
                                 );
                             })}
-                        </TrustView>
-                        <CharacterList
-                            data={item}
-                        />
+                        </TrustView> : <TrustView style={[styles.confirmChar,{backgroundColor:colors.buttonPay}]}/>}
+                        <CharacterList/>
                         <ButtonLogin
-                            onPress={onPressLogin}
-                            txtLogin={'ĐÚNG òi'}
+                            style={charData.length == 12 ?{backgroundColor:Colors.secondBackground}:{backgroundColor:'#AAAAAA'}}
+                            onPress={charData.length == 12 ?onPressLogin:()=>{}}
+                            txtLogin={'ĐĂNG NHẬP'}
                         />
                     </TrustView>
                 );

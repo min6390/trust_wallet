@@ -109,7 +109,6 @@ export const styles = StyleSheet.create({
         position:'absolute',
         bottom:0,
         marginBottom:Dimens.verticalScale(20),
-        backgroundColor:Colors.thirdBackground,
         justifyContent:'center',
         alignItems:'center',
         borderRadius:Dimens.scale(5)
