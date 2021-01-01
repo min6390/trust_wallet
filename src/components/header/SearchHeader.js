@@ -4,7 +4,7 @@ import TrustImage from '../common/TrustImage';
 import Images from '../../common/Images';
 import {styles} from './styles';
 import TrustTouchableOpacity from '../common/TrustTouchableOpacity';
-import TrustTextInput from '../common/TrustTextInput';
+import {TextInput} from 'react-native'
 import {useTheme} from '@react-navigation/native';
 
 const SearchHeader = (props) => {
@@ -17,9 +17,6 @@ const SearchHeader = (props) => {
   const onFocus = () => {
 
   };
-
-
-
 
   return (
     <TrustView flexDirection={'row'} style={[styles.container,{backgroundColor:colors.primary}]}>
@@ -38,7 +35,7 @@ const SearchHeader = (props) => {
           tintColor={colors.inactiveTintColor}
           style={styles.imageFind}
           localSource={Images.im_find}/>
-        <TrustTextInput
+        <TextInput
           onFocus={ onFocus}
           placeholder={'Find something or address dApp'}
           style={[styles.searchInput,{color:colors.textColor}]}/>

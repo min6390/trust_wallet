@@ -7,6 +7,7 @@ import Dimens from '../../common/Dimens';
 import TrustTouchableOpacity from '../common/TrustTouchableOpacity';
 import {useTheme} from '@react-navigation/native';
 import TopTabNavigator from '../common/TopTabNavigator';
+import {NAVIGATION_CONSTANTS} from '../../common/Constants';
 
 const HeaderTest = (props) => {
   const {colors} = useTheme();
@@ -16,7 +17,7 @@ const HeaderTest = (props) => {
     firstName, secondName, routeData, firstScreen, secondScreen,
   } = props;
   const onPress = () => {
-    navigation?.navigate('More', {routeData});
+    navigation?.navigate(NAVIGATION_CONSTANTS.MORE, {routeData});
   };
   props.callbackScreen(message);
   const callbackScreen = (childData) => {

@@ -16,7 +16,7 @@ import {NAVIGATION_CONSTANTS} from '../../common/Constants';
 
 function DetailItem(props) {
   const {colors} = useTheme();
-  const {price,symbol,navigation} = props;
+  const {price,symbol,navigation,img} = props;
   const {socketData} = useSelector(state => state.socket);
   const [dataSocket] = useState(socketData.filter(item => item.name === price));
 
@@ -72,10 +72,10 @@ function DetailItem(props) {
           <TrustView style={{alignItems: 'center'}}>
             <TrustImage
               style={styles.imageCoin}
-              localSource={Images.im_ele}/>
+             uri={img}/>
             <TrustText
               style={[styles.txtCoin, {color: colors.textColor}]}
-              text={' 0 BTC '}/>
+              text={' 0 '+symbol}/>
             <InformationItemList
               style={styles.itemList}
               data={data}/>
@@ -96,9 +96,10 @@ const styles = StyleSheet.create({
   },
   txtCoin: {
     fontSize: FontSizes.size45,
+    marginTop: Dimens.verticalScale(15)
   },
   itemList: {
-    marginTop: Dimens.scale(30),
+    marginTop: Dimens.scale(20),
   },
 });
 export default DetailItem;
