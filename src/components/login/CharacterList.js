@@ -1,4 +1,4 @@
-import React, {} from 'react';
+import React, {useState} from 'react';
 import TrustText from '../common/TrustText';
 import TrustView from '../common/TrustView';
 import {styles} from './styles';
@@ -13,27 +13,30 @@ function CharacterList() {
     let {oldCharData} = useSelector(state => state.oldCharData);
     const {colors} = useTheme();
     return (
-        <TrustView style={[styles.characterContain,]}>
+        <TrustView style={[styles.characterContain]}>
             {oldCharData.map((item, index) => {
                 return (
-                    <TrustTouchableOpacity
-                        key={index}
-                        style={[styles.character,]}
-                        onPress={() => {
-                            const state = store.getState();
-                            const {charData} = state.charData;
-                            const arr = charData.filter((charItem) => charItem.id === item.id);
-                            if (arr?.length === 0) {
-                                charData.push(item);
-                                const new_arr = oldCharData.filter(char => char !== item);
-                                store.dispatch(setOldCharData(Object.assign([], new_arr)));
-                                store.dispatch(setCharData(charData));
-                            }
-                        }}>
-                        <TrustText
-                            style={{color:colors.textColor}}
-                            text={item.title}/>
-                    </TrustTouchableOpacity>
+                    <TrustView
+                        key={index}>
+                        <TrustTouchableOpacity
+                            key={index}
+                            style={[styles.character]}
+                            onPress={() => {
+                                const state = store.getState();
+                                const {charData} = state.charData;
+                                const arr = charData.filter((charItem) => charItem.id === item.id);
+                                if (arr?.length === 0) {
+                                    charData.push(item);
+                                    const new_arr = oldCharData.filter(char => char !== item);
+                                    store.dispatch(setOldCharData(Object.assign([], new_arr)));
+                                    store.dispatch(setCharData(charData));
+                                }
+                            }}>
+                            <TrustText
+                                style={{color: colors.textColor}}
+                                text={item.title}/>
+                        </TrustTouchableOpacity>
+                    </TrustView>
                 );
             })}
         </TrustView>

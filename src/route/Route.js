@@ -8,12 +8,16 @@ import {AppearanceProvider} from 'react-native-appearance';
 import {darkTheme, defaultTheme} from '../common/Themes';
 import {useSelector} from 'react-redux';
 import LoginStackNavigator from './navigator/LoginStackNavigator';
+import {NAVIGATION_CONSTANTS} from '../common/Constants';
 
 const RouteNavigator = createStackNavigator();
 
 function Route() {
     const currentTheme = useSelector(state => {
         return state.myDarMode.darkMode;
+    });
+    const isLogin = useSelector(state => {
+        return state.login.isLogin;
     });
     return (
         <AppearanceProvider>
@@ -23,14 +27,16 @@ function Route() {
                         headerShown: false,
                     }}
                 >
-                    <RouteNavigator.Screen
-                        name={'Login'}
-                        component={LoginStackNavigator}
-                    />
-                    <RouteNavigator.Screen
-                        name={'Tab Navigator'}
-                        component={TabNavigator}
-                    />
+                    {isLogin ?
+                        <RouteNavigator.Screen
+                            name={NAVIGATION_CONSTANTS.BOTTOM_TAB}
+                            component={TabNavigator}
+                        /> :
+                        <RouteNavigator.Screen
+                            name={NAVIGATION_CONSTANTS.LOGIN_STACK}
+                            component={LoginStackNavigator}
+                        />}
+
                 </RouteNavigator.Navigator>
             </NavigationContainer>
         </AppearanceProvider>

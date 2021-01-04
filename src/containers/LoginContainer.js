@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {} from 'react';
 import TrustView from '../components/common/TrustView';
 import TrustContainer from '../components/common/TrustContainer';
 import TrustText from '../components/common/TrustText';
@@ -9,35 +9,28 @@ import Content from '../components/login/Content';
 import ButtonLogin from '../components/login/ButtonLogin';
 import ButtonAttention from '../components/login/ButtonAttention';
 import {NAVIGATION_CONSTANTS} from '../common/Constants';
-import {io} from 'socket.io-client';
 import Colors from '../common/Colors';
 import store from '../redux/store/store';
 import {setOldCharData} from '../redux/actions/OldCharAction';
-import {showAppLoading} from '../redux/actions/LoadingAction';
 import OldCharacterList from '../components/login/OldCharacterList';
 import Clipboard from '@react-native-community/clipboard';
 import TrustTouchableOpacity from '../components/common/TrustTouchableOpacity';
+import {useSelector} from 'react-redux';
 
 function LoginContainer(props) {
     const {navigation} = props;
-    const [data, setData] = useState([]);
     const {colors} = useTheme();
-    useEffect(() => {
-        const socket = io('https://app.vinawallet.net',
-            {transports: ['websocket', 'polling', 'flashsocket']},
-        );
-        socket.emit('/socketVnaWallet', {'api_passer': {'key_passer': 'twl_aut_vrf'}});
-        store.dispatch(showAppLoading(true));
-        socket.on('twl_aut_vrf', (res) => {
-            setData(res.data);
-            store.dispatch(showAppLoading(false));
-        });
-    }, []);
-
+    const {verifyData} = useSelector(state => state.verifyList);
     const onPressNext = () => {
+        navigation?.navigate(NAVIGATION_CONSTANTS.VERIFY_LOGIN);
+        randomVerify();
+    };
+
+    function randomVerify() {
         for (let a = [], i = 0; i < 12; ++i) {
             a[i] = i;
         }
+
         function shuffle(array) {
             let tmp, current, top = array.length;
             if (top) {
@@ -50,14 +43,14 @@ function LoginContainer(props) {
             }
             return array;
         }
-        let a = shuffle(data);
+
+        let a =  shuffle([...verifyData]);
         store.dispatch(setOldCharData(a));
-        navigation?.navigate(NAVIGATION_CONSTANTS.VERIFY_LOGIN, data);
-    };
+    }
 
     const onPressClipboard = () => {
         let arr = '';
-        data.forEach(item => arr += item.title);
+        verifyData.forEach(item => arr += item.title+ " ");
         Clipboard.setString(arr);
     };
 
@@ -72,7 +65,7 @@ function LoginContainer(props) {
                             txtContent={'Viết xuống hoặc sao chép những từ này theo đúng thứ tự và lưu chúng ở nơi an toàn'}
                         />
                         <OldCharacterList
-                            data={data}
+                            data={verifyData}
                         />
                         <TrustView
                             style={{
@@ -89,7 +82,7 @@ function LoginContainer(props) {
                             </TrustTouchableOpacity>
                             <TrustText
                                 onPress={() => {
-                                    navigation?.navigate(NAVIGATION_CONSTANTS.QR_CODE, data);
+                                    navigation?.navigate(NAVIGATION_CONSTANTS.QR_CODE, verifyData);
                                 }}
                                 style={styles.txtChar}
                                 text={'HIỂN THỊ QR'}

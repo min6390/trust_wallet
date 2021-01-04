@@ -9,7 +9,6 @@ function setCharData(state, payload) {
     const newState = updateObject(state, {
         charData: payload.data,
     });
-
     return newState;
 }
 

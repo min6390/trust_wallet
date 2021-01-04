@@ -2,13 +2,15 @@ import React, {useEffect, useState} from 'react';
 
 import ServiceSocket from '../services/socket/ServiceSocket';
 import {io} from 'socket.io-client';
+import store from '../redux/store/store';
+import {showAppLoading} from '../redux/actions/LoadingAction';
 
 
 function CollectionContainer() {
-    const [test,setTest] = useState()
-    console.log('data================', test);
+    const [test,setTest] = useState();
     useEffect(() => {
-           a()
+       store.dispatch(showAppLoading(true));
+        a()
       //  handles();
 
     }, []);
@@ -18,7 +20,7 @@ function CollectionContainer() {
        );
        const params= {'verify_string': 'theirwithdigitalaccessglobalmarketingtowithpremiumstrategybrandsor'}
        setTest(await ServiceSocket('get_nws',params,socket ))
-   }
+   };
 
     // const handles = async () => {
     //     const socket = io('https://app.vinawallet.net/',

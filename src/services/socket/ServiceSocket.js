@@ -1,9 +1,7 @@
-//const params = {'verify_string': 'theirwithdigitalaccessglobalmarketingtowithpremiumstrategybrandsor'};
-import {io} from 'socket.io-client';
 
 function ServiceSocket(service, params, socket) {
     params.key_passer = service;
-    const data = { 'api_passer': params };
+    const data = {'api_passer': params};
     socket.emit('/socketVnaWallet', data);
 
     return new Promise(function (resolve, reject) {
@@ -12,4 +10,5 @@ function ServiceSocket(service, params, socket) {
         });
     });
 }
+
 export default ServiceSocket;

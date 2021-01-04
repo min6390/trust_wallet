@@ -8,6 +8,7 @@ import QRCode from '../../containers/QRCodeContainer';
 const LoginStack = createStackNavigator();
 
 function LoginStackNavigator() {
+
     return (
         <LoginStack.Navigator
             initialRouteName={NAVIGATION_CONSTANTS.LOGIN}
