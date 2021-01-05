@@ -19,12 +19,18 @@ import {setLogin} from '../redux/actions/LoginAction';
 
 
 function VerifyLoginContainer(props) {
+    const {navigation} = props;
     const {colors} = useTheme();
     let {charData} = useSelector(state => state.charData);
     const [token, setToken] = useState();
-    useEffect(() => {
 
-    }, []);
+    useEffect(() => {
+        const unsubscribe = navigation?.addListener('blur', () => {
+            store.dispatch(setCharData([]));
+        });
+        return unsubscribe;
+    }, [navigation]);
+
 
     const onPressLogin = () => {
         let arr = '';
@@ -69,7 +75,6 @@ function VerifyLoginContainer(props) {
                                                 store.dispatch(setCharData(Object.assign([], new_arr)));
                                                 const arr = charData.filter((charItem) => charItem.id === item.id);
                                                 if (arr?.length !== 0) {
-
                                                     oldCharData.push(item);
                                                     store.dispatch(setOldCharData(oldCharData));
                                                 }
@@ -85,7 +90,6 @@ function VerifyLoginContainer(props) {
                             </TrustView> :
                             <TrustView style={[styles.confirmChar, {backgroundColor: colors.buttonPay}]}/>}
                         <CharacterList/>
-
                         <ButtonLogin
                             style={charData.length === 12 ? {backgroundColor: Colors.secondBackground} : {backgroundColor: '#AAAAAA'}}
                             onPress={charData.length === 12 ? onPressLogin : () => {
